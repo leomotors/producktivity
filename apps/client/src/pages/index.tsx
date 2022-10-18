@@ -1,4 +1,4 @@
-import { Button } from "ui";
+import { Button } from "@producktivity/design";
 
 export default function Web() {
   return (
