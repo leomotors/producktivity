@@ -17,4 +17,6 @@ generator nestgraphql {
 
 model NotTest {
   id String @unique
+
+  @@map("not_test")
 }

@@ -10,7 +10,7 @@ export class NotTestResolver {
   constructor(private readonly service: NotTestService) {}
 
   @Query(() => [NotTest])
-  notTests(@Args() args: FindManyNotTestArgs) {
+  notTests(@Args() args?: FindManyNotTestArgs) {
     return this.service.findMany(args);
   }
 }

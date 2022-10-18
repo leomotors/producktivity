@@ -1,5 +1,10 @@
 {
   "extends": "@producktivity/config/tsconfig-next.json",
+  "compilerOptions": {
+    "paths": {
+      "$styles/*": ["src/styles/*"]
+    }
+  },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

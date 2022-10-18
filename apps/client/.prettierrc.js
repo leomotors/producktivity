@@ -1,5 +1,5 @@
 module.exports = {
-  ...require("@producktivity/config/prettier-web"),
+  ...require("@producktivity/config/prettier-app"),
   importOrder: [
     "^\\$styles",
     "^[$]",
