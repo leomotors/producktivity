@@ -14,9 +14,10 @@ export default function Web() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <h1>Producktivity</h1>
+      <h1 className="text-4xl font-bold text-blue-600">Producktivity</h1>
 
-      <h2>Login and Register</h2>
+      <p className="text-xl font-bold">The ducks that wants to be productive</p>
+
       <input
         placeholder="Username"
         type="text"
