@@ -1,0 +1,37 @@
+mutation requestRegister($username: String!) {
+  requestRegister(username: $username) {
+    userId
+    challenge
+    relyingParty {
+      name
+      id
+    }
+  }
+}
+
+mutation verifyRegister(
+  $id: String!
+  $rawId: String!
+  $type: String!
+  $response: RegisterResponse!
+) {
+  verifyRegister(id: $id, rawId: $rawId, type: $type, response: $response) {
+    token
+  }
+}
+
+mutation requestLogin($username: String!) {
+  requestLogin(username: $username) {
+    challenge
+    allowedCredentials {
+      type
+      id
+    }
+  }
+}
+
+mutation verifyLogin($id: String!, $response: LoginResponse!) {
+  verifyLogin(id: $id, response: $response) {
+    token
+  }
+}

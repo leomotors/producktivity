@@ -14,7 +14,6 @@
     "skipLibCheck": true,
     "strictBindCallApply": false,
     "strict": true,
-    "noUncheckedIndexedAccess": true,
     "paths": {
       "@generated/*": ["src/@generated/*"]
     }

@@ -1,7 +1,9 @@
 {
   "extends": "@producktivity/config/tsconfig-next.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
+      "$modules/*": ["src/modules/*"],
       "$styles/*": ["src/styles/*"]
     }
   },

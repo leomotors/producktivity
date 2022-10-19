@@ -1,11 +1,10 @@
 module.exports = {
   ...require("@producktivity/config/prettier-app"),
   importOrder: [
-    "^\\$styles",
-    "^[$]",
-    "^@",
-    "^next",
     "^react",
+    "^next",
+    "^@",
+    "^\\$",
     "^[a-zA-Z]",
     "^[.][.]",
     "^[.]",

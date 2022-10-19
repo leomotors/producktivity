@@ -4,7 +4,12 @@
 const config = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint/eslint-plugin", "import"],
+  plugins: [
+    "@typescript-eslint/eslint-plugin",
+    "import",
+    "react",
+    "sort-destructure-keys",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -26,6 +31,14 @@ const config = {
         caughtErrorsIgnorePattern: "^_",
       },
     ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        callbacksLast: true,
+        reservedFirst: true,
+      },
+    ],
+    "sort-destructure-keys/sort-destructure-keys": "warn",
   },
 };
 

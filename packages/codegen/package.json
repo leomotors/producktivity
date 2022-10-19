@@ -16,6 +16,7 @@
     "@graphql-codegen/typescript-operations": "^2.5.4",
     "@graphql-codegen/typescript-react-apollo": "^3.3.4",
     "@producktivity/config": "workspace:0.0.0",
+    "@producktivity/constants": "workspace:0.0.0",
     "eslint": "^8.25.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1"

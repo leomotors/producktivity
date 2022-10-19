@@ -1,5 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { authorizationLocalStorageKey } from "@producktivity/constants";
 
 export function createApolloClient(url: string) {
   const httpLink = createHttpLink({
@@ -7,7 +8,7 @@ export function createApolloClient(url: string) {
   });
 
   const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem(authorizationLocalStorageKey);
 
     return {
       headers: {

@@ -10,6 +10,7 @@ import { PrismaService } from "./prisma.service";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
+import { AuthModule } from "./auth/auth.module";
 import { NotTestModule } from "./not-test/not-test.module";
 
 @Global()
@@ -24,6 +25,7 @@ import { NotTestModule } from "./not-test/not-test.module";
       plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
+    AuthModule,
     NotTestModule,
   ],
   controllers: [AppController],
