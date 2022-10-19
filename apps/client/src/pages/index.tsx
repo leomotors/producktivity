@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 import { authorizationLocalStorageKey } from "@producktivity/constants";
+import { MyPage } from "@types";
 
 import { Login, Register } from "$modules/authentication";
 
-export default function Web() {
+const IndexPage: MyPage = () => {
   const [username, setUsername] = useState("");
   const [temp, setTemp] = useState("NONE");
 
@@ -40,4 +41,8 @@ export default function Web() {
       <p>token is {temp}</p>
     </div>
   );
-}
+};
+
+IndexPage.authStatus = "redirect";
+
+export default IndexPage;

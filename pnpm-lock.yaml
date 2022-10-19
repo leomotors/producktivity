@@ -32,6 +32,7 @@ importers:
       base64-arraybuffer: ^1.0.2
       clsx: ^1.2.1
       eslint: 8.25.0
+      jwt-decode: ^3.1.2
       next: 12.3.1
       next-transpile-modules: 9.1.0
       postcss: ^8.4.18
@@ -45,6 +46,7 @@ importers:
       '@producktivity/design': link:../../packages/design
       base64-arraybuffer: 1.0.2
       clsx: 1.2.1
+      jwt-decode: 3.1.2
       next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5406,6 +5408,10 @@ packages:
     dependencies:
       jwa: 1.4.1
       safe-buffer: 5.2.1
+
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
 
   /levn/0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
