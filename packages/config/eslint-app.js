@@ -4,13 +4,12 @@
 const config = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint/eslint-plugin"],
+  plugins: ["@typescript-eslint/eslint-plugin", "import"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended",
-    "next/core-web-vitals",
     "turbo",
   ],
   rules: {
