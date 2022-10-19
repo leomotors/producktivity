@@ -13,22 +13,29 @@ export default function Web() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <h1 className="text-4xl font-bold text-blue-600">Producktivity</h1>
+    <div className="flex h-screen flex-col items-center justify-center gap-4">
+      <h1 className="text-6xl font-bold text-blue-600">Producktivity</h1>
 
       <p className="text-xl font-bold">The ducks that wants to be productive</p>
 
-      <input
-        placeholder="Username"
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.currentTarget.value.toLowerCase())}
-      />
+      <p className="text-2xl font-bold">
+        Pomodoro, Tasks, Events, Schedule, All-In-One App
+      </p>
 
-      <div className="flex justify-center gap-4">
-        <Login username={username} onComplete={onComplete} />
-        <Register username={username} onComplete={onComplete} />
-      </div>
+      <section className="my-8 flex flex-col gap-4">
+        <input
+          className="rounded-lg border border-gray-500 p-2"
+          placeholder="Username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.currentTarget.value.toLowerCase())}
+        />
+
+        <div className="flex justify-center gap-4">
+          <Login username={username} onComplete={onComplete} />
+          <Register username={username} onComplete={onComplete} />
+        </div>
+      </section>
 
       <p>token is {temp}</p>
     </div>
