@@ -37,8 +37,9 @@ model Authenticator {
   publicKey    String @map("public_key")
   counter      Int
   credentialId String @map("credential_id")
-  user         User   @relation(fields: [userId], references: [id])
-  userId       String @map("user_id")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("authenticator")
 }
@@ -48,8 +49,9 @@ model Challenge {
   challenge String @unique
 
   createdAt DateTime @default(now()) @map("created_at")
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String   @unique @map("user_id")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id")
 
   @@map("challenge")
 }

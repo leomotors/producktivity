@@ -4,14 +4,13 @@ import {
   useRequestLoginMutation,
   useVerifyLoginMutation,
 } from "@producktivity/codegen";
-import { authorizationLocalStorageKey } from "@producktivity/constants";
 import { Button } from "@producktivity/design";
 
 import { decode, encode } from "base64-arraybuffer";
 
 interface LoginProps {
   username: string;
-  onComplete?: () => void;
+  onComplete?: (token: string) => void;
 }
 
 export const Login: FC<LoginProps> = ({ onComplete, username: uname }) => {
@@ -62,9 +61,7 @@ export const Login: FC<LoginProps> = ({ onComplete, username: uname }) => {
 
       const token = rawToken.data?.verifyLogin.token;
 
-      localStorage.setItem(authorizationLocalStorageKey, token ?? "");
-
-      onComplete?.();
+      onComplete?.(token ?? "");
     },
     [onComplete, requestLogin, verifyLogin]
   );
