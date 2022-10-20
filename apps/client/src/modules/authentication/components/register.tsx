@@ -70,7 +70,11 @@ export const Register: FC<RegisterProps> = ({
           type: credential.type,
           response: {
             attestationObject: encode(
-              (credential.response as any).attestationObject as ArrayBuffer
+              (
+                credential.response as unknown as {
+                  attestationObject: ArrayBuffer;
+                }
+              ).attestationObject as ArrayBuffer
             ),
             clientDataJSON: encode(credential.response.clientDataJSON),
           },

@@ -1,5 +1,11 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": [
+    "NEXT_PUBLIC_GRAPHQL_ENDPOINT",
+    "DATABASE_URL",
+    "JWT_SECRET",
+    "npm_lifecycle_event"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": [
