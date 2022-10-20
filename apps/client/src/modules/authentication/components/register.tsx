@@ -4,14 +4,13 @@ import {
   useRequestRegisterMutation,
   useVerifyRegisterMutation,
 } from "@producktivity/codegen";
-import { authorizationLocalStorageKey } from "@producktivity/constants";
 import { Button } from "@producktivity/design";
 
 import { decode, encode } from "base64-arraybuffer";
 
 interface RegisterProps {
   username: string;
-  onComplete?: () => void;
+  onComplete?: (token: string) => void;
 }
 
 export const Register: FC<RegisterProps> = ({
@@ -71,7 +70,11 @@ export const Register: FC<RegisterProps> = ({
           type: credential.type,
           response: {
             attestationObject: encode(
-              (credential.response as any).attestationObject as ArrayBuffer
+              (
+                credential.response as unknown as {
+                  attestationObject: ArrayBuffer;
+                }
+              ).attestationObject as ArrayBuffer
             ),
             clientDataJSON: encode(credential.response.clientDataJSON),
           },
@@ -80,9 +83,7 @@ export const Register: FC<RegisterProps> = ({
 
       const token = rawToken.data?.verifyRegister.token;
 
-      localStorage.setItem(authorizationLocalStorageKey, token ?? "");
-
-      onComplete?.();
+      onComplete?.(token ?? "");
     },
     [onComplete, requestRegister, verifyRegister]
   );

@@ -7,13 +7,18 @@
     "packages/*"
   ],
   "scripts": {
+    "postinstall": "pnpm prisma generate",
     "build": "FORCE_COLOR=2 turbo run build",
     "dev": "FORCE_COLOR=2 turbo run dev --parallel",
     "lint": "FORCE_COLOR=2 turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "FORCE_COLOR=2 turbo run format"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.5.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.4",
+    "crlf-phobia": "^1.0.1",
     "prettier": "^2.7.1",
     "prisma": "^4.5.0",
     "prisma-nestjs-graphql": "^17.0.1",
@@ -22,8 +27,5 @@
   "engines": {
     "node": ">=16.17.0"
   },
-  "packageManager": "pnpm@7.13.5",
-  "dependencies": {
-    "@prisma/client": "^4.5.0"
-  }
+  "packageManager": "pnpm@7.13.5"
 }

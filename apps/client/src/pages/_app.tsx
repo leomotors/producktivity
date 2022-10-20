@@ -4,6 +4,8 @@ import Head from "next/head";
 import { ApolloProvider } from "@apollo/client";
 import { createApolloClient } from "@producktivity/codegen";
 
+import { AuthProvider } from "$modules/authentication";
+import { Renderer } from "$modules/authentication/layouts/renderer";
 import "$styles/global.scss";
 
 const client = createApolloClient(
@@ -12,13 +14,18 @@ const client = createApolloClient(
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <>
       <Head>
         <title>Producktivity</title>
         <meta content="10 days project" name="description" />
       </Head>
-      <Component {...pageProps} />
-    </ApolloProvider>
+
+      <ApolloProvider client={client}>
+        <AuthProvider>
+          <Renderer page={Component} props={pageProps} />
+        </AuthProvider>
+      </ApolloProvider>
+    </>
   );
 }
 

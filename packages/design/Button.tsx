@@ -11,10 +11,10 @@ export const Button: FC<ButtonProps> = memo(
     return (
       <button
         className={clsx(
-          "rounded-lg p-2 text-xl font-bold transition-colors",
-          variant === "primary" && "bg-blue-500 text-white hover:bg-blue-400",
+          "rounded-lg p-4 text-xl font-bold transition-colors",
+          variant === "primary" && "bg-blue-600 text-white hover:bg-blue-500",
           variant === "secondary" &&
-            "border border-blue-500 bg-white text-blue-500 hover:bg-blue-200"
+            "border border-blue-600 bg-white text-blue-600 hover:bg-blue-100"
         )}
         onClick={onClick}
       >
