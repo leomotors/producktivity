@@ -1,0 +1,112 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RelyingParty {
+  name: String!
+  id: String!
+}
+
+type AuthenticatorChallenge {
+  userId: String!
+  challenge: String!
+  relyingParty: RelyingParty!
+}
+
+type AuthorizationToken {
+  token: String!
+}
+
+type AllowedCredentials {
+  type: String!
+  id: String!
+}
+
+type LoginChallenge {
+  challenge: String!
+  allowedCredentials: [AllowedCredentials!]!
+}
+
+type NotTest {
+  id: String!
+}
+
+type Query {
+  notTests(where: NotTestWhereInput, orderBy: [NotTestOrderByWithRelationInput!], cursor: NotTestWhereUniqueInput, take: Int, skip: Int, distinct: [NotTestScalarFieldEnum!]): [NotTest!]!
+}
+
+input NotTestWhereInput {
+  AND: [NotTestWhereInput!]
+  OR: [NotTestWhereInput!]
+  NOT: [NotTestWhereInput!]
+  id: StringFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input NotTestOrderByWithRelationInput {
+  id: SortOrder
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input NotTestWhereUniqueInput {
+  id: String
+}
+
+enum NotTestScalarFieldEnum {
+  id
+}
+
+type Mutation {
+  requestRegister(username: String!): AuthenticatorChallenge!
+  verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
+  requestLogin(username: String!): LoginChallenge!
+  verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
+}
+
+input RegisterResponse {
+  attestationObject: String!
+  clientDataJSON: String!
+}
+
+input LoginResponse {
+  authenticatorData: String!
+  clientDataJSON: String!
+  signature: String!
+}
