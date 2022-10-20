@@ -3,8 +3,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@types": ["src/@types"],
-      "@types/*": ["src/@types/*"],
       "$core/*": ["src/core/*"],
       "$modules/*": ["src/modules/*"],
       "$styles/*": ["src/styles/*"]

@@ -4,8 +4,9 @@
 const config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,css,scss}",
-    "../../packages/design/*.{js,ts,jsx,tsx,css,scss}",
+    "../../packages/design/src/**/*.{js,ts,jsx,tsx,css,scss}",
   ],
+  darkMode: "class",
 };
 
 module.exports = config;

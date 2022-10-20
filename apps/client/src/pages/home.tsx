@@ -1,5 +1,4 @@
-import { MyPage } from "@types";
-
+import { MyPage } from "$core/@types";
 import { useUser } from "$modules/authentication";
 
 const HomePage: MyPage = () => {

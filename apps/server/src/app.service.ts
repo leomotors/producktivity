@@ -2,7 +2,9 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return "Hello World!";
+  get(): string {
+    return `<video autoplay controls>
+      <source src="https://cutebutnotcunny.blob.core.windows.net/machikado/machikado-op-1.webm" type="video/webm" />
+    </video>`;
   }
 }
