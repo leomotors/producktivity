@@ -42,7 +42,7 @@ jobs:
         run: pnpm lint
 
       - name: CRLF Phobia
-        run: npx crlf-phobia *
+        run: pnpm crlf-phobia *
 
       - name: Build
         run: pnpm build

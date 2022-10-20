@@ -15,7 +15,6 @@ const config = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended",
-    "turbo",
   ],
   rules: {
     "prettier/prettier": "warn",
