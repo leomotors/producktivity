@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 5650",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint --max-warnings=0",
     "format": "next lint --fix"
