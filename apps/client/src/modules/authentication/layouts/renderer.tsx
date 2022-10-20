@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 
 import { useRouter } from "next/router";
 
-import { MyPage } from "@types";
+import { MyPage } from "$core/@types";
 
 import { useUser } from "../hooks/useUser";
 

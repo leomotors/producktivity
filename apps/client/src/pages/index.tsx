@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { MyPage } from "@types";
-
+import { MyPage } from "$core/@types";
+import { ExtLink } from "$core/components";
 import { Login, Register, useUser } from "$modules/authentication";
+import styles from "$styles/Index.module.scss";
 
 const IndexPage: MyPage = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ const IndexPage: MyPage = () => {
     <div className="flex h-screen flex-col items-center justify-center gap-4">
       <h1 className="text-6xl font-bold text-blue-600">Producktivity</h1>
 
-      <p className="text-xl font-bold">For ducks who want to be productive</p>
+      <p className="text-4xl font-bold">For ducks who want to be productive</p>
 
       <p className="text-2xl font-bold">
         Pomodoro, tasks, events, habits, schedule, all-in-one app.
@@ -36,6 +37,26 @@ const IndexPage: MyPage = () => {
           <Register username={username} onComplete={onComplete} />
         </div>
       </section>
+
+      <p>
+        Feeling not productive?{" "}
+        <ExtLink
+          className="text-blue-600"
+          href="https://nacnano.github.io/cugetrekt/frontend/"
+        >
+          Check this out
+        </ExtLink>
+      </p>
+
+      <p className={styles.linkTree}>
+        <ExtLink href="https://github.com/Leomotors/producktivity">
+          GitHub
+        </ExtLink>{" "}
+        | <ExtLink href="https://www.brikl.com/jobs">Jobs</ExtLink> |{" "}
+        <ExtLink href="https://cutebutnotcunny.blob.core.windows.net/machikado/machikado-op-2.webm">
+          ???
+        </ExtLink>
+      </p>
     </div>
   );
 };
