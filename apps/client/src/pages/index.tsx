@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { ThemeSwitcher } from "@producktivity/design";
+
 import { MyPage } from "$core/@types";
 import { ExtLink } from "$core/components";
 import { Login, Register, useUser } from "$modules/authentication";
@@ -14,8 +16,10 @@ const IndexPage: MyPage = () => {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-4">
-      <h1 className="text-6xl font-bold text-blue-600">Producktivity</h1>
+    <div className="flex h-screen flex-col items-center justify-center gap-4 transition-colors dark:bg-slate-900 dark:text-white">
+      <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-500">
+        Producktivity
+      </h1>
 
       <p className="text-4xl font-bold">For ducks who want to be productive</p>
 
@@ -42,6 +46,7 @@ const IndexPage: MyPage = () => {
         Feeling not productive?{" "}
         <ExtLink
           className="text-blue-600"
+          // TODO: Cugetrekt
           href="https://nacnano.github.io/cugetrekt/frontend/"
         >
           Check this out
@@ -57,6 +62,8 @@ const IndexPage: MyPage = () => {
           ???
         </ExtLink>
       </p>
+
+      <ThemeSwitcher />
     </div>
   );
 };

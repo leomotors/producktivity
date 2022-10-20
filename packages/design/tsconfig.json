@@ -1,5 +1,5 @@
 {
   "extends": "@producktivity/config/tsconfig-react-lib.json",
-  "include": ["."],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["dist", "build", "node_modules"]
 }
