@@ -2,9 +2,9 @@ name: Test
 
 on:
   push:
-    - branches: ["main", "leomotors/pla-2-ci-linting-and-build-checks"]
+    branches: ["main", "leomotors/pla-2-ci-linting-and-build-checks"]
   pull_request:
-    - branches: ["main"]
+    branches: ["main"]
 
 jobs:
   test:
