@@ -40,6 +40,15 @@ const config = {
     ],
     "sort-destructure-keys/sort-destructure-keys": "warn",
   },
+  overrides: [
+    {
+      files: [".eslintrc.js", ".prettierrc.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off",
+      },
+    },
+  ],
 };
 
 module.exports = config;

@@ -10,7 +10,7 @@
     "build": "FORCE_COLOR=2 turbo run build",
     "dev": "FORCE_COLOR=2 turbo run dev --parallel",
     "lint": "FORCE_COLOR=2 turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "FORCE_COLOR=2 turbo run format"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.1.4",

@@ -1,11 +1,11 @@
 {
   "name": "@producktivity/design",
   "version": "0.0.0",
+  "private": true,
   "main": "./index.tsx",
-  "types": "./index.tsx",
-  "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*"
+    "lint": "eslint *.ts* --max-warnings=0",
+    "format": "eslint *.ts* --fix"
   },
   "devDependencies": {
     "@producktivity/config": "workspace:0.0.0",
