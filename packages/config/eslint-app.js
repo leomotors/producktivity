@@ -15,7 +15,6 @@ const config = {
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended",
-    "turbo",
   ],
   rules: {
     "prettier/prettier": "warn",
@@ -40,6 +39,15 @@ const config = {
     ],
     "sort-destructure-keys/sort-destructure-keys": "warn",
   },
+  overrides: [
+    {
+      files: [".eslintrc.js", ".prettierrc.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off",
+      },
+    },
+  ],
 };
 
 module.exports = config;

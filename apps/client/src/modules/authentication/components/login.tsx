@@ -52,9 +52,16 @@ export const Login: FC<LoginProps> = ({ onComplete, username: uname }) => {
           response: {
             clientDataJSON: encode(credential.response.clientDataJSON),
             authenticatorData: encode(
-              (credential.response as any).authenticatorData
+              (
+                credential.response as unknown as {
+                  authenticatorData: ArrayBuffer;
+                }
+              ).authenticatorData
             ),
-            signature: encode((credential.response as any).signature),
+            signature: encode(
+              (credential.response as unknown as { signature: ArrayBuffer })
+                .signature
+            ),
           },
         },
       });
