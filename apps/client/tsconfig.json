@@ -2,6 +2,7 @@
   "extends": "@producktivity/config/tsconfig-next.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "preserve",
     "paths": {
       "$core/*": ["src/core/*"],
       "$modules/*": ["src/modules/*"],
