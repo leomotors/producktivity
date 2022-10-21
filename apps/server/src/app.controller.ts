@@ -16,7 +16,7 @@ export class AppController {
 
   @Get("/v2")
   @Redirect(
-    "https://cutebutnotcunny.blob.core.windows.net/machikado/machikado-op-1.webm"
+    "https://cutebutnotcunny.blob.core.windows.net/machikado/machikado-op-2.webm"
   )
   getV2() {
     return;
