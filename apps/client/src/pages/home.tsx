@@ -9,7 +9,7 @@ const HomePage: MyPage = () => {
   return (
     <div>
       <p>
-        Hello {username}, your id is {id}
+        Hello {username}, your ID is {id}
       </p>
       <Button variant="primary" onClick={() => resetToken()}>
         Logout
