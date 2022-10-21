@@ -24,6 +24,7 @@ importers:
   apps/client:
     specifiers:
       '@apollo/client': ^3.7.0
+      '@heroicons/react': ^2.0.12
       '@producktivity/codegen': workspace:0.0.0
       '@producktivity/config': workspace:0.0.0
       '@producktivity/constants': workspace:0.0.0
@@ -40,18 +41,21 @@ importers:
       next-transpile-modules: 9.1.0
       postcss: ^8.4.18
       react: 18.2.0
+      react-countdown-circle-timer: ^3.0.9
       react-dom: 18.2.0
       sass: ^1.55.0
       tailwindcss: ^3.2.0
       typescript: ^4.8.4
     dependencies:
       '@apollo/client': 3.7.0_gdcq4dv6opitr3wbfwyjmanyra
+      '@heroicons/react': 2.0.12_react@18.2.0
       '@producktivity/design': link:../../packages/design
       base64-arraybuffer: 1.0.2
       clsx: 1.2.1
       jwt-decode: 3.1.2
       next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
       react: 18.2.0
+      react-countdown-circle-timer: 3.0.9_react@18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
       '@producktivity/codegen': link:../../packages/codegen
@@ -1736,6 +1740,14 @@ packages:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       graphql: 16.6.0
+
+  /@heroicons/react/2.0.12_react@18.2.0:
+    resolution: {integrity: sha512-FZxKh3i9aKIDxyALTgIpSF2t6V6/eZfF5mRu41QlwkX3Oxzecdm1u6dpft6PQGxIBwO7TKYWaMAYYL8mp/EaOg==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.10.7:
     resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}
@@ -6723,6 +6735,14 @@ packages:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
+    dev: false
+
+  /react-countdown-circle-timer/3.0.9_react@18.2.0:
+    resolution: {integrity: sha512-2rE2NklqgtArbvM9RVR3NctiKQ8+lY8PEjUZ2S1pKowD8CmaXUGqIaCbFBcygYH2aZQs9qPIQA49Z+9Jc2TOiQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
