@@ -15,7 +15,6 @@ COPY prisma ./prisma
 COPY .env ./.env
 
 RUN pnpm install
-
 RUN pnpm build:server
 
 FROM node:16-alpine
