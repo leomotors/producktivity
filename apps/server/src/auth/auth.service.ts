@@ -63,7 +63,7 @@ export class AuthService {
         id:
           process.env.npm_lifecycle_event === "dev"
             ? "localhost"
-            : "producktivity.leomotors.net",
+            : "producktivity.pages.dev",
       },
       userId: userId as string,
       challenge,
