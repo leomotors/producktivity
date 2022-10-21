@@ -1,20 +1,22 @@
-import type { NextPage } from "next";
+import type { ReactElement } from "react";
+import type { NextPageWithLayout } from "next";
 import { useState } from "react";
-import Navbar from "../modules/general/components/Navbar";
+import DefaultLayout from "../modules/general/layouts/default"
 import Timer from "../modules/general/components/Timer";
 import Task from "../modules/general/components/Task";
 import Event from "../modules/general/components/Event";
 import Habit from "../modules/general/components/Habits";
 
-const Dashboard: NextPage = () => {
+const Dashboard: NextPageWithLayout = () => {
 	const [minimize, setMinimize] = useState<boolean>(true);
 	const toggleMinimize = () => {
 		setMinimize(!minimize);
 	};
 	return (
-		<div className="flex w-screen min-h-screen bg-gray-500">
-			<Navbar></Navbar>
-			<div className="flex justify-center w-screen min-h-screen bg-gray-500">
+		// <div className="flex w-screen min-h-screen bg-gray-500">
+		// 	<Navbar></Navbar>
+		// 	<div className="flex justify-center w-screen h-screen bg-gray-500">
+		<DefaultLayout>
 				<div className="m-8 p-8 rounded-lg bg-white h-11/12 w-11/12 overflow-auto">
 					<h1 className="text-4xl font-bold mb-8">Overview</h1>
 					<div className="flex w-full h-1/2 justify-between bg-red-100">
@@ -58,9 +60,17 @@ const Dashboard: NextPage = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+		</DefaultLayout>
+		// 	</div>
+		// </div>
 	);
 };
+
+// Dashboard.getLayout = function getLayout(page: ReactElement) {
+// 	return (
+// 		<DefaultLayout>
+// 			{page}
+// 		</DefaultLayout>)
+// }
 
 export default Dashboard;

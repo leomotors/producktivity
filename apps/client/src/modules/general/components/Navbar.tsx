@@ -23,7 +23,7 @@ const Navbar: NextPage = () => {
 				/>
 			</NavItem>
 			<NavItem>
-				<PlusCircleIcon className={`h-8 w-8 text-white ${hoverClass}`} />
+				<PlusCircleIcon className={`h-8 w-8 text-white ${hoverClass}`} data-tooltip-target="tooltip-right" data-tooltip-placement="right"/>
 			</NavItem>
 			<NavItem>
 				<CalendarIcon className={`h-8 w-8 text-white ${hoverClass}`} />
