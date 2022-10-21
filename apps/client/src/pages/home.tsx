@@ -6,7 +6,9 @@ const HomePage: MyPage = () => {
 
   return (
     <div>
-      Hello {username}, your id is {id}
+      <p>
+        Hello {username}, your id is {id}
+      </p>
       <button onClick={() => resetToken()}>Logout</button>
     </div>
   );
