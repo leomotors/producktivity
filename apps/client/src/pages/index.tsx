@@ -44,11 +44,7 @@ const IndexPage: MyPage = () => {
 
       <p>
         Feeling not productive?{" "}
-        <ExtLink
-          className="text-blue-600"
-          // TODO: Cugetrekt
-          href="https://nacnano.github.io/cugetrekt/frontend/"
-        >
+        <ExtLink className="text-blue-600" href="https://cugetrekt.vercel.app">
           Check this out
         </ExtLink>
       </p>
