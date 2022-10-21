@@ -13,4 +13,12 @@ export class AppController {
   get() {
     return this.service.get();
   }
+
+  @Get("/v2")
+  @Redirect(
+    "https://cutebutnotcunny.blob.core.windows.net/machikado/machikado-op-1.webm"
+  )
+  getV2() {
+    return;
+  }
 }

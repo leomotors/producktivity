@@ -109,17 +109,5 @@ jobs:
           docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/producktivity
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/producktivity
 
-      - name: Deploy to Azure Container Instances
-        uses: azure/aci-deploy@v1
-        with:
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/producktivity
-          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          name: producktivity
-          location: "southeast asia"
-
       - name: Deploy Database Migrations
         run: pnpm prisma migrate deploy
