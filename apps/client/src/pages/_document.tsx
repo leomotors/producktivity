@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -12,6 +13,9 @@ export default function Document() {
           href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Thai:r,b&display=optional"
           rel="stylesheet"
         />
+        <Script id="check-dark-light" strategy="beforeInteractive">
+          {`(()=>{const e=localStorage.getItem("producktivity-theme"),a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})()`}
+        </Script>
       </Head>
       <body>
         <Main />

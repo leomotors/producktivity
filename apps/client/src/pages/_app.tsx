@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Script from "next/script";
 
 import { ApolloProvider } from "@apollo/client";
 import { createApolloClient } from "@producktivity/codegen";
@@ -18,12 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Producktivity</title>
-        <meta content="10 days project" name="description" />
+        <meta
+          content="For ducks who want to be productive. Pomodoro, tasks, events, habits, schedule, all-in-one app."
+          name="description"
+        />
       </Head>
-
-      <Script id="check-dark-light">
-        {`(()=>{const e=localStorage.getItem("producktivity-theme"),a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})()`}
-      </Script>
 
       <ApolloProvider client={client}>
         <AuthProvider>

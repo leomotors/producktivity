@@ -5,9 +5,27 @@ on:
     branches: ["main"]
 
 jobs:
+  check_backend:
+    name: Ignored Build Step Backend
+    runs-on: ubuntu-latest
+    outputs:
+      run_frontend: ${{ steps.set_output.outputs.run_jobs }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
+
+      - name: Check if new build is needed
+        id: set_output
+        run: bash ignore-build.bash @producktivity/server
+
   backend:
     name: Backend
     runs-on: ubuntu-latest
+    needs: [check_backend]
+    if: needs.ignore_build.outputs.run_frontend == 'true'
 
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -62,10 +80,28 @@ jobs:
       - name: Deploy Database Migrations
         run: pnpm prisma migrate deploy
 
+  check_frontend:
+    name: Ignored Build Step Frontend
+    runs-on: ubuntu-latest
+    needs: [backend]
+    outputs:
+      run_backend: ${{ steps.set_output.outputs.run_jobs }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
+
+      - name: Check if new build is needed
+        id: set_output
+        run: bash ignore-build.bash @producktivity/client
+
   frontend:
     name: Frontend
     runs-on: ubuntu-latest
-    needs: [backend]
+    needs: [check_frontend]
+    if: needs.ignore_build.outputs.run_backend == 'true'
 
     permissions:
       contents: read

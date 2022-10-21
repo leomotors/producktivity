@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, Fragment, useEffect, useMemo } from "react";
 
 import { useRouter } from "next/router";
 
@@ -25,20 +25,36 @@ export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
     }
   }, [isAuth, Page.authStatus, router]);
 
+  const Layout = useMemo(() => Page.Layout || Fragment, [Page.Layout]);
+
   switch (Page.authStatus) {
     case "private": {
-      if (isAuth) return <Page props={props} />;
+      if (isAuth)
+        return (
+          <Layout>
+            <Page props={props} />
+          </Layout>
+        );
 
       return null;
     }
 
     case "redirect": {
-      if (!isAuth) return <Page props={props} />;
+      if (!isAuth)
+        return (
+          <Layout>
+            <Page props={props} />
+          </Layout>
+        );
 
       return null;
     }
 
     default:
-      return <Page props={props} />;
+      return (
+        <Layout>
+          <Page props={props} />
+        </Layout>
+      );
   }
 };
