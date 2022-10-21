@@ -84,6 +84,7 @@ jobs:
     name: Ignored Build Step Frontend
     runs-on: ubuntu-latest
     needs: [backend]
+    if: always() && (needs.backend.result == 'success' || needs.backend.result == 'skipped')
     outputs:
       run_backend: ${{ steps.set_output.outputs.run_jobs }}
 
