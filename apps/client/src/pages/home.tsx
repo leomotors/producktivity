@@ -1,3 +1,5 @@
+import { Button } from "@producktivity/design";
+
 import { MyPage } from "$core/@types";
 import { useUser } from "$modules/authentication";
 
@@ -9,7 +11,9 @@ const HomePage: MyPage = () => {
       <p>
         Hello {username}, your id is {id}
       </p>
-      <button onClick={() => resetToken()}>Logout</button>
+      <Button variant="primary" onClick={() => resetToken()}>
+        Logout
+      </Button>
     </div>
   );
 };
