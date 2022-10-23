@@ -1,41 +1,54 @@
-// import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { Args, Query, Resolver } from "@nestjs/graphql";
+import { Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
 
-// import { CreateOneUserArgs } from "@generated/user/create-one-user.args";
-// import { DeleteOneUserArgs } from "@generated/user/delete-one-user.args";
-import { FindManyUserArgs } from "@generated/user/find-many-user.args";
-import { FindUniqueUserArgs } from "@generated/user/find-unique-user.args";
-// import { UpdateOneUserArgs } from "@generated/user/update-one-user.args";
 import { User } from "@generated/user/user.model";
 
+import { RequireLogin } from "src/auth/auth.decorator";
+
+import { UserContext } from "./user.decorator";
 import { UserService } from "./user.service";
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(private readonly service: UserService) {}
 
-  @Query(() => [User])
-  users(@Args() args?: FindManyUserArgs) {
-    return this.service.findMany(args);
-  }
-
   @Query(() => User)
-  user(@Args() args: FindUniqueUserArgs) {
-    return this.service.findUnique(args);
+  @RequireLogin()
+  me(@UserContext() user: User) {
+    return this.service.findByIdOrThrow(user.id);
   }
 
-  //   @Mutation(() => User)
-  //   createOneUser(@Args() args: CreateOneUserArgs) {
-  //     return this.service.create(args);
-  //   }
+  @ResolveField()
+  authenticators(@Parent() user: User) {
+    return this.service.authenticators(user);
+  }
 
-  //   @Mutation(() => [User])
-  //   updateOneUser(@Args() args: UpdateOneUserArgs) {
-  //     return this.service.update(args);
-  //   }
+  @ResolveField()
+  challenge(@Parent() user: User) {
+    return this.service.challenge(user);
+  }
 
-  //   @Mutation(() => [User])
-  //   deleteOneUserArgs(@Args() args: DeleteOneUserArgs) {
-  //     return this.service.delete(args);
-  //   }
+  @ResolveField()
+  tasks(@Parent() user: User) {
+    return this.service.tasks(user);
+  }
+
+  @ResolveField()
+  events(@Parent() user: User) {
+    return this.service.events(user);
+  }
+
+  @ResolveField()
+  habits(@Parent() user: User) {
+    return this.service.habits(user);
+  }
+
+  @ResolveField()
+  notifications(@Parent() user: User) {
+    return this.service.notifications(user);
+  }
+
+  @ResolveField()
+  _count(@Parent() user: User) {
+    return this.service._count(user);
+  }
 }

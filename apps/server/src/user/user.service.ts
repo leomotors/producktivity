@@ -1,48 +1,79 @@
 import { Injectable } from "@nestjs/common";
 
-// import { CreateOneUserArgs } from "@generated/user/create-one-user.args";
-// import { DeleteOneUserArgs } from "@generated/user/delete-one-user.args";
-import { FindManyUserArgs } from "@generated/user/find-many-user.args";
-import { FindUniqueUserArgs } from "@generated/user/find-unique-user.args";
+import { User } from "@generated/user/user.model";
 
-// import { UpdateOneUserArgs } from "@generated/user/update-one-user.args";
 import { PrismaService } from "src/prisma.service";
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  findMany(args?: FindManyUserArgs) {
-    return this.prisma.user.findMany(args);
+  findByIdOrThrow(id: string) {
+    return this.prisma.user.findUniqueOrThrow({
+      where: { id },
+    });
   }
 
-  findUnique(args: FindUniqueUserArgs) {
-    return this.prisma.user.findUnique(args);
+  // Field Resolvers
+
+  authenticators(user: User) {
+    return this.prisma.authenticator.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
   }
 
-  //   create(args: CreateOneUserArgs) {
-  //     return this.prisma.user.create(args);
-  //   }
+  challenge(user: User) {
+    return this.prisma.challenge.findUnique({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
-  //   update(args: UpdateOneUserArgs) {
-  //     return this.prisma.user.update(args);
-  //   }
+  tasks(user: User) {
+    return this.prisma.task.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
-  //   delete(args: DeleteOneUserArgs) {
-  //     return this.prisma.user.delete(args);
-  //   }
+  events(user: User) {
+    return this.prisma.event.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
-  //   async users(): Promise<User[]> {
-  //     return this.prisma.user.findMany({});
-  //   }
+  habits(user: User) {
+    return this.prisma.habit.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
-  //   async user(id: string): Promise<User | null> {
-  //     return this.prisma.user.findUnique({
-  //       where: {
-  //         id: id,
-  //       },
-  //     });
-  //   }
+  notifications(user: User) {
+    return this.prisma.notification.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+  }
 
-  //   async createUser(input: )
+  async _count(user: User) {
+    return (
+      await this.prisma.user.findUniqueOrThrow({
+        where: {
+          id: user.id,
+        },
+        select: {
+          _count: true,
+        },
+      })
+    )._count;
+  }
 }

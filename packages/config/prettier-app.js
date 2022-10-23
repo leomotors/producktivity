@@ -1,10 +1,9 @@
 // @ts-check
 
-/** @type {import("prettier").Config & { [key: string]: any }} */
+/** @type {Omit<import("@trivago/prettier-plugin-sort-imports").PrettierConfig, "importOrder">} */
 const config = {
   ...require("./prettier-base"),
   plugins: ["@trivago/prettier-plugin-sort-imports"],
-  importOrderCaseInsensitive: true,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrderParserPlugins: ["typescript", "decorators-legacy", "jsx"],

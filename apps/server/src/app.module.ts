@@ -12,7 +12,6 @@ import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
 import { EventModule } from "./event/event.module";
-import { NotTestModule } from "./not-test/not-test.module";
 import { UserModule } from "./user/user.module";
 
 @Global()
@@ -28,7 +27,6 @@ import { UserModule } from "./user/user.module";
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
     AuthModule,
-    NotTestModule,
     UserModule,
     EventModule,
   ],
