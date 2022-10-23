@@ -6,7 +6,7 @@ export class createTaskArgs {
   name!: string;
   description!: string;
   dueDate!: Date;
-  tags?: string[];
+  tags!: string[];
 }
 
 @ArgsType()
@@ -16,5 +16,7 @@ export class updateTaskArgs {
   name!: string;
   description!: string;
   dueDate!: Date;
-  tags?: string[];
+
+  @Field()
+  tags!: string[];
 }
