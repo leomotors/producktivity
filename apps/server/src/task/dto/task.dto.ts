@@ -8,3 +8,13 @@ export class createTaskArgs {
   dueDate!: Date;
   tags?: string[];
 }
+
+@ArgsType()
+export class updateTaskArgs {
+  @Field()
+  id!: string;
+  name!: string;
+  description!: string;
+  dueDate!: Date;
+  tags?: string[];
+}
