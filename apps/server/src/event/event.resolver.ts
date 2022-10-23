@@ -7,7 +7,7 @@ import { EventArgs } from "src/event/event.dto";
 
 import { EventService } from "./event.service";
 
-import { UserContext }
+// import { UserContext }
 
 @Resolver(() => Event)
 export class EventResolver {
