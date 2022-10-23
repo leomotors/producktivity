@@ -25,7 +25,7 @@ export class Notification {
     updatedAt!: Date;
 
     @Field(() => User, {nullable:false})
-    User?: User;
+    user?: User;
 
     @Field(() => String, {nullable:false})
     userId!: string;

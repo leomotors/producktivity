@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { ForbiddenException, Injectable } from "@nestjs/common";
 
 import { User } from "@generated/user/user.model";
 
@@ -11,44 +11,48 @@ export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
   createTask(input: createTaskArgs, user: User) {
     return this.prisma.task.create({
-        data: {
-          name: input.name,
-          description: input.description,
-          dueDate: input.dueDate,
-          userId: user.id,
-        },
-      });
+      data: {
+        name: input.name,
+        description: input.description,
+        dueDate: input.dueDate,
+        userId: user.id,
+      },
+    });
   }
 
   updateTask(input: updateTaskArgs, user: User) {
-      return this.prisma.task.update({
-        where: {
-          id: input.id,
-        },
-        data: {
-          name: input.name,
-          description: input.description,
-          dueDate: input.dueDate,
-          updatedAt: Date.now().toString(),
-          userId: user.id,
-        },
-      });
+    return this.prisma.task.update({
+      where: {
+        id: input.id,
+      },
+      data: {
+        name: input.name,
+        description: input.description,
+        dueDate: input.dueDate,
+        userId: user.id,
+      },
+    });
   }
 
-  deleteTaskByID(id: string) {
-      return this.prisma.task.delete({
+  async deleteTask(id: string, user: User) {
+    const taskOwnerId = (
+      await this.prisma.task.findUniqueOrThrow({
         where: {
-          id: id,
+          id,
         },
-      });
-  }
+        select: {
+          userId: true,
+        },
+      })
+    ).userId;
 
-  deleteTaskByName(taskname: string, user: User) {
-      return this.prisma.task.deleteMany({
-        where: {
-          name: taskname,
-          userId: user.id,
-        },
-      });
+    if (user.id !== taskOwnerId) {
+      throw new ForbiddenException("Error: Not user's task");
+    }
+    return this.prisma.task.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 }

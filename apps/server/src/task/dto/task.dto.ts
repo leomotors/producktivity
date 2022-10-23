@@ -36,3 +36,12 @@ export class updateTaskArgs {
   @Field(() => [String])
   tags!: string[];
 }
+
+@ArgsType()
+export class deleteTaskArgs {
+  
+  @Field()
+  id!: string;
+  
+}
+

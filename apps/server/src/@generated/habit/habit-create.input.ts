@@ -22,5 +22,5 @@ export class HabitCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => UserCreateNestedOneWithoutHabitsInput, {nullable:false})
-    User!: UserCreateNestedOneWithoutHabitsInput;
+    user!: UserCreateNestedOneWithoutHabitsInput;
 }

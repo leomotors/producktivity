@@ -34,5 +34,5 @@ export class TaskUpdateInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => UserUpdateOneRequiredWithoutTasksNestedInput, {nullable:true})
-    User?: UserUpdateOneRequiredWithoutTasksNestedInput;
+    user?: UserUpdateOneRequiredWithoutTasksNestedInput;
 }

@@ -28,5 +28,5 @@ export class EventCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => UserCreateNestedOneWithoutEventsInput, {nullable:false})
-    User!: UserCreateNestedOneWithoutEventsInput;
+    user!: UserCreateNestedOneWithoutEventsInput;
 }
