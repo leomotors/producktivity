@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { Case } from '../case/case.model';
+import { User } from '../user/user.model';
 
 @ObjectType()
 export class Habit {
@@ -12,9 +12,18 @@ export class Habit {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Case, {nullable:false})
-    case?: Case;
+    @Field(() => [String], {nullable:true})
+    tags!: Array<string>;
+
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
+
+    @Field(() => User, {nullable:false})
+    User?: User;
 
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 }

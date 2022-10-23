@@ -6,7 +6,4 @@ export class EventWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     id?: string;
-
-    @Field(() => String, {nullable:true})
-    caseId?: string;
 }

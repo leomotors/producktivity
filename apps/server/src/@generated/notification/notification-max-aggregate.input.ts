@@ -20,7 +20,7 @@ export class NotificationMaxAggregateInput {
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})
-    updateAt?: true;
+    updatedAt?: true;
 
     @Field(() => Boolean, {nullable:true})
     userId?: true;

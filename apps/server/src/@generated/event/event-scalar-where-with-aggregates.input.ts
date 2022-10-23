@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { StringNullableWithAggregatesFilter } from '../prisma/string-nullable-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
+import { StringNullableListFilter } from '../prisma/string-nullable-list-filter.input';
 
 @InputType()
 export class EventScalarWhereWithAggregatesInput {
@@ -28,6 +29,15 @@ export class EventScalarWhereWithAggregatesInput {
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     dueDate?: DateTimeWithAggregatesFilter;
 
+    @Field(() => StringNullableListFilter, {nullable:true})
+    tags?: StringNullableListFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    updatedAt?: DateTimeWithAggregatesFilter;
+
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    caseId?: StringWithAggregatesFilter;
+    userId?: StringWithAggregatesFilter;
 }

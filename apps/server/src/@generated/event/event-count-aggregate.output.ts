@@ -18,7 +18,16 @@ export class EventCountAggregate {
     dueDate!: number;
 
     @Field(() => Int, {nullable:false})
-    caseId!: number;
+    tags!: number;
+
+    @Field(() => Int, {nullable:false})
+    createdAt!: number;
+
+    @Field(() => Int, {nullable:false})
+    updatedAt!: number;
+
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

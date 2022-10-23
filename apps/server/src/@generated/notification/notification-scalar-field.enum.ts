@@ -6,7 +6,7 @@ export enum NotificationScalarFieldEnum {
     description = "description",
     isVisited = "isVisited",
     createdAt = "createdAt",
-    updateAt = "updateAt",
+    updatedAt = "updatedAt",
     userId = "userId"
 }
 

@@ -19,8 +19,17 @@ export class EventGroupBy {
     @Field(() => Date, {nullable:false})
     dueDate!: Date | string;
 
+    @Field(() => [String], {nullable:true})
+    tags?: Array<string>;
+
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
+
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 
     @Field(() => EventCountAggregate, {nullable:true})
     _count?: EventCountAggregate;

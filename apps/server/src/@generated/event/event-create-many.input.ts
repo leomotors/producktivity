@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { EventCreatetagsInput } from './event-createtags.input';
 
 @InputType()
 export class EventCreateManyInput {
@@ -16,6 +17,15 @@ export class EventCreateManyInput {
     @Field(() => Date, {nullable:false})
     dueDate!: Date | string;
 
+    @Field(() => EventCreatetagsInput, {nullable:true})
+    tags?: EventCreatetagsInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 }

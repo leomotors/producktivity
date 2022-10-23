@@ -6,7 +6,4 @@ export class TaskWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     id?: string;
-
-    @Field(() => String, {nullable:true})
-    caseId?: string;
 }

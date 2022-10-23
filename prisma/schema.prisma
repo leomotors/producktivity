@@ -23,10 +23,13 @@ model User {
   authenticators Authenticator[]
   challenge      Challenge?
 
-  createdAt    DateTime       @default(now()) @map("created_at")
-  updatedAt    DateTime       @updatedAt @map("updated_at")
-  case         Case[]
-  notification Notification[]
+  tasks         Task[]
+  events        Event[]
+  habits        Habit[]
+  notifications Notification[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("user")
 }
@@ -58,47 +61,33 @@ model Challenge {
   @@map("challenge")
 }
 
-model NotTest {
-  id String @unique
-
-  @@map("not_test")
-}
-
-model Case {
-  id        String   @id @unique @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updateAt  DateTime @map("update_at")
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @unique @map("user_id")
-
-  task   Task?
-  event  Event?
-  habit  Habit?
-  filter Filter[]
-
-  @@map("case")
-}
-
 model Task {
   id          String   @id @unique @default(cuid())
   name        String
   description String
-  due_date    DateTime
+  dueDate     DateTime @map("due_date")
   isCompleted Boolean  @default(false) @map("is_completed")
+  tags        String[]
 
-  case   Case   @relation(fields: [caseId], references: [id])
-  caseId String @unique @map("case_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("task")
 }
 
 model Habit {
-  id   String @id @unique @default(cuid())
+  id   String   @id @unique @default(cuid())
   name String
+  tags String[]
 
-  case   Case   @relation(fields: [caseId], references: [id])
-  caseId String @unique @map("case_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("habit")
 }
@@ -108,44 +97,28 @@ model Event {
   name        String
   description String?
   dueDate     DateTime @map("due_date")
+  tags        String[]
 
-  case   Case   @relation(fields: [caseId], references: [id])
-  caseId String @unique @map("case_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   @@map("event")
 }
 
-model Filter {
-  id        String   @id @unique @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-
-  case               Case             @relation(fields: [caseId], references: [id])
-  caseId             String
-  FilterDefinition   FilterDefinition @relation(fields: [filterDefinitionId], references: [id])
-  filterDefinitionId String
-
-  @@map("filter")
-}
-
-model FilterDefinition {
-  id    String @id @unique @default(cuid())
-  label String
-  order Int
-
-  filter Filter[]
-
-  @@map("filterDefinition")
-}
-
 model Notification {
-  id          String   @id @unique @default(cuid())
+  id          String  @id @unique @default(cuid())
   name        String
   description String?
-  isVisited   Boolean  @default(false) @map("is_visited")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updateAt    DateTime @map("update_at")
-  User        User     @relation(fields: [userId], references: [id])
-  userId      String
+  isVisited   Boolean @default(false) @map("is_visited")
 
-  @@map("notofication")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("notification")
 }

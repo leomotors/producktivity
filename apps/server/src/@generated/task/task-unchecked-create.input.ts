@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { TaskCreatetagsInput } from './task-createtags.input';
 
 @InputType()
 export class TaskUncheckedCreateInput {
@@ -14,11 +15,20 @@ export class TaskUncheckedCreateInput {
     description!: string;
 
     @Field(() => Date, {nullable:false})
-    due_date!: Date | string;
+    dueDate!: Date | string;
 
     @Field(() => Boolean, {nullable:true})
     isCompleted?: boolean;
 
+    @Field(() => TaskCreatetagsInput, {nullable:true})
+    tags?: TaskCreatetagsInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 }

@@ -4,7 +4,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { UserUpdateOneRequiredWithoutNotificationNestedInput } from '../user/user-update-one-required-without-notification-nested.input';
+import { UserUpdateOneRequiredWithoutNotificationsNestedInput } from '../user/user-update-one-required-without-notifications-nested.input';
 
 @InputType()
 export class NotificationUpdateInput {
@@ -25,8 +25,8 @@ export class NotificationUpdateInput {
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updateAt?: DateTimeFieldUpdateOperationsInput;
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => UserUpdateOneRequiredWithoutNotificationNestedInput, {nullable:true})
-    User?: UserUpdateOneRequiredWithoutNotificationNestedInput;
+    @Field(() => UserUpdateOneRequiredWithoutNotificationsNestedInput, {nullable:true})
+    User?: UserUpdateOneRequiredWithoutNotificationsNestedInput;
 }

@@ -15,11 +15,20 @@ export class TaskCountOrderByAggregateInput {
     description?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    due_date?: keyof typeof SortOrder;
+    dueDate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     isCompleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    caseId?: keyof typeof SortOrder;
+    tags?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    userId?: keyof typeof SortOrder;
 }

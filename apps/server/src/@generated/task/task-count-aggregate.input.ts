@@ -14,13 +14,22 @@ export class TaskCountAggregateInput {
     description?: true;
 
     @Field(() => Boolean, {nullable:true})
-    due_date?: true;
+    dueDate?: true;
 
     @Field(() => Boolean, {nullable:true})
     isCompleted?: true;
 
     @Field(() => Boolean, {nullable:true})
-    caseId?: true;
+    tags?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    userId?: true;
 
     @Field(() => Boolean, {nullable:true})
     _all?: true;

@@ -24,5 +24,5 @@ export class NotificationUpdateManyMutationInput {
     createdAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updateAt?: DateTimeFieldUpdateOperationsInput;
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 }

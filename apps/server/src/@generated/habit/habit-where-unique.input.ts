@@ -6,7 +6,4 @@ export class HabitWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     id?: string;
-
-    @Field(() => String, {nullable:true})
-    caseId?: string;
 }

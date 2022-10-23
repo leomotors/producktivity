@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CaseCreateNestedOneWithoutTaskInput } from '../case/case-create-nested-one-without-task.input';
+import { TaskCreatetagsInput } from './task-createtags.input';
+import { UserCreateNestedOneWithoutTasksInput } from '../user/user-create-nested-one-without-tasks.input';
 
 @InputType()
 export class TaskCreateInput {
@@ -15,11 +16,20 @@ export class TaskCreateInput {
     description!: string;
 
     @Field(() => Date, {nullable:false})
-    due_date!: Date | string;
+    dueDate!: Date | string;
 
     @Field(() => Boolean, {nullable:true})
     isCompleted?: boolean;
 
-    @Field(() => CaseCreateNestedOneWithoutTaskInput, {nullable:false})
-    case!: CaseCreateNestedOneWithoutTaskInput;
+    @Field(() => TaskCreatetagsInput, {nullable:true})
+    tags?: TaskCreatetagsInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => UserCreateNestedOneWithoutTasksInput, {nullable:false})
+    User!: UserCreateNestedOneWithoutTasksInput;
 }

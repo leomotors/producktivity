@@ -21,7 +21,7 @@ export class NotificationCountAggregate {
     createdAt!: number;
 
     @Field(() => Int, {nullable:false})
-    updateAt!: number;
+    updatedAt!: number;
 
     @Field(() => Int, {nullable:false})
     userId!: number;

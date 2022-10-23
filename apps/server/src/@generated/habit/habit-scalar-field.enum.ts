@@ -3,7 +3,10 @@ import { registerEnumType } from '@nestjs/graphql';
 export enum HabitScalarFieldEnum {
     id = "id",
     name = "name",
-    caseId = "caseId"
+    tags = "tags",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt",
+    userId = "userId"
 }
 
 

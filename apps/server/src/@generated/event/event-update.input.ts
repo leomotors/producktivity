@@ -3,7 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { CaseUpdateOneRequiredWithoutEventNestedInput } from '../case/case-update-one-required-without-event-nested.input';
+import { EventUpdatetagsInput } from './event-updatetags.input';
+import { UserUpdateOneRequiredWithoutEventsNestedInput } from '../user/user-update-one-required-without-events-nested.input';
 
 @InputType()
 export class EventUpdateInput {
@@ -20,6 +21,15 @@ export class EventUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     dueDate?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => CaseUpdateOneRequiredWithoutEventNestedInput, {nullable:true})
-    case?: CaseUpdateOneRequiredWithoutEventNestedInput;
+    @Field(() => EventUpdatetagsInput, {nullable:true})
+    tags?: EventUpdatetagsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UserUpdateOneRequiredWithoutEventsNestedInput, {nullable:true})
+    User?: UserUpdateOneRequiredWithoutEventsNestedInput;
 }

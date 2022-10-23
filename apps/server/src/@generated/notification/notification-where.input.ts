@@ -34,7 +34,7 @@ export class NotificationWhereInput {
     createdAt?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
-    updateAt?: DateTimeFilter;
+    updatedAt?: DateTimeFilter;
 
     @Field(() => UserRelationFilter, {nullable:true})
     User?: UserRelationFilter;

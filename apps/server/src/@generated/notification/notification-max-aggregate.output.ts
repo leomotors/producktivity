@@ -20,7 +20,7 @@ export class NotificationMaxAggregate {
     createdAt?: Date | string;
 
     @Field(() => Date, {nullable:true})
-    updateAt?: Date | string;
+    updatedAt?: Date | string;
 
     @Field(() => String, {nullable:true})
     userId?: string;

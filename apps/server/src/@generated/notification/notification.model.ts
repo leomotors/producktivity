@@ -22,7 +22,7 @@ export class Notification {
     createdAt!: Date;
 
     @Field(() => Date, {nullable:false})
-    updateAt!: Date;
+    updatedAt!: Date;
 
     @Field(() => User, {nullable:false})
     User?: User;

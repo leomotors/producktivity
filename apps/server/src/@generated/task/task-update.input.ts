@@ -3,7 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
-import { CaseUpdateOneRequiredWithoutTaskNestedInput } from '../case/case-update-one-required-without-task-nested.input';
+import { TaskUpdatetagsInput } from './task-updatetags.input';
+import { UserUpdateOneRequiredWithoutTasksNestedInput } from '../user/user-update-one-required-without-tasks-nested.input';
 
 @InputType()
 export class TaskUpdateInput {
@@ -18,11 +19,20 @@ export class TaskUpdateInput {
     description?: StringFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    due_date?: DateTimeFieldUpdateOperationsInput;
+    dueDate?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
     isCompleted?: BoolFieldUpdateOperationsInput;
 
-    @Field(() => CaseUpdateOneRequiredWithoutTaskNestedInput, {nullable:true})
-    case?: CaseUpdateOneRequiredWithoutTaskNestedInput;
+    @Field(() => TaskUpdatetagsInput, {nullable:true})
+    tags?: TaskUpdatetagsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UserUpdateOneRequiredWithoutTasksNestedInput, {nullable:true})
+    User?: UserUpdateOneRequiredWithoutTasksNestedInput;
 }

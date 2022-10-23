@@ -21,7 +21,7 @@ export class NotificationMaxOrderByAggregateInput {
     createdAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    updateAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     userId?: keyof typeof SortOrder;

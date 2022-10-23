@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CaseCreateNestedOneWithoutEventInput } from '../case/case-create-nested-one-without-event.input';
+import { EventCreatetagsInput } from './event-createtags.input';
+import { UserCreateNestedOneWithoutEventsInput } from '../user/user-create-nested-one-without-events.input';
 
 @InputType()
 export class EventCreateInput {
@@ -17,6 +18,15 @@ export class EventCreateInput {
     @Field(() => Date, {nullable:false})
     dueDate!: Date | string;
 
-    @Field(() => CaseCreateNestedOneWithoutEventInput, {nullable:false})
-    case!: CaseCreateNestedOneWithoutEventInput;
+    @Field(() => EventCreatetagsInput, {nullable:true})
+    tags?: EventCreatetagsInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => UserCreateNestedOneWithoutEventsInput, {nullable:false})
+    User!: UserCreateNestedOneWithoutEventsInput;
 }
