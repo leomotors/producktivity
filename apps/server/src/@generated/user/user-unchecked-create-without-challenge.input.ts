@@ -1,6 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { AuthenticatorUncheckedCreateNestedManyWithoutUserInput } from '../authenticator/authenticator-unchecked-create-nested-many-without-user.input';
+import { CaseUncheckedCreateNestedManyWithoutUserInput } from '../case/case-unchecked-create-nested-many-without-user.input';
+import { NotificationUncheckedCreateNestedManyWithoutUserInput } from '../notification/notification-unchecked-create-nested-many-without-user.input';
 
 @InputType()
 export class UserUncheckedCreateWithoutChallengeInput {
@@ -22,4 +24,10 @@ export class UserUncheckedCreateWithoutChallengeInput {
 
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
+
+    @Field(() => CaseUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    case?: CaseUncheckedCreateNestedManyWithoutUserInput;
+
+    @Field(() => NotificationUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput;
 }

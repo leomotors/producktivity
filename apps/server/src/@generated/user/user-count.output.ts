@@ -7,4 +7,10 @@ export class UserCount {
 
     @Field(() => Int, {nullable:false})
     authenticators?: number;
+
+    @Field(() => Int, {nullable:false})
+    case?: number;
+
+    @Field(() => Int, {nullable:false})
+    notification?: number;
 }

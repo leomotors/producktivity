@@ -3,6 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { AuthenticatorOrderByRelationAggregateInput } from '../authenticator/authenticator-order-by-relation-aggregate.input';
 import { ChallengeOrderByWithRelationInput } from '../challenge/challenge-order-by-with-relation.input';
+import { CaseOrderByRelationAggregateInput } from '../case/case-order-by-relation-aggregate.input';
+import { NotificationOrderByRelationAggregateInput } from '../notification/notification-order-by-relation-aggregate.input';
 
 @InputType()
 export class UserOrderByWithRelationInput {
@@ -27,4 +29,10 @@ export class UserOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     updatedAt?: keyof typeof SortOrder;
+
+    @Field(() => CaseOrderByRelationAggregateInput, {nullable:true})
+    case?: CaseOrderByRelationAggregateInput;
+
+    @Field(() => NotificationOrderByRelationAggregateInput, {nullable:true})
+    notification?: NotificationOrderByRelationAggregateInput;
 }

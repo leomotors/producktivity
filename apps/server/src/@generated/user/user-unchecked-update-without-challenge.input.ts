@@ -4,6 +4,8 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { AuthenticatorUncheckedUpdateManyWithoutUserNestedInput } from '../authenticator/authenticator-unchecked-update-many-without-user-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { CaseUncheckedUpdateManyWithoutUserNestedInput } from '../case/case-unchecked-update-many-without-user-nested.input';
+import { NotificationUncheckedUpdateManyWithoutUserNestedInput } from '../notification/notification-unchecked-update-many-without-user-nested.input';
 
 @InputType()
 export class UserUncheckedUpdateWithoutChallengeInput {
@@ -25,4 +27,10 @@ export class UserUncheckedUpdateWithoutChallengeInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => CaseUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    case?: CaseUncheckedUpdateManyWithoutUserNestedInput;
+
+    @Field(() => NotificationUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput;
 }

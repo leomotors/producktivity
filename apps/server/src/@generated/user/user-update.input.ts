@@ -5,6 +5,8 @@ import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-oper
 import { AuthenticatorUpdateManyWithoutUserNestedInput } from '../authenticator/authenticator-update-many-without-user-nested.input';
 import { ChallengeUpdateOneWithoutUserNestedInput } from '../challenge/challenge-update-one-without-user-nested.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { CaseUpdateManyWithoutUserNestedInput } from '../case/case-update-many-without-user-nested.input';
+import { NotificationUpdateManyWithoutUserNestedInput } from '../notification/notification-update-many-without-user-nested.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -29,4 +31,10 @@ export class UserUpdateInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updatedAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => CaseUpdateManyWithoutUserNestedInput, {nullable:true})
+    case?: CaseUpdateManyWithoutUserNestedInput;
+
+    @Field(() => NotificationUpdateManyWithoutUserNestedInput, {nullable:true})
+    notification?: NotificationUpdateManyWithoutUserNestedInput;
 }
