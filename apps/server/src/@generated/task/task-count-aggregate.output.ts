@@ -15,13 +15,22 @@ export class TaskCountAggregate {
     description!: number;
 
     @Field(() => Int, {nullable:false})
-    due_date!: number;
+    dueDate!: number;
 
     @Field(() => Int, {nullable:false})
     isCompleted!: number;
 
     @Field(() => Int, {nullable:false})
-    caseId!: number;
+    tags!: number;
+
+    @Field(() => Int, {nullable:false})
+    createdAt!: number;
+
+    @Field(() => Int, {nullable:false})
+    updatedAt!: number;
+
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

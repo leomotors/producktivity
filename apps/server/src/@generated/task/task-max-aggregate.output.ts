@@ -14,11 +14,17 @@ export class TaskMaxAggregate {
     description?: string;
 
     @Field(() => Date, {nullable:true})
-    due_date?: Date | string;
+    dueDate?: Date | string;
 
     @Field(() => Boolean, {nullable:true})
     isCompleted?: boolean;
 
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
     @Field(() => String, {nullable:true})
-    caseId?: string;
+    userId?: string;
 }

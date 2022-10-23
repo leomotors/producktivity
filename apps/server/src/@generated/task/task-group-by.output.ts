@@ -17,13 +17,22 @@ export class TaskGroupBy {
     description!: string;
 
     @Field(() => Date, {nullable:false})
-    due_date!: Date | string;
+    dueDate!: Date | string;
 
     @Field(() => Boolean, {nullable:false})
     isCompleted!: boolean;
 
+    @Field(() => [String], {nullable:true})
+    tags?: Array<string>;
+
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
+
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 
     @Field(() => TaskCountAggregate, {nullable:true})
     _count?: TaskCountAggregate;

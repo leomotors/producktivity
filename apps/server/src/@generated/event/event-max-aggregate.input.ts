@@ -17,5 +17,11 @@ export class EventMaxAggregateInput {
     dueDate?: true;
 
     @Field(() => Boolean, {nullable:true})
-    caseId?: true;
+    createdAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    updatedAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    userId?: true;
 }

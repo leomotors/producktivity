@@ -20,7 +20,7 @@ export class NotificationMinAggregateInput {
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})
-    updateAt?: true;
+    updatedAt?: true;
 
     @Field(() => Boolean, {nullable:true})
     userId?: true;

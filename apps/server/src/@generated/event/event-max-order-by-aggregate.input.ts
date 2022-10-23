@@ -18,5 +18,11 @@ export class EventMaxOrderByAggregateInput {
     dueDate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    caseId?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    userId?: keyof typeof SortOrder;
 }

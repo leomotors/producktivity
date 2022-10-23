@@ -13,8 +13,17 @@ export class HabitGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
+    @Field(() => [String], {nullable:true})
+    tags?: Array<string>;
+
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
+
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date | string;
+
     @Field(() => String, {nullable:false})
-    caseId!: string;
+    userId!: string;
 
     @Field(() => HabitCountAggregate, {nullable:true})
     _count?: HabitCountAggregate;

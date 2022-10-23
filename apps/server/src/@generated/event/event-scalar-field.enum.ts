@@ -5,7 +5,10 @@ export enum EventScalarFieldEnum {
     name = "name",
     description = "description",
     dueDate = "dueDate",
-    caseId = "caseId"
+    tags = "tags",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt",
+    userId = "userId"
 }
 
 

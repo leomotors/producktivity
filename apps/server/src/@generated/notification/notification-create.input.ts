@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { UserCreateNestedOneWithoutNotificationInput } from '../user/user-create-nested-one-without-notification.input';
+import { UserCreateNestedOneWithoutNotificationsInput } from '../user/user-create-nested-one-without-notifications.input';
 
 @InputType()
 export class NotificationCreateInput {
@@ -20,9 +20,9 @@ export class NotificationCreateInput {
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-    @Field(() => UserCreateNestedOneWithoutNotificationInput, {nullable:false})
-    User!: UserCreateNestedOneWithoutNotificationInput;
+    @Field(() => UserCreateNestedOneWithoutNotificationsInput, {nullable:false})
+    User!: UserCreateNestedOneWithoutNotificationsInput;
 }

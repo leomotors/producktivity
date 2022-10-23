@@ -19,8 +19,8 @@ export class NotificationCreateManyInput {
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
     @Field(() => String, {nullable:false})
     userId!: string;

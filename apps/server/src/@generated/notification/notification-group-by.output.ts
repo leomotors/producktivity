@@ -23,7 +23,7 @@ export class NotificationGroupBy {
     createdAt!: Date | string;
 
     @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
+    updatedAt!: Date | string;
 
     @Field(() => String, {nullable:false})
     userId!: string;

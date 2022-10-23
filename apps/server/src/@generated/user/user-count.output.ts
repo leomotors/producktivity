@@ -9,8 +9,14 @@ export class UserCount {
     authenticators?: number;
 
     @Field(() => Int, {nullable:false})
-    case?: number;
+    tasks?: number;
 
     @Field(() => Int, {nullable:false})
-    notification?: number;
+    events?: number;
+
+    @Field(() => Int, {nullable:false})
+    habits?: number;
+
+    @Field(() => Int, {nullable:false})
+    notifications?: number;
 }

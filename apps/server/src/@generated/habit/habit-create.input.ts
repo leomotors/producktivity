@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CaseCreateNestedOneWithoutHabitInput } from '../case/case-create-nested-one-without-habit.input';
+import { HabitCreatetagsInput } from './habit-createtags.input';
+import { UserCreateNestedOneWithoutHabitsInput } from '../user/user-create-nested-one-without-habits.input';
 
 @InputType()
 export class HabitCreateInput {
@@ -11,6 +12,15 @@ export class HabitCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => CaseCreateNestedOneWithoutHabitInput, {nullable:false})
-    case!: CaseCreateNestedOneWithoutHabitInput;
+    @Field(() => HabitCreatetagsInput, {nullable:true})
+    tags?: HabitCreatetagsInput;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
+
+    @Field(() => UserCreateNestedOneWithoutHabitsInput, {nullable:false})
+    User!: UserCreateNestedOneWithoutHabitsInput;
 }

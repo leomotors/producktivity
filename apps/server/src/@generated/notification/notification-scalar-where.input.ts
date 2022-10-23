@@ -33,7 +33,7 @@ export class NotificationScalarWhereInput {
     createdAt?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
-    updateAt?: DateTimeFilter;
+    updatedAt?: DateTimeFilter;
 
     @Field(() => StringFilter, {nullable:true})
     userId?: StringFilter;
