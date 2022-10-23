@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { FC } from "react";
 
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon.js";
@@ -9,7 +9,7 @@ interface ITask {
   deadline: Date;
   complete: boolean;
 }
-const Task: NextPage = () => {
+const Task: FC = () => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110";
   return (
@@ -22,19 +22,12 @@ const Task: NextPage = () => {
             20/10/22
           </div>
         </div>
-        {typeof window !== "undefined" && window.screen.width > 768 && (
-          <div className="flex md:text-xl space-x-1 md:space-x-4 w-full">
-            <div className="rounded-full p-2 md:px-6 py-2 bg-white">
-              Physics
-            </div>
-            <div className="rounded-full p-2 md:px-6 py-2 bg-white">
-              Homework
-            </div>
-            <div className="rounded-full p-2 md:px-6 py-2 bg-white">
-              Midterm
-            </div>
-          </div>
-        )}
+
+        <div className="flex md:text-xl space-x-1 md:space-x-4 w-full">
+          <div className="rounded-full p-2 md:px-6 py-2 bg-white">Physics</div>
+          <div className="rounded-full p-2 md:px-6 py-2 bg-white">Homework</div>
+          <div className="rounded-full p-2 md:px-6 py-2 bg-white">Midterm</div>
+        </div>
       </div>
 
       <div

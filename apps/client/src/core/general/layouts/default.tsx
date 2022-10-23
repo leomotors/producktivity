@@ -12,7 +12,7 @@ const Default: NextPage = ({ children }) => {
   return (
     <div className="flex md:flex-row flex-col w-screen min-h-screen bg-gray-800">
       <Navbar></Navbar>
-      <div className="flex justify-center w-screen h-screen bg-gray-800">
+      <div className="flex justify-start w-screen h-screen bg-gray-800">
         {children}
       </div>
     </div>

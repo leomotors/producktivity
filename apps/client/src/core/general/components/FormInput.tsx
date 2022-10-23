@@ -1,10 +1,10 @@
-import type { NextPage } from "next";
+import type { FC } from "react";
 
 type Props = {
   name: string;
 };
 
-const FormInput: NextPage<Props> = ({ name }) => {
+const FormInput: FC<Props> = ({ name }) => {
   return (
     <div className="mb-6 flex space-x-6 items-center">
       <div className="flex w-5/6 text-xl text-white">{name}</div>

@@ -1,10 +1,8 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import type { FC } from "react";
 
 import SparklesIcon from "@heroicons/react/24/outline/SparklesIcon.js";
 
-const Navbar: NextPage = () => {
+const Navbar: FC = () => {
   return (
     <div className="px-8 py-6 flex items-center bg-black w-full ">
       <div className="flex w-5/6 text-xl text-white font-bold">

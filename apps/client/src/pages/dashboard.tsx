@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import type { NextPageWithLayout } from "next";
 
-import Event from "../modules/general/components/Event";
-import Habit from "../modules/general/components/Habits";
-import Task from "../modules/general/components/Task";
-import Timer from "../modules/general/components/Timer";
-import DefaultLayout from "../modules/general/layouts/default";
+import Event from "../core/general/components/Event";
+import Habit from "../core/general/components/Habits";
+import Task from "../core/general/components/Task";
+import DefaultLayout from "../core/general/layouts/default";
+import Timer from "../modules/dashboard/components/Timer";
 
 const Dashboard: NextPageWithLayout = () => {
   const [minimize, setMinimize] = useState<boolean>(true);
