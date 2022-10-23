@@ -10,8 +10,7 @@ import { createTaskArgs, updateTaskArgs } from "./dto/task.dto";
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
   createTask(input: createTaskArgs, user: User) {
-    try {
-      this.prisma.task.create({
+    return this.prisma.task.create({
         data: {
           name: input.name,
           description: input.description,
@@ -19,15 +18,10 @@ export class TaskService {
           userId: user.id,
         },
       });
-      return true;
-    } catch {
-      return false;
-    }
   }
 
   updateTask(input: updateTaskArgs, user: User) {
-    try {
-      this.prisma.task.update({
+      return this.prisma.task.update({
         where: {
           id: input.id,
         },
@@ -39,36 +33,22 @@ export class TaskService {
           userId: user.id,
         },
       });
-      return true;
-    } catch {
-      return false;
-    }
   }
 
   deleteTaskByID(id: string) {
-    try {
-      this.prisma.task.delete({
+      return this.prisma.task.delete({
         where: {
           id: id,
         },
       });
-      return true;
-    } catch {
-      return false;
-    }
   }
 
   deleteTaskByName(taskname: string, user: User) {
-    try {
-      this.prisma.task.deleteMany({
+      return this.prisma.task.deleteMany({
         where: {
           name: taskname,
           userId: user.id,
         },
       });
-      return true;
-    } catch {
-      return false;
-    }
   }
 }

@@ -25,7 +25,6 @@ export class TaskResolver {
   }
 
   @Mutation(() => Boolean)
-  @RequireLogin()
   deleteTaskByID(@Args() id: string) {
     return this.service.deleteTaskByID(id);
   }

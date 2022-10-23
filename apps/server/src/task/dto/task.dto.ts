@@ -4,19 +4,35 @@ import { ArgsType, Field } from "@nestjs/graphql";
 export class createTaskArgs {
   @Field()
   name!: string;
+  
+  @Field()
   description!: string;
+  
+  @Field()
   dueDate!: Date;
+  
+  @Field(() => [String])
   tags!: string[];
 }
 
 @ArgsType()
 export class updateTaskArgs {
+  
   @Field()
   id!: string;
-  name!: string;
-  description!: string;
-  dueDate!: Date;
-
+  
   @Field()
+  name!: string;
+  
+  @Field()
+  description!: string;
+  
+  @Field()
+  dueDate!: Date;
+  
+  @Field()
+  isCompleted!: boolean;
+
+  @Field(() => [String])
   tags!: string[];
 }
