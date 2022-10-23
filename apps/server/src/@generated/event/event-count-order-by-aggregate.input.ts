@@ -18,11 +18,5 @@ export class EventCountOrderByAggregateInput {
     dueDate?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updateAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     caseId?: keyof typeof SortOrder;
 }

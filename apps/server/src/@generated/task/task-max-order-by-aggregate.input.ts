@@ -18,12 +18,6 @@ export class TaskMaxOrderByAggregateInput {
     due_date?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updateAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     isCompleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

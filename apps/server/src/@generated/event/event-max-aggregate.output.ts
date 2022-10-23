@@ -16,12 +16,6 @@ export class EventMaxAggregate {
     @Field(() => Date, {nullable:true})
     dueDate?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updateAt?: Date | string;
-
     @Field(() => String, {nullable:true})
     caseId?: string;
 }

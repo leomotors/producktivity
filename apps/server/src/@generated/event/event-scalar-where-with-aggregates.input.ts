@@ -28,12 +28,6 @@ export class EventScalarWhereWithAggregatesInput {
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     dueDate?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: DateTimeWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    updateAt?: DateTimeWithAggregatesFilter;
-
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     caseId?: StringWithAggregatesFilter;
 }

@@ -11,12 +11,6 @@ export class HabitCountAggregateInput {
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    updateAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
     caseId?: true;
 
     @Field(() => Boolean, {nullable:true})

@@ -29,12 +29,6 @@ export class EventWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     dueDate?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    updateAt?: DateTimeFilter;
-
     @Field(() => CaseRelationFilter, {nullable:true})
     case?: CaseRelationFilter;
 

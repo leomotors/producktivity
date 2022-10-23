@@ -19,12 +19,6 @@ export class EventUncheckedUpdateManyInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     dueDate?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updateAt?: DateTimeFieldUpdateOperationsInput;
-
     @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
     caseId?: StringFieldUpdateOperationsInput;
 }

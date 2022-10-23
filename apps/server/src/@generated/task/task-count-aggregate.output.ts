@@ -18,12 +18,6 @@ export class TaskCountAggregate {
     due_date!: number;
 
     @Field(() => Int, {nullable:false})
-    createdAt!: number;
-
-    @Field(() => Int, {nullable:false})
-    updateAt!: number;
-
-    @Field(() => Int, {nullable:false})
     isCompleted!: number;
 
     @Field(() => Int, {nullable:false})

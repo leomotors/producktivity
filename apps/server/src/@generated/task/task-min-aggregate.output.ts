@@ -16,12 +16,6 @@ export class TaskMinAggregate {
     @Field(() => Date, {nullable:true})
     due_date?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updateAt?: Date | string;
-
     @Field(() => Boolean, {nullable:true})
     isCompleted?: boolean;
 

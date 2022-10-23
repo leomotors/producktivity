@@ -12,12 +12,6 @@ export class Habit {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date;
-
     @Field(() => Case, {nullable:false})
     case?: Case;
 

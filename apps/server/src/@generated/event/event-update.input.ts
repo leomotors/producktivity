@@ -20,12 +20,6 @@ export class EventUpdateInput {
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     dueDate?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updateAt?: DateTimeFieldUpdateOperationsInput;
-
     @Field(() => CaseUpdateOneRequiredWithoutEventNestedInput, {nullable:true})
     case?: CaseUpdateOneRequiredWithoutEventNestedInput;
 }

@@ -13,17 +13,11 @@ export class TaskGroupBy {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+    @Field(() => String, {nullable:false})
+    description!: string;
 
     @Field(() => Date, {nullable:false})
     due_date!: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
 
     @Field(() => Boolean, {nullable:false})
     isCompleted!: boolean;

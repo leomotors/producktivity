@@ -9,10 +9,4 @@ export class HabitUncheckedCreateWithoutCaseInput {
 
     @Field(() => String, {nullable:false})
     name!: string;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
 }

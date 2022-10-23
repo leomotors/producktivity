@@ -12,12 +12,6 @@ export class HabitCountAggregate {
     name!: number;
 
     @Field(() => Int, {nullable:false})
-    createdAt!: number;
-
-    @Field(() => Int, {nullable:false})
-    updateAt!: number;
-
-    @Field(() => Int, {nullable:false})
     caseId!: number;
 
     @Field(() => Int, {nullable:false})

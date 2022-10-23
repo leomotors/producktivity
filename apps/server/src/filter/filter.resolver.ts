@@ -8,3 +8,6 @@ import { FilterService } from "./filter.service";
 export class FilterResolver {
   //constructor() {}
 }
+
+//@Mutation()
+//newFilter(@Args input:)

@@ -18,12 +18,6 @@ export class EventOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     dueDate?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updateAt?: keyof typeof SortOrder;
-
     @Field(() => CaseOrderByWithRelationInput, {nullable:true})
     case?: CaseOrderByWithRelationInput;
 

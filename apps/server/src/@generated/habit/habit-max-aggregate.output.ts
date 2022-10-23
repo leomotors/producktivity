@@ -10,12 +10,6 @@ export class HabitMaxAggregate {
     @Field(() => String, {nullable:true})
     name?: string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updateAt?: Date | string;
-
     @Field(() => String, {nullable:true})
     caseId?: string;
 }

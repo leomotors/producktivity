@@ -15,12 +15,6 @@ export class HabitOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updateAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     caseId?: keyof typeof SortOrder;
 
     @Field(() => HabitCountOrderByAggregateInput, {nullable:true})

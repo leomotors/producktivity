@@ -12,17 +12,11 @@ export class Task {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => String, {nullable:true})
-    description!: string | null;
+    @Field(() => String, {nullable:false})
+    description!: string;
 
     @Field(() => Date, {nullable:false})
     due_date!: Date;
-
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date;
 
     @Field(() => Boolean, {nullable:false,defaultValue:false})
     isCompleted!: boolean;

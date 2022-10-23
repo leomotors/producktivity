@@ -19,12 +19,6 @@ export class EventGroupBy {
     @Field(() => Date, {nullable:false})
     dueDate!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
-
     @Field(() => String, {nullable:false})
     caseId!: string;
 

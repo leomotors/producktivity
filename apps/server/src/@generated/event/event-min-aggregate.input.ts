@@ -17,11 +17,5 @@ export class EventMinAggregateInput {
     dueDate?: true;
 
     @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    updateAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
     caseId?: true;
 }

@@ -11,12 +11,6 @@ export class HabitCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
-
     @Field(() => CaseCreateNestedOneWithoutHabitInput, {nullable:false})
     case!: CaseCreateNestedOneWithoutHabitInput;
 }

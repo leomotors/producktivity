@@ -17,12 +17,6 @@ export class EventCreateInput {
     @Field(() => Date, {nullable:false})
     dueDate!: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updateAt!: Date | string;
-
     @Field(() => CaseCreateNestedOneWithoutEventInput, {nullable:false})
     case!: CaseCreateNestedOneWithoutEventInput;
 }
