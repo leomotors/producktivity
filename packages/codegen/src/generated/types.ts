@@ -10,12 +10,26 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
 };
 
 export type AllowedCredentials = {
   __typename?: 'AllowedCredentials';
   id: Scalars['String'];
   type: Scalars['String'];
+};
+
+export type Authenticator = {
+  __typename?: 'Authenticator';
+  counter: Scalars['Int'];
+  createdAt: Scalars['DateTime'];
+  credentialId: Scalars['String'];
+  fmt: Scalars['String'];
+  id: Scalars['ID'];
+  publicKey: Scalars['String'];
+  user: User;
+  userId: Scalars['String'];
 };
 
 export type AuthenticatorChallenge = {
@@ -28,6 +42,39 @@ export type AuthenticatorChallenge = {
 export type AuthorizationToken = {
   __typename?: 'AuthorizationToken';
   token: Scalars['String'];
+};
+
+export type Challenge = {
+  __typename?: 'Challenge';
+  challenge: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+export type Event = {
+  __typename?: 'Event';
+  User: User;
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  dueDate: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  tags?: Maybe<Array<Scalars['String']>>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type Habit = {
+  __typename?: 'Habit';
+  User: User;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  tags?: Maybe<Array<Scalars['String']>>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
 };
 
 export type LoginChallenge = {
@@ -74,63 +121,22 @@ export type MutationVerifyRegisterArgs = {
   type: Scalars['String'];
 };
 
-export type NestedStringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
-};
-
-export type NotTest = {
-  __typename?: 'NotTest';
-  id: Scalars['String'];
-};
-
-export type NotTestOrderByWithRelationInput = {
-  id?: InputMaybe<SortOrder>;
-};
-
-export enum NotTestScalarFieldEnum {
-  Id = 'id'
-}
-
-export type NotTestWhereInput = {
-  AND?: InputMaybe<Array<NotTestWhereInput>>;
-  NOT?: InputMaybe<Array<NotTestWhereInput>>;
-  OR?: InputMaybe<Array<NotTestWhereInput>>;
-  id?: InputMaybe<StringFilter>;
-};
-
-export type NotTestWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+export type Notification = {
+  __typename?: 'Notification';
+  User: User;
+  createdAt: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  isVisited: Scalars['Boolean'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  notTests: Array<NotTest>;
+  me: User;
 };
-
-
-export type QueryNotTestsArgs = {
-  cursor?: InputMaybe<NotTestWhereUniqueInput>;
-  distinct?: InputMaybe<Array<NotTestScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<NotTestOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<NotTestWhereInput>;
-};
-
-export enum QueryMode {
-  Default = 'default',
-  Insensitive = 'insensitive'
-}
 
 export type RegisterResponse = {
   attestationObject: Scalars['String'];
@@ -143,22 +149,41 @@ export type RelyingParty = {
   name: Scalars['String'];
 };
 
-export enum SortOrder {
-  Asc = 'asc',
-  Desc = 'desc'
-}
+export type Task = {
+  __typename?: 'Task';
+  User: User;
+  createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  dueDate: Scalars['DateTime'];
+  id: Scalars['ID'];
+  isCompleted: Scalars['Boolean'];
+  name: Scalars['String'];
+  tags?: Maybe<Array<Scalars['String']>>;
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
 
-export type StringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+export type User = {
+  __typename?: 'User';
+  _count: UserCount;
+  authenticators?: Maybe<Array<Authenticator>>;
+  challenge?: Maybe<Challenge>;
+  createdAt: Scalars['DateTime'];
+  events?: Maybe<Array<Event>>;
+  habits?: Maybe<Array<Habit>>;
+  id: Scalars['ID'];
+  notifications?: Maybe<Array<Notification>>;
+  registered: Scalars['Boolean'];
+  tasks?: Maybe<Array<Task>>;
+  updatedAt: Scalars['DateTime'];
+  username: Scalars['String'];
+};
+
+export type UserCount = {
+  __typename?: 'UserCount';
+  authenticators: Scalars['Int'];
+  events: Scalars['Int'];
+  habits: Scalars['Int'];
+  notifications: Scalars['Int'];
+  tasks: Scalars['Int'];
 };

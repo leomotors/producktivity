@@ -246,4 +246,10 @@ export class AuthService {
 
     return { token };
   }
+
+  findUser(id: string) {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
 }

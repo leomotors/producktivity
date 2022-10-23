@@ -1,19 +1,13 @@
 import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 
 import { authorizationLocalStorageKey } from "@producktivity/constants";
+import { IAuthJwt } from "@producktivity/constants";
 
 import jwtDecode from "jwt-decode";
 
 import { AuthContext } from "./authContext";
 
-interface IAuthJwt {
-  id: string;
-  username: string;
-  iat: number;
-  exp: number;
-}
-
-function saveJwtDecode(token: string | null): Partial<IAuthJwt> {
+function safeJwtDecode(token: string | null): Partial<IAuthJwt> {
   try {
     const decoded = jwtDecode(token ?? "");
 
@@ -31,7 +25,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const readAndSetToken = useCallback(() => {
     const token = localStorage.getItem(authorizationLocalStorageKey);
-    const { exp, id: newId, username: newUsername } = saveJwtDecode(token);
+    const { exp, id: newId, username: newUsername } = safeJwtDecode(token);
 
     if (newId && newUsername && exp && exp > Date.now() / 1000) {
       setId(newId);

@@ -1,5 +1,0 @@
-query NotTests($where: NotTestWhereInput) {
-  notTests(where: $where) {
-    id
-  }
-}
