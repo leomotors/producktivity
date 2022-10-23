@@ -11,7 +11,9 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
+import { EventModule } from "./event/event.module";
 import { NotTestModule } from "./not-test/not-test.module";
+import { UserModule } from "./user/user.module";
 
 @Global()
 @Module({
@@ -27,6 +29,8 @@ import { NotTestModule } from "./not-test/not-test.module";
     }),
     AuthModule,
     NotTestModule,
+    UserModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

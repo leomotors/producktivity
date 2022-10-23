@@ -31,8 +31,128 @@ type NotTest {
   id: String!
 }
 
+type Authenticator {
+  id: ID!
+  createdAt: DateTime!
+  fmt: String!
+  publicKey: String!
+  counter: Int!
+  credentialId: String!
+  user: User!
+  userId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Challenge {
+  id: ID!
+  challenge: String!
+  createdAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type Task {
+  id: ID!
+  name: String!
+  description: String!
+  due_date: DateTime!
+  isCompleted: Boolean!
+  case: Case!
+  caseId: String!
+}
+
+type Event {
+  id: ID!
+  name: String!
+  description: String
+  dueDate: DateTime!
+  case: Case!
+  caseId: String!
+}
+
+type Habit {
+  id: ID!
+  name: String!
+  case: Case!
+  caseId: String!
+}
+
+type FilterDefinitionCount {
+  filter: Int!
+}
+
+type FilterDefinition {
+  id: ID!
+  label: String!
+  order: Int!
+  filter: [Filter!]
+  _count: FilterDefinitionCount!
+}
+
+type Filter {
+  id: ID!
+  createdAt: DateTime!
+  case: Case!
+  caseId: String!
+  FilterDefinition: FilterDefinition!
+  filterDefinitionId: String!
+}
+
+type CaseCount {
+  filter: Int!
+}
+
+type Case {
+  id: ID!
+  createdAt: DateTime!
+  updateAt: DateTime!
+  user: User!
+  userId: String!
+  task: Task
+  event: Event
+  habit: Habit
+  filter: [Filter!]
+  _count: CaseCount!
+}
+
+type Notification {
+  id: ID!
+  name: String!
+  description: String
+  isVisited: Boolean!
+  createdAt: DateTime!
+  updateAt: DateTime!
+  User: User!
+  userId: String!
+}
+
+type UserCount {
+  authenticators: Int!
+  case: Int!
+  notification: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+  registered: Boolean!
+  authenticators: [Authenticator!]
+  challenge: Challenge
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  case: [Case!]
+  notification: [Notification!]
+  _count: UserCount!
+}
+
 type Query {
   notTests(where: NotTestWhereInput, orderBy: [NotTestOrderByWithRelationInput!], cursor: NotTestWhereUniqueInput, take: Int, skip: Int, distinct: [NotTestScalarFieldEnum!]): [NotTest!]!
+  users(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]!
+  user(where: UserWhereUniqueInput!): User!
 }
 
 input NotTestWhereInput {
@@ -91,6 +211,319 @@ input NotTestWhereUniqueInput {
 
 enum NotTestScalarFieldEnum {
   id
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  username: StringFilter
+  registered: BoolFilter
+  authenticators: AuthenticatorListRelationFilter
+  challenge: ChallengeRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  case: CaseListRelationFilter
+  notification: NotificationListRelationFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input AuthenticatorListRelationFilter {
+  every: AuthenticatorWhereInput
+  some: AuthenticatorWhereInput
+  none: AuthenticatorWhereInput
+}
+
+input AuthenticatorWhereInput {
+  AND: [AuthenticatorWhereInput!]
+  OR: [AuthenticatorWhereInput!]
+  NOT: [AuthenticatorWhereInput!]
+  id: StringFilter
+  createdAt: DateTimeFilter
+  fmt: StringFilter
+  publicKey: StringFilter
+  counter: IntFilter
+  credentialId: StringFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input ChallengeRelationFilter {
+  is: ChallengeWhereInput
+  isNot: ChallengeWhereInput
+}
+
+input ChallengeWhereInput {
+  AND: [ChallengeWhereInput!]
+  OR: [ChallengeWhereInput!]
+  NOT: [ChallengeWhereInput!]
+  id: StringFilter
+  challenge: StringFilter
+  createdAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
+input CaseListRelationFilter {
+  every: CaseWhereInput
+  some: CaseWhereInput
+  none: CaseWhereInput
+}
+
+input CaseWhereInput {
+  AND: [CaseWhereInput!]
+  OR: [CaseWhereInput!]
+  NOT: [CaseWhereInput!]
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updateAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringFilter
+  task: TaskRelationFilter
+  event: EventRelationFilter
+  habit: HabitRelationFilter
+  filter: FilterListRelationFilter
+}
+
+input TaskRelationFilter {
+  is: TaskWhereInput
+  isNot: TaskWhereInput
+}
+
+input TaskWhereInput {
+  AND: [TaskWhereInput!]
+  OR: [TaskWhereInput!]
+  NOT: [TaskWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringFilter
+  due_date: DateTimeFilter
+  isCompleted: BoolFilter
+  case: CaseRelationFilter
+  caseId: StringFilter
+}
+
+input CaseRelationFilter {
+  is: CaseWhereInput
+  isNot: CaseWhereInput
+}
+
+input EventRelationFilter {
+  is: EventWhereInput
+  isNot: EventWhereInput
+}
+
+input EventWhereInput {
+  AND: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  NOT: [EventWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringNullableFilter
+  dueDate: DateTimeFilter
+  case: CaseRelationFilter
+  caseId: StringFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input HabitRelationFilter {
+  is: HabitWhereInput
+  isNot: HabitWhereInput
+}
+
+input HabitWhereInput {
+  AND: [HabitWhereInput!]
+  OR: [HabitWhereInput!]
+  NOT: [HabitWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  case: CaseRelationFilter
+  caseId: StringFilter
+}
+
+input FilterListRelationFilter {
+  every: FilterWhereInput
+  some: FilterWhereInput
+  none: FilterWhereInput
+}
+
+input FilterWhereInput {
+  AND: [FilterWhereInput!]
+  OR: [FilterWhereInput!]
+  NOT: [FilterWhereInput!]
+  id: StringFilter
+  createdAt: DateTimeFilter
+  case: CaseRelationFilter
+  caseId: StringFilter
+  FilterDefinition: FilterDefinitionRelationFilter
+  filterDefinitionId: StringFilter
+}
+
+input FilterDefinitionRelationFilter {
+  is: FilterDefinitionWhereInput
+  isNot: FilterDefinitionWhereInput
+}
+
+input FilterDefinitionWhereInput {
+  AND: [FilterDefinitionWhereInput!]
+  OR: [FilterDefinitionWhereInput!]
+  NOT: [FilterDefinitionWhereInput!]
+  id: StringFilter
+  label: StringFilter
+  order: IntFilter
+  filter: FilterListRelationFilter
+}
+
+input NotificationListRelationFilter {
+  every: NotificationWhereInput
+  some: NotificationWhereInput
+  none: NotificationWhereInput
+}
+
+input NotificationWhereInput {
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  description: StringNullableFilter
+  isVisited: BoolFilter
+  createdAt: DateTimeFilter
+  updateAt: DateTimeFilter
+  User: UserRelationFilter
+  userId: StringFilter
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  username: SortOrder
+  registered: SortOrder
+  authenticators: AuthenticatorOrderByRelationAggregateInput
+  challenge: ChallengeOrderByWithRelationInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  case: CaseOrderByRelationAggregateInput
+  notification: NotificationOrderByRelationAggregateInput
+}
+
+input AuthenticatorOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ChallengeOrderByWithRelationInput {
+  id: SortOrder
+  challenge: SortOrder
+  createdAt: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+input CaseOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NotificationOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserWhereUniqueInput {
+  id: String
+  username: String
+}
+
+enum UserScalarFieldEnum {
+  id
+  username
+  registered
+  createdAt
+  updatedAt
 }
 
 type Mutation {
