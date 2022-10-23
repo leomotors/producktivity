@@ -1,4 +1,7 @@
-module.exports = {
+// @ts-check
+
+/** @type {import("@trivago/prettier-plugin-sort-imports").PrettierConfig} */
+const config = {
   ...require("@producktivity/config/prettier-app"),
   importOrder: [
     "^@producktivity",
@@ -12,3 +15,5 @@ module.exports = {
     "^[.]",
   ],
 };
+
+module.exports = config;

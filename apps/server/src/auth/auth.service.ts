@@ -13,16 +13,16 @@ import {
   VerifyLoginArgs,
   VerifyRegisterArgs,
 } from "./dto/auth.dto";
-import { LoginService } from "./login.service";
 import { RegisterService } from "./register.service";
+import { RsaService } from "./rsa.service";
 import { ClientData } from "./types";
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly loginService: LoginService,
-    private readonly registerService: RegisterService
+    private readonly registerService: RegisterService,
+    private readonly rsaService: RsaService
   ) {}
 
   async requestRegister(username: string): Promise<AuthenticatorChallenge> {
@@ -203,11 +203,11 @@ export class AuthService {
       throw new BadRequestException("Authenticator and Challenge do not match");
     }
 
-    const decodedAuthData = this.loginService.decodeLoginAuthData(
+    const decodedAuthData = this.rsaService.decodeLoginAuthData(
       Buffer.from(decodedRequest.authenticatorData)
     );
 
-    const clientDataHash = this.loginService.getSha256Hash(
+    const clientDataHash = this.rsaService.getSha256Hash(
       Buffer.from(decodedRequest.clientDataJSON)
     );
     const signatureBase = Buffer.concat([
@@ -216,12 +216,12 @@ export class AuthService {
       decodedAuthData.counterBuf,
       clientDataHash,
     ]);
-    const publicKey = this.loginService.ASN1toPEM(
+    const publicKey = this.rsaService.ASN1toPEM(
       Buffer.from(decode(authenticator.publicKey))
     );
     const signature = Buffer.from(decodedRequest.signature);
 
-    const verified = this.loginService.verifySignature(
+    const verified = this.rsaService.verifySignature(
       signature,
       signatureBase,
       publicKey
