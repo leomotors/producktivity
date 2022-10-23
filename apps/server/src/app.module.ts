@@ -11,7 +11,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
-import { NotTestModule } from "./not-test/not-test.module";
 
 @Global()
 @Module({
@@ -26,7 +25,6 @@ import { NotTestModule } from "./not-test/not-test.module";
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
     AuthModule,
-    NotTestModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
