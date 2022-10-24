@@ -2,6 +2,7 @@ import {
   Args,
   Mutation,
   Parent,
+  Query,
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
@@ -15,6 +16,7 @@ import { UserContext } from "src/user/user.decorator";
 import {
   CreateEventArgs,
   DeleteEventReturnType,
+  FindManyEventArgs,
   UpdateEventArgs,
 } from "./event.dto";
 import { EventService } from "./event.service";
@@ -23,6 +25,16 @@ import { EventService } from "./event.service";
 @RequireLogin()
 export class EventResolver {
   constructor(private readonly service: EventService) {}
+
+  @Query(() => Event)
+  event(@Args("id") args: string) {
+    return this.service.event(args);
+  }
+
+  @Query(() => [Event])
+  events(@Args() args: FindManyEventArgs) {
+    return this.service.events(args);
+  }
 
   @Mutation(() => Event)
   createEvent(@Args() args: CreateEventArgs, @UserContext() user: User) {
