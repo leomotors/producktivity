@@ -1,17 +1,16 @@
-/* eslint-disable eqeqeq */
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
 import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
 
-import { createTaskArgs, updateTaskArgs } from "./dto/task.dto";
+import { CreateTaskArgs, UpdateTaskArgs } from "./task.dto";
 
 @Injectable()
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
 
-  createTask(input: createTaskArgs, user: User) {
+  createTask(input: CreateTaskArgs, user: User) {
     return this.prisma.task.create({
       data: {
         ...input,
@@ -20,7 +19,7 @@ export class TaskService {
     });
   }
 
-  async updateTask(input: updateTaskArgs, user: User) {
+  async updateTask(input: UpdateTaskArgs, user: User) {
     const taskOwnerId = (
       await this.prisma.task.findUniqueOrThrow({
         where: {
@@ -41,11 +40,11 @@ export class TaskService {
         id: input.id,
       },
       data: {
-        name: input.name != null ? input.name : undefined,
-        description: input.description != null ? input.description : undefined,
-        dueDate: input.dueDate != null ? input.dueDate : undefined,
-        isCompleted: input.isCompleted != null ? input.isCompleted : undefined,
-        tags: input.tags != null ? input.tags : undefined,
+        name: input.name ?? undefined,
+        description: input.description ?? undefined,
+        dueDate: input.dueDate ?? undefined,
+        isCompleted: input.isCompleted ?? undefined,
+        tags: input.tags ?? undefined,
       },
     });
   }
