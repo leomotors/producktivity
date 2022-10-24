@@ -1,4 +1,10 @@
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
+import {
+  Args,
+  Mutation,
+  Parent,
+  ResolveField,
+  Resolver,
+} from "@nestjs/graphql";
 
 import { Habit } from "@generated/habit/habit.model";
 import { User } from "@generated/user/user.model";
@@ -31,5 +37,10 @@ export class HabitResolver {
   @Mutation(() => DeleteHabitReturnType)
   deleteHabit(@Args("id") id: string, @UserContext() user: User) {
     return this.service.deleteHabit(id, user);
+  }
+
+  @ResolveField(() => User)
+  user(@Parent() habit: Habit) {
+    return this.service.user(habit);
   }
 }

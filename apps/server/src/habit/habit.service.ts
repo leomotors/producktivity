@@ -1,5 +1,6 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
+import { Habit } from "@generated/habit/habit.model";
 import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
@@ -64,5 +65,17 @@ export class HabitService {
     }
 
     return { id };
+  }
+
+  // Field Resolvers
+
+  user(habit: Habit) {
+    return this.prisma.event
+      .findUniqueOrThrow({
+        where: {
+          id: habit.id,
+        },
+      })
+      .user();
   }
 }
