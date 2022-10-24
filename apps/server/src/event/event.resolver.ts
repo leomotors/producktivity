@@ -10,9 +10,13 @@ import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
 
 import { RequireLogin } from "src/auth/auth.decorator";
-import { CreateEventArgs, UpdateEventArgs } from "src/event/event.dto";
 import { UserContext } from "src/user/user.decorator";
 
+import {
+  CreateEventArgs,
+  DeleteEventReturnType,
+  UpdateEventArgs,
+} from "./event.dto";
 import { EventService } from "./event.service";
 
 @Resolver(() => Event)
@@ -31,7 +35,7 @@ export class EventResolver {
     return this.service.updateEvent(args, user);
   }
 
-  @Mutation(() => Event)
+  @Mutation(() => DeleteEventReturnType)
   @RequireLogin()
   deleteEvent(@Args("id") args: string, @UserContext() user: User) {
     return this.service.deleteEvent(args, user);

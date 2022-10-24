@@ -120,6 +120,10 @@ type Event {
   userId: String!
 }
 
+type DeleteEventReturnType {
+  id: String!
+}
+
 type Query {
   me: User!
 }
@@ -130,8 +134,8 @@ type Mutation {
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
-  updateEvent(id: String!, name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
-  deleteEvent(id: String!): Event!
+  updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
+  deleteEvent(id: String!): DeleteEventReturnType!
 }
 
 input RegisterResponse {

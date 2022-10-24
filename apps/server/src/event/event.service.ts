@@ -37,26 +37,18 @@ export class EventService {
   }
 
   async deleteEvent(id: string, user: User) {
-    const eventOwnerId = (
-      await this.prisma.event.findFirstOrThrow({
-        where: {
-          id,
-        },
-        select: {
-          userId: true,
-        },
-      })
-    ).userId;
-
-    if (user.id !== eventOwnerId) {
-      throw new ForbiddenError("Error: You do not have access to this event.");
-    }
-
-    return this.prisma.event.delete({
+    const deletedEvents = await this.prisma.event.deleteMany({
       where: {
         id,
+        userId: user.id,
       },
     });
+
+    if (deletedEvents.count === 0) {
+      throw new ForbiddenError("Resource not found or you do not have access");
+    }
+
+    return { id };
   }
 
   // Field Resolver

@@ -55,7 +55,6 @@ export type Challenge = {
 
 export type Event = {
   __typename?: 'Event';
-  User: User;
   createdAt: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   dueDate: Scalars['DateTime'];
@@ -63,17 +62,18 @@ export type Event = {
   name: Scalars['String'];
   tags?: Maybe<Array<Scalars['String']>>;
   updatedAt: Scalars['DateTime'];
+  user: User;
   userId: Scalars['String'];
 };
 
 export type Habit = {
   __typename?: 'Habit';
-  User: User;
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
   name: Scalars['String'];
   tags?: Maybe<Array<Scalars['String']>>;
   updatedAt: Scalars['DateTime'];
+  user: User;
   userId: Scalars['String'];
 };
 
@@ -126,10 +126,10 @@ export type MutationRequestRegisterArgs = {
 
 export type MutationUpdateEventArgs = {
   description?: InputMaybe<Scalars['String']>;
-  dueDate: Scalars['DateTime'];
+  dueDate?: InputMaybe<Scalars['DateTime']>;
   id: Scalars['String'];
-  name: Scalars['String'];
-  tags: Array<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
@@ -148,13 +148,13 @@ export type MutationVerifyRegisterArgs = {
 
 export type Notification = {
   __typename?: 'Notification';
-  User: User;
   createdAt: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isVisited: Scalars['Boolean'];
   name: Scalars['String'];
   updatedAt: Scalars['DateTime'];
+  user: User;
   userId: Scalars['String'];
 };
 
@@ -176,7 +176,6 @@ export type RelyingParty = {
 
 export type Task = {
   __typename?: 'Task';
-  User: User;
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   dueDate: Scalars['DateTime'];
@@ -185,6 +184,7 @@ export type Task = {
   name: Scalars['String'];
   tags?: Maybe<Array<Scalars['String']>>;
   updatedAt: Scalars['DateTime'];
+  user: User;
   userId: Scalars['String'];
 };
 
