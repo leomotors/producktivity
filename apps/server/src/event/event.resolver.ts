@@ -1,4 +1,10 @@
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
+import {
+  Args,
+  Mutation,
+  Parent,
+  ResolveField,
+  Resolver,
+} from "@nestjs/graphql";
 
 import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
@@ -29,5 +35,10 @@ export class EventResolver {
   @RequireLogin()
   deleteEvent(@Args("id") args: string, @UserContext() user: User) {
     return this.service.deleteEvent(args, user);
+  }
+
+  @ResolveField(() => User)
+  user(@Parent() event: Event) {
+    return this.service.user(event);
   }
 }

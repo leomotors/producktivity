@@ -31,5 +31,5 @@ export class EventUpdateInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => UserUpdateOneRequiredWithoutEventsNestedInput, {nullable:true})
-    User?: UserUpdateOneRequiredWithoutEventsNestedInput;
+    user?: UserUpdateOneRequiredWithoutEventsNestedInput;
 }

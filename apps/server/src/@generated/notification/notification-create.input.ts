@@ -24,5 +24,5 @@ export class NotificationCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => UserCreateNestedOneWithoutNotificationsInput, {nullable:false})
-    User!: UserCreateNestedOneWithoutNotificationsInput;
+    user!: UserCreateNestedOneWithoutNotificationsInput;
 }

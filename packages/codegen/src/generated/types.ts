@@ -102,7 +102,7 @@ export type Mutation = {
 
 
 export type MutationCreateEventArgs = {
-  description: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
   dueDate: Scalars['DateTime'];
   name: Scalars['String'];
   tags: Array<Scalars['String']>;
@@ -125,7 +125,7 @@ export type MutationRequestRegisterArgs = {
 
 
 export type MutationUpdateEventArgs = {
-  description: Scalars['String'];
+  description?: InputMaybe<Scalars['String']>;
   dueDate: Scalars['DateTime'];
   id: Scalars['String'];
   name: Scalars['String'];

@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 
+import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
 
 import { CreateEventArgs, UpdateEventArgs } from "src/event/event.dto";
@@ -56,5 +57,17 @@ export class EventService {
         id,
       },
     });
+  }
+
+  // Field Resolver
+
+  user(event: Event) {
+    return this.prisma.event
+      .findUniqueOrThrow({
+        where: {
+          id: event.id,
+        },
+      })
+      .user();
   }
 }

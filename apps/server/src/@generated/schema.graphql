@@ -60,7 +60,7 @@ type Task {
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -70,7 +70,7 @@ type Habit {
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -81,7 +81,7 @@ type Notification {
   isVisited: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -116,7 +116,7 @@ type Event {
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
