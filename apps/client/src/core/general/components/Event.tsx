@@ -7,9 +7,8 @@ interface IEvent {
   topic: string[];
   date: Date;
   id: number;
-  handleDelete(id: number): void;
 }
-const Event: FC<IEvent> = ({ date, handleDelete, id, name, topic }) => {
+const Event: FC<IEvent> = ({ date, id, name, topic }) => {
   return (
     <div className="drop-shadow-lg flex justify-between w-full h-1/3 md:h-1/5 bg-emerald-50">
       <div className="p-2 md:px-8 flex flex-col justify-around w-full">

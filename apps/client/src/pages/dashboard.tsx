@@ -1,4 +1,3 @@
-import type { ReactElement } from "react";
 import { useState } from "react";
 
 import type { NextPageWithLayout } from "next";
@@ -29,27 +28,27 @@ const Dashboard: NextPageWithLayout = () => {
   const [habits, setHabits] = useState<IHabits[]>([
     {
       id: 1,
-      text: "idk",
+      text: "นอน",
     },
     {
       id: 2,
-      text: "what are",
+      text: "นอน",
     },
     {
       id: 3,
-      text: "these for",
+      text: "นอน",
     },
     {
       id: 4,
-      text: "can someone just",
+      text: "touch grass",
     },
     {
       id: 5,
-      text: "explain",
+      text: "touch grass",
     },
     {
       id: 3,
-      text: "???",
+      text: "get some milk",
     },
   ]);
   const deleteHabit = (id: number) => {
@@ -59,7 +58,7 @@ const Dashboard: NextPageWithLayout = () => {
     {
       id: 1,
       name: "kick students from line group",
-      topic: ["cal", "nonsense", "bullshit"],
+      topic: ["cal", "nonsense", "ps"],
       date: new Date(),
     },
     {
@@ -100,9 +99,6 @@ const Dashboard: NextPageWithLayout = () => {
   ]);
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  const deleteEvent = (id: number) => {
-    setEvents(() => events.filter((event) => event.id !== id));
-  };
 
   return (
     <DefaultLayout>
@@ -159,7 +155,6 @@ const Dashboard: NextPageWithLayout = () => {
                     <Event
                       key={index}
                       date={event.date}
-                      handleDelete={() => deleteEvent(event.id)}
                       id={event.id}
                       name={event.name}
                       topic={event.topic}
