@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import type { NextPage, NextPageWithLayout } from "next";
+import type { NextPage } from "next";
+import type { NextPageWithLayout } from "next";
 
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
@@ -20,8 +21,7 @@ const Default: NextPage<IDefault> = ({ children }) => {
   const toggleCalendar = () => {
     setCalendar(!calendar);
   };
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-150";
+  const hoverClass = "transition ease-in-out delay-50 duration-150 hover:scale-150";
   return (
     <div className="flex md:flex-row flex-col w-screen min-h-screen bg-gray-800">
       <Navbar isMinimized={minimize} toggleMinimize={toggleMinimize}></Navbar>
