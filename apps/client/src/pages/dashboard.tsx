@@ -15,7 +15,12 @@ interface ITasks {
   topic: string[];
   date: Date;
 }
-
+interface IEvents {
+  id: number;
+  name: string;
+  topic: string[];
+  date: Date;
+}
 const Dashboard: NextPageWithLayout = () => {
   const [tasks, setTasks] = useState<ITasks[]>([
     {
@@ -39,6 +44,31 @@ const Dashboard: NextPageWithLayout = () => {
   ]);
   const deleteTask = (id: number) => {
     setTasks(() => tasks.filter((task) => task.id !== id));
+  };
+  const [events, setEvents] = useState<IEvents[]>([
+    {
+      id: 1,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "ps"],
+      date: new Date("2022-10-23"),
+    },
+    {
+      id: 2,
+      name: "sleep",
+      topic: ["please", "zzzz", "oc"],
+      date: new Date(),
+    },
+    {
+      id: 3,
+      name: "grader",
+      topic: ["comprog", "python3.5", "🥐"],
+      date: new Date(),
+    },
+  ]);
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const deleteEvent = (id: number) => {
+    setEvents(() => events.filter((event) => event.id !== id));
   };
 
   return (
@@ -69,7 +99,7 @@ const Dashboard: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full h-full justify-between bg-red-100">
+        <div className="flex flex-col md:flex-row w-full h-fit justify-between bg-red-100">
           <div className="flex-1 bg-blue-100 mb-2">
             <div className="text-xl md:text-2xl font-bold mb-4">Tasks</div>
             <div className="h-fit md:px-10 flex flex-col space-y-4 w-full bg-pink-200">
@@ -89,8 +119,20 @@ const Dashboard: NextPageWithLayout = () => {
             <div className="text-xl md:text-2xl font-bold mb-4">
               Upcoming Events
             </div>
-            <div className="md:px-10 flex justify-center w-full min-h-fit bg-pink-200">
-              <Event></Event>
+            <div className="md:px-10 flex flex-col space-y-4 justify-center w-full min-h-fit bg-pink-200">
+              {events.map(
+                (event, index) =>
+                  event.date > yesterday && (
+                    <Event
+                      key={index}
+                      date={event.date}
+                      handleDelete={() => deleteEvent(event.id)}
+                      id={event.id}
+                      name={event.name}
+                      topic={event.topic}
+                    ></Event>
+                  )
+              )}
             </div>
           </div>
         </div>
