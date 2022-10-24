@@ -12,6 +12,7 @@ import { AppController } from "./app.controller";
 import { AuthModule } from "./auth/auth.module";
 import { EventModule } from "./event/event.module";
 import { HabitModule } from "./habit/habit.module";
+import { TaskModule } from "./task/task.module";
 import { UserModule } from "./user/user.module";
 
 @Global()
@@ -27,9 +28,10 @@ import { UserModule } from "./user/user.module";
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
     AuthModule,
-    UserModule,
-    HabitModule,
     EventModule,
+    HabitModule,
+    TaskModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [PrismaService],
