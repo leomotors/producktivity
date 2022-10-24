@@ -1,7 +1,5 @@
 import { ArgsType, Field, ObjectType } from "@nestjs/graphql";
 
-import { User } from "@generated/user/user.model";
-
 @ArgsType()
 export class FindManyEventArgs {
   @Field({ nullable: true })

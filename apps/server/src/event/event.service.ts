@@ -28,7 +28,7 @@ export class EventService {
     return this.prisma.event.findMany({
       where: {
         id: input.id,
-        name: input.name,
+        name: { contains: input.name },
         description: input.description,
         dueDate: input.dueDate,
         tags: { hasEvery: input.tags },
