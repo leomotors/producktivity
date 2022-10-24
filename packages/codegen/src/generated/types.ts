@@ -97,10 +97,13 @@ export type LoginResponse = {
 export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
+  createHabit: Habit;
   deleteEvent: DeleteEventReturnType;
+  deleteHabit: Habit;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;
+  updateHabit: Habit;
   verifyLogin: AuthorizationToken;
   verifyRegister: AuthorizationToken;
 };
@@ -114,7 +117,18 @@ export type MutationCreateEventArgs = {
 };
 
 
+export type MutationCreateHabitArgs = {
+  name: Scalars['String'];
+  tags: Array<Scalars['String']>;
+};
+
+
 export type MutationDeleteEventArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationDeleteHabitArgs = {
   id: Scalars['String'];
 };
 
@@ -132,6 +146,13 @@ export type MutationRequestRegisterArgs = {
 export type MutationUpdateEventArgs = {
   description?: InputMaybe<Scalars['String']>;
   dueDate?: InputMaybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
+};
+
+
+export type MutationUpdateHabitArgs = {
   id: Scalars['String'];
   name?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
