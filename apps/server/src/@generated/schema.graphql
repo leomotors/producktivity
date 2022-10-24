@@ -128,6 +128,10 @@ type DeleteHabitReturnType {
   id: String!
 }
 
+type DeleteTaskReturnType {
+  id: String!
+}
+
 type Query {
   me: User!
 }
@@ -145,7 +149,7 @@ type Mutation {
   deleteHabit(id: String!): DeleteHabitReturnType!
   createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
   updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
-  deleteTask(id: String!): Task!
+  deleteTask(id: String!): DeleteTaskReturnType!
 }
 
 input RegisterResponse {

@@ -1,5 +1,6 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
+import { Task } from "@generated/task/task.model";
 import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
@@ -70,5 +71,15 @@ export class TaskService {
         id,
       },
     });
+  }
+
+  user(task: Task) {
+    return this.prisma.task
+      .findUniqueOrThrow({
+        where: {
+          id: task.id,
+        },
+      })
+      .user();
   }
 }

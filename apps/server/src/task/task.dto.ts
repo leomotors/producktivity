@@ -1,4 +1,4 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { ArgsType, Field, ObjectType } from "@nestjs/graphql";
 
 @ArgsType()
 export class CreateTaskArgs {
@@ -36,8 +36,8 @@ export class UpdateTaskArgs {
   tags?: string[];
 }
 
-@ArgsType()
-export class DeleteTaskArgs {
+@ObjectType()
+export class DeleteTaskReturnType {
   @Field()
   id!: string;
 }
