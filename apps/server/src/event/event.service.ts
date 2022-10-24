@@ -17,6 +17,7 @@ export class EventService {
         name: input.name,
         description: input.description,
         dueDate: input.dueDate,
+        tags: input.tags,
         userId: user.id,
       },
     });
@@ -31,6 +32,7 @@ export class EventService {
         name: input.name,
         description: input.description,
         dueDate: input.dueDate,
+        tags: input.tags,
         userId: user.id,
       },
     });
