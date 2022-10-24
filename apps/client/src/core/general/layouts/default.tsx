@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import type { NextPage, NextPageWithLayout } from "next";
+import type { NextPage } from "next";
+import type { NextPageWithLayout } from "next";
 
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
