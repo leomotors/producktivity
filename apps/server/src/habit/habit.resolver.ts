@@ -6,7 +6,7 @@ import { User } from "@generated/user/user.model";
 import { RequireLogin } from "src/auth/auth.decorator";
 import { UserContext } from "src/user/user.decorator";
 
-import { habitArgs } from "./dto/habit.dto";
+import { createHabitArgs, updateHabitArgs } from "./dto/habit.dto";
 import { HabitService } from "./habit.service";
 
 @Resolver()
@@ -15,8 +15,14 @@ export class HabitResolver {
 
   @Mutation(() => Habit)
   @RequireLogin()
-  upsertHabit(@Args() input: habitArgs, @UserContext() user: User) {
-    return this.service.upsertHabit(input, user);
+  createHabit(@Args() input: createHabitArgs, @UserContext() user: User) {
+    return this.service.createHabit(input, user);
+  }
+
+  @Mutation(() => Habit)
+  @RequireLogin()
+  updateHabit(@Args() input: updateHabitArgs, @UserContext() user: User) {
+    return this.service.updateHabit(input, user);
   }
 
   @Mutation(() => Habit)
