@@ -44,7 +44,7 @@ export class HabitService {
         id: input.id,
       },
       data: {
-        name: input.name ?? undefined,
+        name: input.name,
         tags: input.tags ?? undefined,
       },
     });

@@ -15,7 +15,7 @@ export class UpdateHabitArgs {
   id!: string;
 
   @Field({ nullable: true })
-  name?: string;
+  name!: string;
 
   @Field(() => [String], { nullable: true })
   tags?: string[];

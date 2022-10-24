@@ -137,12 +137,12 @@ type Mutation {
   verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
-  createHabit(name: String!, tags: [String!]!): Habit!
-  updateHabit(id: String!, name: String, tags: [String!]): Habit!
-  deleteHabit(id: String!): DeleteHabitReturnType!
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
   updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
   deleteEvent(id: String!): DeleteEventReturnType!
+  createHabit(name: String!, tags: [String!]!): Habit!
+  updateHabit(id: String!, name: String, tags: [String!]): Habit!
+  deleteHabit(id: String!): DeleteHabitReturnType!
   createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
   updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
   deleteTask(id: String!): Task!
