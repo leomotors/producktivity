@@ -47,6 +47,27 @@ const Calendar: NextPageWithLayout = () => {
     days[i] = null;
   }
 
+  const events = [
+    {
+      id: 1,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "ps"],
+      date: new Date("2022-10-23"),
+    },
+    {
+      id: 2,
+      name: "sleep",
+      topic: ["please", "zzzz", "oc"],
+      date: new Date(),
+    },
+    {
+      id: 3,
+      name: "grader",
+      topic: ["comprog", "python3.5", "🥐"],
+      date: new Date(),
+    },
+  ];
+
   return (
     <DefaultLayout>
       <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
@@ -66,7 +87,17 @@ const Calendar: NextPageWithLayout = () => {
           {days.map((day, index) => {
             return (
               <div key={index} className="p-2 outline outline-zinc-100">
-                {day}
+                <h1>{day}</h1>
+                {events.map((event, index) => {
+                  if (
+                    event.date.getFullYear() === now.getFullYear() &&
+                    event.date.getMonth() === now.getMonth() &&
+                    event.date.getDate() === day
+                  ) {
+                    return <div key={index}>{event.name}</div>;
+                  }
+                  return;
+                })}
               </div>
             );
           })}
