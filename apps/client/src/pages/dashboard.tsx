@@ -4,11 +4,15 @@ import { useState } from "react";
 import type { NextPageWithLayout } from "next";
 
 import Event from "../core/general/components/Event";
-import Habit from "../core/general/components/Habits";
+import Habit from "../core/general/components/Habit";
 import Task from "../core/general/components/Task";
 import DefaultLayout from "../core/general/layouts/default";
 import Timer from "../modules/dashboard/components/Timer";
 
+interface IHabits {
+  id: number;
+  text: string;
+}
 interface ITasks {
   id: number;
   name: string;
@@ -22,6 +26,35 @@ interface IEvents {
   date: Date;
 }
 const Dashboard: NextPageWithLayout = () => {
+  const [habits, setHabits] = useState<IHabits[]>([
+    {
+      id: 1,
+      text: "idk",
+    },
+    {
+      id: 2,
+      text: "what are",
+    },
+    {
+      id: 3,
+      text: "these for",
+    },
+    {
+      id: 4,
+      text: "can someone just",
+    },
+    {
+      id: 5,
+      text: "explain",
+    },
+    {
+      id: 3,
+      text: "???",
+    },
+  ]);
+  const deleteHabit = (id: number) => {
+    setHabits(() => habits.filter((habit) => habit.id !== id));
+  };
   const [tasks, setTasks] = useState<ITasks[]>([
     {
       id: 1,
@@ -87,19 +120,19 @@ const Dashboard: NextPageWithLayout = () => {
             <div className="text-xl md:text-2xl font-bold md:mb-2">Habits</div>
             <div className="flex justify-center w-full h-full">
               <div className="grid grid-cols-4 gap-2 md:gap-4 rounded-lg w-full h-5/6">
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
-                <Habit></Habit>
+                {habits.map((habit, index) => (
+                  <Habit
+                    key={index}
+                    handleDelete={() => deleteHabit(habit.id)}
+                    id={habit.id}
+                    text={habit.text}
+                  ></Habit>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row w-full h-full justify-between">
+        <div className="flex flex-col md:flex-row w-full h-fit justify-between">
           <div className="flex-1 bg-blue-100 mb-2">
             <div className="text-xl md:text-2xl font-bold mb-4">Tasks</div>
             <div className="h-fit md:px-10 flex flex-col space-y-4 w-full bg-pink-200">
