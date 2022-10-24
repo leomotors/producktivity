@@ -13,7 +13,7 @@ interface IDefault {
 }
 const Default: NextPage<IDefault> = ({ children }) => {
   const [minimize, setMinimize] = useState<boolean>(true);
-  const [calendar, setCalendar] = useState<boolean>(true);
+  const [calendar, setCalendar] = useState<boolean>(false);
   const toggleMinimize = () => {
     setMinimize(!minimize);
   };
