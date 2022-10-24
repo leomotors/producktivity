@@ -27,14 +27,8 @@ export class EventService {
   async events(input: FindManyEventArgs) {
     return this.prisma.event.findMany({
       where: {
-        id: input.id,
         name: { contains: input.name },
-        description: input.description,
-        dueDate: input.dueDate,
         tags: { hasEvery: input.tags },
-        createdAt: input.createdAt,
-        updatedAt: input.updatedAt,
-        userId: input.userId,
       },
     });
   }
