@@ -9,14 +9,41 @@ import Task from "../core/general/components/Task";
 import DefaultLayout from "../core/general/layouts/default";
 import Timer from "../modules/dashboard/components/Timer";
 
+interface ITasks {
+  id: number;
+  name: string;
+  topic: string[];
+  date: Date;
+}
+
 const Dashboard: NextPageWithLayout = () => {
-  const [minimize, setMinimize] = useState<boolean>(true);
-  const toggleMinimize = () => {
-    setMinimize(!minimize);
+  const [tasks, setTasks] = useState<ITasks[]>([
+    {
+      id: 1,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "bullshit"],
+      date: new Date(),
+    },
+    {
+      id: 2,
+      name: "sleep",
+      topic: ["please", "zzzz", "oc"],
+      date: new Date(),
+    },
+    {
+      id: 3,
+      name: "grader",
+      topic: ["comprog", "python3.5", "🥐"],
+      date: new Date(),
+    },
+  ]);
+  const deleteTask = (id: number) => {
+    setTasks(() => tasks.filter((task) => task.id !== id));
   };
+
   return (
     <DefaultLayout>
-      <div className="h-11/12 ml-8 p-4 rounded-lg bg-white w-11/12 overflow-auto">
+      <div className="h-full ml-8 p-4 rounded-lg bg-white w-11/12 overflow-auto">
         <h1 className="text-2xl md:text-3xl font-bold mb-4">Overview</h1>
         <div className="flex flex-col md:flex-row w-full h-1/2 justify-between bg-red-100">
           <div className="bg-brown-100 w-full md:w-2/5">
@@ -45,10 +72,17 @@ const Dashboard: NextPageWithLayout = () => {
         <div className="flex flex-col md:flex-row w-full h-full justify-between bg-red-100">
           <div className="flex-1 bg-blue-100 mb-2">
             <div className="text-xl md:text-2xl font-bold mb-4">Tasks</div>
-            <div className="min-h-fit md:px-10 flex flex-col space-y-4 w-full bg-pink-200">
-              <Task></Task>
-              <Task></Task>
-              <Task></Task>
+            <div className="h-fit md:px-10 flex flex-col space-y-4 w-full bg-pink-200">
+              {tasks.map((task, index) => (
+                <Task
+                  key={index}
+                  date={task.date}
+                  handleDelete={() => deleteTask(task.id)}
+                  id={task.id}
+                  name={task.name}
+                  topic={task.topic}
+                ></Task>
+              ))}
             </div>
           </div>
           <div className="flex-1 bg-orange-100">
