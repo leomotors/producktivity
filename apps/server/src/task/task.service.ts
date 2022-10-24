@@ -51,27 +51,23 @@ export class TaskService {
   }
 
   async deleteTask(id: string, user: User) {
-    const taskOwnerId = (
-      await this.prisma.task.findUniqueOrThrow({
-        where: {
-          id,
-        },
-        select: {
-          userId: true,
-        },
-      })
-    ).userId;
-
-    if (user.id !== taskOwnerId) {
-      throw new ForbiddenException("Error: Trying to delete other user's task");
-    }
-
-    return this.prisma.task.delete({
+    const deletedTasks = await this.prisma.task.deleteMany({
       where: {
-        id,
+        id: id,
+        userId: user.id,
       },
     });
+
+    if (deletedTasks.count === 0) {
+      throw new ForbiddenException(
+        "Resource not found or you do not have access"
+      );
+    }
+
+    return { id };
   }
+
+  // Field Resolvers
 
   user(task: Task) {
     return this.prisma.task
