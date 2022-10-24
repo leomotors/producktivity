@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { ForbiddenException, Injectable } from "@nestjs/common";
 
 import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
@@ -9,8 +9,6 @@ import {
   UpdateEventArgs,
 } from "src/event/event.dto";
 import { PrismaService } from "src/prisma.service";
-
-import { ForbiddenError } from "apollo-server-core";
 
 @Injectable()
 export class EventService {
@@ -66,13 +64,15 @@ export class EventService {
     });
 
     if (deletedEvents.count === 0) {
-      throw new ForbiddenError("Resource not found or you do not have access");
+      throw new ForbiddenException(
+        "Resource not found or you do not have access"
+      );
     }
 
     return { id };
   }
 
-  // Field Resolver
+  // Field Resolvers
 
   user(event: Event) {
     return this.prisma.event

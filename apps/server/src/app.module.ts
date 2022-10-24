@@ -12,6 +12,7 @@ import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
 import { EventModule } from "./event/event.module";
+import { HabitModule } from "./habit/habit.module";
 import { UserModule } from "./user/user.module";
 
 @Global()
@@ -28,6 +29,7 @@ import { UserModule } from "./user/user.module";
     }),
     AuthModule,
     UserModule,
+    HabitModule,
     EventModule,
   ],
   controllers: [AppController],
