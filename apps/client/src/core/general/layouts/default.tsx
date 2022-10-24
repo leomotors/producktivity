@@ -14,14 +14,25 @@ interface IDefault {
 }
 const Default: NextPage<IDefault> = ({ children }) => {
   const [minimize, setMinimize] = useState<boolean>(true);
-  const [calendar, setCalendar] = useState<boolean>(true);
+  const [calendar, setCalendar] = useState<boolean>(false);
+  const [calen, setCalen] = useState<boolean>(false);
   const toggleMinimize = () => {
     setMinimize(!minimize);
   };
   const toggleCalendar = () => {
     setCalendar(!calendar);
   };
-  const hoverClass = "transition ease-in-out delay-50 duration-150 hover:scale-150";
+  const handleCalen = () => {
+    if (calen === false) {
+      const Timeout = setTimeout(toggleCalendar, 300);
+      setCalen(!calen);
+    } else if (calen === true) {
+      toggleCalendar();
+      const Timeout = setTimeout(() => setCalen(!calen), 10);
+    }
+  };
+  const hoverClass =
+    "transition ease-in-out delay-50 duration-150 hover:scale-150";
   return (
     <div className="flex md:flex-row flex-col w-screen min-h-screen bg-gray-800">
       <Navbar isMinimized={minimize} toggleMinimize={toggleMinimize}></Navbar>
@@ -29,12 +40,12 @@ const Default: NextPage<IDefault> = ({ children }) => {
         <div className="pt-8 px-16 w-full flex justify-end bg-gray-800 h-24">
           <ChevronLeftIcon
             className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
-            onClick={toggleCalendar}
+            onClick={handleCalen}
           />
         </div>
         {children}
       </div>
-      <MiniCalendar calendar={calendar}></MiniCalendar>
+      <MiniCalendar calen={calen} calendar={calendar}></MiniCalendar>
     </div>
   );
 };
