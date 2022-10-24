@@ -20,20 +20,20 @@ export class updateTaskArgs {
   @Field()
   id!: string;
 
-  @Field()
-  name!: string;
+  @Field({ nullable: true })
+  name?: string;
 
-  @Field()
-  description!: string;
+  @Field({ nullable: true })
+  description?: string;
 
-  @Field()
-  dueDate!: Date;
+  @Field({ nullable: true })
+  dueDate?: Date;
 
-  @Field()
-  isCompleted!: boolean;
+  @Field({ nullable: true })
+  isCompleted?: boolean;
 
-  @Field(() => [String])
-  tags!: string[];
+  @Field(() => [String], { nullable: true })
+  tags?: string[];
 }
 
 @ArgsType()
