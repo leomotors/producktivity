@@ -6,7 +6,7 @@ import { User } from "@generated/user/user.model";
 import { RequireLogin } from "src/auth/auth.decorator";
 import { UserContext } from "src/user/user.decorator";
 
-import { createTaskArgs, updateTaskArgs } from "./task.dto";
+import { CreateTaskArgs, UpdateTaskArgs } from "./task.dto";
 import { TaskService } from "./task.service";
 
 @Resolver(() => Task)
@@ -15,12 +15,12 @@ export class TaskResolver {
   constructor(private readonly service: TaskService) {}
 
   @Mutation(() => Task)
-  createTask(@Args() input: createTaskArgs, @UserContext() user: User) {
+  createTask(@Args() input: CreateTaskArgs, @UserContext() user: User) {
     return this.service.createTask(input, user);
   }
 
   @Mutation(() => Task)
-  updateTask(@Args() input: updateTaskArgs, @UserContext() user: User) {
+  updateTask(@Args() input: UpdateTaskArgs, @UserContext() user: User) {
     return this.service.updateTask(input, user);
   }
 
