@@ -31,5 +31,5 @@ export class TaskCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => UserCreateNestedOneWithoutTasksInput, {nullable:false})
-    User!: UserCreateNestedOneWithoutTasksInput;
+    user!: UserCreateNestedOneWithoutTasksInput;
 }
