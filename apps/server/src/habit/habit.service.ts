@@ -1,17 +1,16 @@
-/* eslint-disable eqeqeq */
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
 import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
 
-import { createHabitArgs, updateHabitArgs } from "./dto/habit.dto";
+import { CreateHabitArgs, UpdateHabitArgs } from "./habit.dto";
 
 @Injectable()
 export class HabitService {
   constructor(private readonly prisma: PrismaService) {}
 
-  createHabit(input: createHabitArgs, user: User) {
+  createHabit(input: CreateHabitArgs, user: User) {
     return this.prisma.habit.create({
       data: {
         name: input.name,
@@ -21,7 +20,7 @@ export class HabitService {
     });
   }
 
-  async updateHabit(input: updateHabitArgs, user: User) {
+  async updateHabit(input: UpdateHabitArgs, user: User) {
     const habitOwnerId = (
       await this.prisma.habit.findUniqueOrThrow({
         where: {
@@ -44,8 +43,8 @@ export class HabitService {
         id: input.id,
       },
       data: {
-        name: input.name != null ? input.name : undefined,
-        tags: input.tags != null ? input.tags : undefined,
+        name: input.name ?? undefined,
+        tags: input.tags ?? undefined,
       },
     });
   }

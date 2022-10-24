@@ -1,7 +1,7 @@
 import { ArgsType, Field } from "@nestjs/graphql";
 
 @ArgsType()
-export class createHabitArgs {
+export class CreateHabitArgs {
   @Field()
   name!: string;
 
@@ -10,7 +10,7 @@ export class createHabitArgs {
 }
 
 @ArgsType()
-export class updateHabitArgs {
+export class UpdateHabitArgs {
   @Field()
   id!: string;
 

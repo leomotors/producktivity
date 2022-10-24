@@ -6,27 +6,25 @@ import { User } from "@generated/user/user.model";
 import { RequireLogin } from "src/auth/auth.decorator";
 import { UserContext } from "src/user/user.decorator";
 
-import { createHabitArgs, updateHabitArgs } from "./dto/habit.dto";
+import { CreateHabitArgs, UpdateHabitArgs } from "./habit.dto";
 import { HabitService } from "./habit.service";
 
-@Resolver()
+@Resolver(() => Habit)
+@RequireLogin()
 export class HabitResolver {
   constructor(private readonly service: HabitService) {}
 
   @Mutation(() => Habit)
-  @RequireLogin()
-  createHabit(@Args() input: createHabitArgs, @UserContext() user: User) {
+  createHabit(@Args() input: CreateHabitArgs, @UserContext() user: User) {
     return this.service.createHabit(input, user);
   }
 
   @Mutation(() => Habit)
-  @RequireLogin()
-  updateHabit(@Args() input: updateHabitArgs, @UserContext() user: User) {
+  updateHabit(@Args() input: UpdateHabitArgs, @UserContext() user: User) {
     return this.service.updateHabit(input, user);
   }
 
   @Mutation(() => Habit)
-  @RequireLogin()
   deleteHabit(@Args("id") id: string, @UserContext() user: User) {
     return this.service.deleteHabit(id, user);
   }
