@@ -11,12 +11,14 @@ const IndexPage: MyPage = () => {
   const [username, setUsername] = useState("");
   const { setToken } = useUser();
 
+  const [error, setError] = useState("");
+
   function onComplete(token: string) {
     setToken(token);
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-4 transition-colors dark:bg-slate-900 dark:text-white">
+    <main className="flex h-screen flex-col items-center justify-center gap-4 transition-colors dark:bg-slate-900 dark:text-white p-8 text-center">
       <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-500">
         Producktivity
       </h1>
@@ -27,9 +29,15 @@ const IndexPage: MyPage = () => {
         Pomodoro, tasks, events, habits, schedule, all-in-one app.
       </p>
 
-      <section className="my-8 flex flex-col gap-4">
+      <section className="my-8 flex flex-col gap-4 items-center">
+        {error && (
+          <div className="border border-red-500 bg-red-300 p-4 rounded-lg text-black">
+            {error}
+          </div>
+        )}
+
         <input
-          className="rounded-lg border border-gray-500 p-2"
+          className="rounded-lg border border-gray-500 p-2 w-56 text-black"
           placeholder="Username"
           type="text"
           value={username}
@@ -37,14 +45,25 @@ const IndexPage: MyPage = () => {
         />
 
         <div className="flex justify-center gap-4">
-          <Login username={username} onComplete={onComplete} />
-          <Register username={username} onComplete={onComplete} />
+          <Login
+            username={username}
+            onComplete={onComplete}
+            onError={setError}
+          />
+          <Register
+            username={username}
+            onComplete={onComplete}
+            onError={setError}
+          />
         </div>
       </section>
 
       <p>
         Feeling not productive?{" "}
-        <ExtLink className="text-blue-600" href="https://cugetrekt.vercel.app">
+        <ExtLink
+          className="text-blue-600 dark:text-blue-400"
+          href="https://cugetrekt.vercel.app"
+        >
           Check this out
         </ExtLink>
       </p>
@@ -60,7 +79,7 @@ const IndexPage: MyPage = () => {
       </p>
 
       <ThemeSwitcher />
-    </div>
+    </main>
   );
 };
 
