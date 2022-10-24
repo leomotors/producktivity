@@ -11,11 +11,11 @@ export class createHabitArgs {
 
 @ArgsType()
 export class updateHabitArgs {
-  @Field({ nullable: true })
-  name?: string;
-
   @Field()
   id!: string;
+
+  @Field({ nullable: true })
+  name?: string;
 
   @Field(() => [String], { nullable: true })
   tags?: string[];
