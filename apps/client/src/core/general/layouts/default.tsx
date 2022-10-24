@@ -1,20 +1,40 @@
 import { useState } from "react";
 
-import type { NextPage } from "next";
+import type { NextPage, NextPageWithLayout } from "next";
 
+import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
+import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
+
+import MiniCalendar from "../components/MiniCalendar";
 import Navbar from "../components/Navbar";
 
-const Default: NextPage = ({ children }) => {
+interface IDefault {
+  children: NextPageWithLayout;
+}
+const Default: NextPage<IDefault> = ({ children }) => {
   const [minimize, setMinimize] = useState<boolean>(true);
+  const [calendar, setCalendar] = useState<boolean>(true);
   const toggleMinimize = () => {
     setMinimize(!minimize);
   };
+  const toggleCalendar = () => {
+    setCalendar(!calendar);
+  };
+  const hoverClass =
+    "transition ease-in-out delay-50 duration-150 hover:scale-150";
   return (
     <div className="flex md:flex-row flex-col w-screen min-h-screen bg-gray-800">
-      <Navbar></Navbar>
-      <div className="flex justify-start w-screen h-screen bg-gray-800">
+      <Navbar isMinimized={minimize} toggleMinimize={toggleMinimize}></Navbar>
+      <div className="flex flex-col justify-start w-screen h-screen bg-gray-800">
+        <div className="pt-8 px-16 w-full flex justify-end bg-gray-800 h-24">
+          <ChevronLeftIcon
+            className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
+            onClick={toggleCalendar}
+          />
+        </div>
         {children}
       </div>
+      <MiniCalendar calendar={calendar}></MiniCalendar>
     </div>
   );
 };

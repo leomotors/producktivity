@@ -8,15 +8,13 @@ import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDoc
 import PlusCircleIcon from "@heroicons/react/24/outline/PlusCircleIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
 
-import "../../../styles/Navbar.module.scss";
-
 import NavItem from "./NavItem";
 
-const Navbar: FC = () => {
-  const [isMinimized, setIsMinimized] = useState<boolean | undefined>(true);
-  const toggleMinimize = () => {
-    setIsMinimized(!isMinimized);
-  };
+interface INavbar {
+  isMinimized: boolean;
+  toggleMinimize(): void;
+}
+const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-150";
   return (
@@ -29,12 +27,12 @@ const Navbar: FC = () => {
         <div className="items-center flex space-x-2">
           <NavItem link="#">
             {isMinimized ? (
-              <ChevronLeftIcon
+              <ChevronRightIcon
                 className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
                 onClick={toggleMinimize}
               />
             ) : (
-              <ChevronRightIcon
+              <ChevronLeftIcon
                 className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
                 onClick={toggleMinimize}
               />

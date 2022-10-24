@@ -1,6 +1,3 @@
-import type { ReactElement } from "react";
-import { useState } from "react";
-
 import type { NextPageWithLayout } from "next";
 
 import DefaultLayout from "../core/general/layouts/default";
@@ -25,8 +22,8 @@ const Calendar: NextPageWithLayout = () => {
 
   return (
     <DefaultLayout>
-      <div className="h-11/12 flex flex-col m-8 rounded-lg bg-gray-500 w-11/12 overflow-auto">
-        <div className="text-4xl font-bold mb-4 text-white bg-gray-500">
+      <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
+        <div className="text-3xl font-bold mb-2 text-white bg-gray-800">
           October 2022
         </div>
         <div className="z-10 rounded-t-lg grid grid-cols-7 w-full bg-emerald-50">
