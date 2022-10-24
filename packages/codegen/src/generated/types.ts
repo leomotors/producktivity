@@ -91,10 +91,26 @@ export type LoginResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createEvent: Event;
+  deleteEvent: Event;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
+  updateEvent: Event;
   verifyLogin: AuthorizationToken;
   verifyRegister: AuthorizationToken;
+};
+
+
+export type MutationCreateEventArgs = {
+  description: Scalars['String'];
+  dueDate: Scalars['DateTime'];
+  name: Scalars['String'];
+  tags: Array<Scalars['String']>;
+};
+
+
+export type MutationDeleteEventArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -105,6 +121,15 @@ export type MutationRequestLoginArgs = {
 
 export type MutationRequestRegisterArgs = {
   username: Scalars['String'];
+};
+
+
+export type MutationUpdateEventArgs = {
+  description: Scalars['String'];
+  dueDate: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  tags: Array<Scalars['String']>;
 };
 
 
