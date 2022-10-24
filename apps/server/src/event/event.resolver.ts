@@ -4,7 +4,7 @@ import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
 
 import { RequireLogin } from "src/auth/auth.decorator";
-import { createEventArgs, updateEventArgs } from "src/event/event.dto";
+import { CreateEventArgs, UpdateEventArgs } from "src/event/event.dto";
 import { UserContext } from "src/user/user.decorator";
 
 import { EventService } from "./event.service";
@@ -15,13 +15,13 @@ export class EventResolver {
 
   @Mutation(() => Event)
   @RequireLogin()
-  createEvent(@Args() args: createEventArgs, @UserContext() user: User) {
+  createEvent(@Args() args: CreateEventArgs, @UserContext() user: User) {
     return this.service.createEvent(args, user);
   }
 
   @Mutation(() => Event)
   @RequireLogin()
-  updateEvent(@Args() args: updateEventArgs, @UserContext() user: User) {
+  updateEvent(@Args() args: UpdateEventArgs, @UserContext() user: User) {
     return this.service.updateEvent(args, user);
   }
 

@@ -1,7 +1,7 @@
 import { ArgsType, Field } from "@nestjs/graphql";
 
 @ArgsType()
-export class createEventArgs {
+export class CreateEventArgs {
   @Field()
   name!: string;
 
@@ -16,7 +16,7 @@ export class createEventArgs {
 }
 
 @ArgsType()
-export class updateEventArgs {
+export class UpdateEventArgs {
   @Field()
   id!: string;
 

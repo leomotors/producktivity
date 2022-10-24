@@ -1,9 +1,8 @@
 import { Injectable } from "@nestjs/common";
 
-import { DeleteOneEventArgs } from "@generated/event/delete-one-event.args";
 import { User } from "@generated/user/user.model";
 
-import { createEventArgs, updateEventArgs } from "src/event/event.dto";
+import { CreateEventArgs, UpdateEventArgs } from "src/event/event.dto";
 import { PrismaService } from "src/prisma.service";
 
 import { ForbiddenError } from "apollo-server-core";
@@ -12,19 +11,18 @@ import { ForbiddenError } from "apollo-server-core";
 export class EventService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createEvent(input: createEventArgs, user: User) {
+  async createEvent(input: CreateEventArgs, user: User) {
     return this.prisma.event.create({
       data: {
         name: input.name,
         description: input.description,
         dueDate: input.dueDate,
-        // ...input,
         userId: user.id,
       },
     });
   }
 
-  async updateEvent(input: updateEventArgs, user: User) {
+  async updateEvent(input: UpdateEventArgs, user: User) {
     return this.prisma.event.update({
       where: {
         id: input.id,
