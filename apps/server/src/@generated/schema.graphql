@@ -51,11 +51,12 @@ type Challenge {
   userId: String!
 }
 
-type Event {
+type Task {
   id: ID!
   name: String!
-  description: String
+  description: String!
   dueDate: DateTime!
+  isCompleted: Boolean!
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -107,17 +108,20 @@ type User {
   _count: UserCount!
 }
 
-type Task {
+type Event {
   id: ID!
   name: String!
-  description: String!
+  description: String
   dueDate: DateTime!
-  isCompleted: Boolean!
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
   userId: String!
+}
+
+type DeleteEventReturnType {
+  id: String!
 }
 
 type Query {
@@ -129,6 +133,9 @@ type Mutation {
   verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
+  createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
+  updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
+  deleteEvent(id: String!): DeleteEventReturnType!
   createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
   updateTask(id: String!, name: String!, description: String!, dueDate: DateTime!, isCompleted: Boolean!, tags: [String!]!): Task!
   deleteTask(id: String!): Task!

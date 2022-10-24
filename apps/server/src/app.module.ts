@@ -11,6 +11,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
+import { EventModule } from "./event/event.module";
 import { TaskModule } from "./task/task.module";
 import { UserModule } from "./user/user.module";
 
@@ -28,6 +29,7 @@ import { UserModule } from "./user/user.module";
     }),
     AuthModule,
     UserModule,
+    EventModule,
     TaskModule,
   ],
   controllers: [AppController],

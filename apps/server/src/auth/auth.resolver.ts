@@ -1,6 +1,5 @@
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 
-import { AuthService } from "./auth.service";
 import {
   AuthenticatorChallenge,
   AuthorizationToken,
@@ -8,7 +7,8 @@ import {
   RequestLoginRegisterArgs,
   VerifyLoginArgs,
   VerifyRegisterArgs,
-} from "./dto/auth.dto";
+} from "./auth.dto";
+import { AuthService } from "./auth.service";
 
 @Resolver()
 export class AuthResolver {

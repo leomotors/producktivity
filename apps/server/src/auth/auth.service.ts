@@ -12,7 +12,7 @@ import {
   LoginChallenge,
   VerifyLoginArgs,
   VerifyRegisterArgs,
-} from "./dto/auth.dto";
+} from "./auth.dto";
 import { RegisterService } from "./register.service";
 import { RsaService } from "./rsa.service";
 import { ClientData } from "./types";
