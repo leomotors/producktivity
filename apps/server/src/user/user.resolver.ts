@@ -8,11 +8,11 @@ import { UserContext } from "./user.decorator";
 import { UserService } from "./user.service";
 
 @Resolver(() => User)
+@RequireLogin()
 export class UserResolver {
   constructor(private readonly service: UserService) {}
 
   @Query(() => User)
-  @RequireLogin()
   me(@UserContext() user: User) {
     return this.service.findByIdOrThrow(user.id);
   }
