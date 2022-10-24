@@ -45,7 +45,7 @@ export class HabitService {
       },
       data: {
         name: input.name,
-        tags: input.tags ?? undefined,
+        tags: input.tags,
       },
     });
   }

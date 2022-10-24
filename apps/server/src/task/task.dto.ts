@@ -20,7 +20,7 @@ export class UpdateTaskArgs {
   @Field()
   id!: string;
 
-  @Field({ nullable: true })
+  @Field()
   name!: string;
 
   @Field({ nullable: true })

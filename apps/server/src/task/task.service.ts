@@ -42,10 +42,10 @@ export class TaskService {
       },
       data: {
         name: input.name,
-        description: input.description ?? undefined,
-        dueDate: input.dueDate ?? undefined,
-        isCompleted: input.isCompleted ?? undefined,
-        tags: input.tags ?? undefined,
+        description: input.description,
+        dueDate: input.dueDate,
+        isCompleted: input.isCompleted,
+        tags: input.tags,
       },
     });
   }
