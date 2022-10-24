@@ -9,6 +9,7 @@ import { createTaskArgs, updateTaskArgs } from "./dto/task.dto";
 @Injectable()
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
+
   createTask(input: createTaskArgs, user: User) {
     return this.prisma.task.create({
       data: {
@@ -49,6 +50,7 @@ export class TaskService {
     if (user.id !== taskOwnerId) {
       throw new ForbiddenException("Error: Not user's task");
     }
+
     return this.prisma.task.delete({
       where: {
         id: id,

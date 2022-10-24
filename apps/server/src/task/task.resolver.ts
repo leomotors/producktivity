@@ -26,6 +26,7 @@ export class TaskResolver {
   }
 
   @Mutation(() => Task)
+  @RequireLogin()
   deleteTask(@Args("id") id: string, @UserContext() user: User) {
     return this.service.deleteTask(id, user);
   }
