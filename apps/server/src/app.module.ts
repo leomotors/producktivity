@@ -11,6 +11,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
+import { EventModule } from "./event/event.module";
 import { HabitModule } from "./habit/habit.module";
 import { UserModule } from "./user/user.module";
 
@@ -29,6 +30,7 @@ import { UserModule } from "./user/user.module";
     AuthModule,
     UserModule,
     HabitModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

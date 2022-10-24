@@ -64,11 +64,9 @@ type Task {
   userId: String!
 }
 
-type Event {
+type Habit {
   id: ID!
   name: String!
-  description: String
-  dueDate: DateTime!
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -110,14 +108,20 @@ type User {
   _count: UserCount!
 }
 
-type Habit {
+type Event {
   id: ID!
   name: String!
+  description: String
+  dueDate: DateTime!
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
   userId: String!
+}
+
+type DeleteEventReturnType {
+  id: String!
 }
 
 type Query {
@@ -131,6 +135,9 @@ type Mutation {
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
   upsertHabit(name: String!, id: String!, tags: [String!]!): Habit!
   deleteHabit(id: String!): Habit!
+  createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
+  updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
+  deleteEvent(id: String!): DeleteEventReturnType!
 }
 
 input RegisterResponse {
