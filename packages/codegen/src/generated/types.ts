@@ -53,6 +53,11 @@ export type Challenge = {
   userId: Scalars['String'];
 };
 
+export type DeleteEventReturnType = {
+  __typename?: 'DeleteEventReturnType';
+  id: Scalars['String'];
+};
+
 export type Event = {
   __typename?: 'Event';
   createdAt: Scalars['DateTime'];
@@ -92,7 +97,7 @@ export type LoginResponse = {
 export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
-  deleteEvent: Event;
+  deleteEvent: DeleteEventReturnType;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;
