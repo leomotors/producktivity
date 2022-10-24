@@ -81,6 +81,6 @@ export class EventService {
           id: event.id,
         },
       })
-      .User();
+      .user();
   }
 }
