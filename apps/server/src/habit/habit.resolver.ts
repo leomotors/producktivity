@@ -6,7 +6,11 @@ import { User } from "@generated/user/user.model";
 import { RequireLogin } from "src/auth/auth.decorator";
 import { UserContext } from "src/user/user.decorator";
 
-import { CreateHabitArgs, UpdateHabitArgs } from "./habit.dto";
+import {
+  CreateHabitArgs,
+  DeleteHabitReturnType,
+  UpdateHabitArgs,
+} from "./habit.dto";
 import { HabitService } from "./habit.service";
 
 @Resolver(() => Habit)
@@ -24,7 +28,7 @@ export class HabitResolver {
     return this.service.updateHabit(input, user);
   }
 
-  @Mutation(() => Habit)
+  @Mutation(() => DeleteHabitReturnType)
   deleteHabit(@Args("id") id: string, @UserContext() user: User) {
     return this.service.deleteHabit(id, user);
   }

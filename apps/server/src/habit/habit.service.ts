@@ -50,25 +50,19 @@ export class HabitService {
   }
 
   async deleteHabit(id: string, user: User) {
-    const habitOwnerId = (
-      await this.prisma.habit.findUniqueOrThrow({
-        where: {
-          id,
-        },
-        select: {
-          userId: true,
-        },
-      })
-    ).userId;
-
-    if (user.id !== habitOwnerId) {
-      throw new ForbiddenException("Error: Trying to update other's habit");
-    }
-
-    return this.prisma.habit.delete({
+    const deletedHabits = await this.prisma.habit.deleteMany({
       where: {
         id: id,
+        userId: user.id,
       },
     });
+
+    if (deletedHabits.count === 0) {
+      throw new ForbiddenException(
+        "Resource not found or you do not have access"
+      );
+    }
+
+    return { id };
   }
 }
