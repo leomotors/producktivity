@@ -124,6 +124,10 @@ type DeleteEventReturnType {
   id: String!
 }
 
+type DeleteHabitReturnType {
+  id: String!
+}
+
 type Query {
   me: User!
 }
@@ -135,7 +139,7 @@ type Mutation {
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
   createHabit(name: String!, tags: [String!]!): Habit!
   updateHabit(id: String!, name: String, tags: [String!]): Habit!
-  deleteHabit(id: String!): Habit!
+  deleteHabit(id: String!): DeleteHabitReturnType!
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
   updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
   deleteEvent(id: String!): DeleteEventReturnType!

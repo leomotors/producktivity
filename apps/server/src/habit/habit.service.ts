@@ -70,7 +70,7 @@ export class HabitService {
   // Field Resolvers
 
   user(habit: Habit) {
-    return this.prisma.event
+    return this.prisma.habit
       .findUniqueOrThrow({
         where: {
           id: habit.id,

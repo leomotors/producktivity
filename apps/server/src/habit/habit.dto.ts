@@ -1,4 +1,4 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { ArgsType, Field, ObjectType } from "@nestjs/graphql";
 
 @ArgsType()
 export class CreateHabitArgs {
@@ -19,4 +19,10 @@ export class UpdateHabitArgs {
 
   @Field(() => [String], { nullable: true })
   tags?: string[];
+}
+
+@ObjectType()
+export class DeleteHabitReturnType {
+  @Field()
+  id!: string;
 }
