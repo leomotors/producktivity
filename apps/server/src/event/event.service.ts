@@ -14,10 +14,7 @@ export class EventService {
   async createEvent(input: CreateEventArgs, user: User) {
     return this.prisma.event.create({
       data: {
-        name: input.name,
-        description: input.description,
-        dueDate: input.dueDate,
-        tags: input.tags,
+        ...input,
         userId: user.id,
       },
     });
