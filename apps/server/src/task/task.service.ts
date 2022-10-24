@@ -40,7 +40,7 @@ export class TaskService {
         id: input.id,
       },
       data: {
-        name: input.name ?? undefined,
+        name: input.name,
         description: input.description ?? undefined,
         dueDate: input.dueDate ?? undefined,
         isCompleted: input.isCompleted ?? undefined,

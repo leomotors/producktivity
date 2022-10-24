@@ -21,7 +21,7 @@ export class UpdateTaskArgs {
   id!: string;
 
   @Field({ nullable: true })
-  name?: string;
+  name!: string;
 
   @Field({ nullable: true })
   description?: string;
