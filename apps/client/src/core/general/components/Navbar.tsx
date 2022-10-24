@@ -28,32 +28,37 @@ const Navbar: FC = () => {
       >
         <div className="items-center flex space-x-2">
           <NavItem link="#">
-            <ChevronLeftIcon
-              className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
-              onClick={toggleMinimize}
-            />
+            {isMinimized ? (
+              <ChevronLeftIcon
+                className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
+                onClick={toggleMinimize}
+              />
+            ) : (
+              <ChevronRightIcon
+                className={`ml-5 h-8 w-8 text-white ${hoverClass}`}
+                onClick={toggleMinimize}
+              />
+            )}
           </NavItem>
-          <h1 className="text-white">Minimize</h1>
+          <h1 className="text-white hover:cursor-pointer ">Minimize</h1>
         </div>
         <div className="items-center flex space-x-2">
           <NavItem link="dashboard">
             <Squares2X2Icon className={`h-8 w-8 text-white ${hoverClass}`} />
+            <h1 className="text-white hover:cursor-pointer ">Dashboard</h1>
           </NavItem>
-          <h1 className="transition ease-in-out delay-150 text-white">
-            Dashboard
-          </h1>
         </div>
         <div className="items-center flex space-x-2">
           <NavItem link="create">
             <PlusCircleIcon className={`h-8 w-8 text-white ${hoverClass}`} />
           </NavItem>
-          <h1 className="text-white">Create</h1>
+          <h1 className="text-white hover:cursor-pointer ">Create</h1>
         </div>
         <div className="items-center flex space-x-2">
           <NavItem link="calendar">
             <CalendarIcon className={`h-8 w-8 text-white ${hoverClass}`} />
           </NavItem>
-          <h1 className="text-white">Calendar</h1>
+          <h1 className="text-white hover:cursor-pointer ">Calendar</h1>
         </div>
         <div className="items-center flex space-x-2">
           <NavItem link="list/tasks">
@@ -61,7 +66,7 @@ const Navbar: FC = () => {
               className={`h-8 w-8 text-white ${hoverClass}`}
             />
           </NavItem>
-          <h1 className="text-white">Lists</h1>
+          <h1 className="text-white hover:cursor-pointer ">Lists</h1>
         </div>
       </div>
     </>

@@ -6,12 +6,16 @@ type Children = {
 };
 const NavItem: FC<Children> = ({ children, link }) => {
   const baseURL = `http://localhost:5650`;
-  const goToLink = (link: string) => {
+  const goToLink = (link: string | undefined) => {
     if (link !== "#") {
       window.location.href = `${baseURL}/${link}`;
     }
   };
-  return <div onClick={() => goToLink(link)}>{children}</div>;
+  return (
+    <div className="flex items-center space-x-2" onClick={() => goToLink(link)}>
+      {children}
+    </div>
+  );
 };
 
 export default NavItem;
