@@ -28,5 +28,5 @@ export class NotificationUpdateInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => UserUpdateOneRequiredWithoutNotificationsNestedInput, {nullable:true})
-    User?: UserUpdateOneRequiredWithoutNotificationsNestedInput;
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput;
 }

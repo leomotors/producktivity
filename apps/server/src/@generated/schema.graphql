@@ -60,7 +60,7 @@ type Task {
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -72,17 +72,7 @@ type Event {
   tags: [String!]
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
-  userId: String!
-}
-
-type Habit {
-  id: ID!
-  name: String!
-  tags: [String!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -93,7 +83,7 @@ type Notification {
   isVisited: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  User: User!
+  user: User!
   userId: String!
 }
 
@@ -120,6 +110,16 @@ type User {
   _count: UserCount!
 }
 
+type Habit {
+  id: ID!
+  name: String!
+  tags: [String!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
 type Query {
   me: User!
 }
@@ -129,6 +129,8 @@ type Mutation {
   verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
+  upsertHabit(name: String!, id: String!, tags: [String!]!): Habit!
+  deleteHabit(id: String!): Habit!
 }
 
 input RegisterResponse {

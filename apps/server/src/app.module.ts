@@ -11,6 +11,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
+import { HabitModule } from "./habit/habit.module";
 import { UserModule } from "./user/user.module";
 
 @Global()
@@ -27,6 +28,7 @@ import { UserModule } from "./user/user.module";
     }),
     AuthModule,
     UserModule,
+    HabitModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

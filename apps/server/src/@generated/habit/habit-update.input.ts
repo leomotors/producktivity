@@ -24,5 +24,5 @@ export class HabitUpdateInput {
     updatedAt?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => UserUpdateOneRequiredWithoutHabitsNestedInput, {nullable:true})
-    User?: UserUpdateOneRequiredWithoutHabitsNestedInput;
+    user?: UserUpdateOneRequiredWithoutHabitsNestedInput;
 }

@@ -43,7 +43,7 @@ export class TaskWhereInput {
     updatedAt?: DateTimeFilter;
 
     @Field(() => UserRelationFilter, {nullable:true})
-    User?: UserRelationFilter;
+    user?: UserRelationFilter;
 
     @Field(() => StringFilter, {nullable:true})
     userId?: StringFilter;
