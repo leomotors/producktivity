@@ -70,7 +70,7 @@ export class NotificationService {
     return { id };
   }
 
-  notVisitedNotification(user: User) {
+  notVisitedNotifications(user: User) {
     return this.prisma.notification.findMany({
       where: { isVisited: false, userId: user.id },
     });

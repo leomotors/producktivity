@@ -110,14 +110,17 @@ export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
   createHabit: Habit;
+  createNotification: Notification;
   createTask: Task;
   deleteEvent: DeleteEventReturnType;
   deleteHabit: DeleteHabitReturnType;
+  deleteNotification: Scalars['String'];
   deleteTask: DeleteTaskReturnType;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;
   updateHabit: Habit;
+  updateNotification: Notification;
   updateTask: Task;
   verifyLogin: AuthorizationToken;
   verifyRegister: AuthorizationToken;
@@ -140,6 +143,12 @@ export type MutationCreateHabitArgs = {
 };
 
 
+export type MutationCreateNotificationArgs = {
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+
 export type MutationCreateTaskArgs = {
   description: Scalars['String'];
   dueDate: Scalars['DateTime'];
@@ -154,6 +163,11 @@ export type MutationDeleteEventArgs = {
 
 
 export type MutationDeleteHabitArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationDeleteNotificationArgs = {
   id: Scalars['String'];
 };
 
@@ -191,6 +205,14 @@ export type MutationUpdateHabitArgs = {
 };
 
 
+export type MutationUpdateNotificationArgs = {
+  description?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
+  isVisited?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+
 export type MutationUpdateTaskArgs = {
   description?: InputMaybe<Scalars['String']>;
   dueDate?: InputMaybe<Scalars['DateTime']>;
@@ -214,6 +236,11 @@ export type MutationVerifyRegisterArgs = {
   type: Scalars['String'];
 };
 
+export type NotVisitedReturnType = {
+  __typename?: 'NotVisitedReturnType';
+  notifications: Array<Notification>;
+};
+
 export type Notification = {
   __typename?: 'Notification';
   createdAt: Scalars['DateTime'];
@@ -228,7 +255,15 @@ export type Notification = {
 
 export type Query = {
   __typename?: 'Query';
+  events: Array<Event>;
   me: User;
+  notVisitedNotifications: NotVisitedReturnType;
+};
+
+
+export type QueryEventsArgs = {
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type RegisterResponse = {

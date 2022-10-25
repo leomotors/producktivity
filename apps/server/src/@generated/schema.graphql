@@ -85,7 +85,6 @@ type Notification {
   updatedAt: DateTime!
   user: User!
   userId: String!
-  notVisited: NotVisitedReturnType!
 }
 
 type UserCount {
@@ -140,9 +139,9 @@ type DeleteTaskReturnType {
 }
 
 type Query {
+  events(name: String, tags: [String!]): [Event!]!
+  notVisitedNotifications: NotVisitedReturnType!
   me: User!
-  event(id: String!): Event!
-  events(id: String, name: String, description: String, dueDate: DateTime, tags: [String!], createdAt: DateTime, updatedAt: DateTime, userId: String): [Event!]!
 }
 
 type Mutation {
@@ -156,12 +155,12 @@ type Mutation {
   createHabit(name: String!, tags: [String!]!, currentCount: Float, targetCount: Float): Habit!
   updateHabit(id: String!, name: String, tags: [String!], currentCount: Float, targetCount: Float): Habit!
   deleteHabit(id: String!): DeleteHabitReturnType!
-  createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
-  updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
-  deleteTask(id: String!): DeleteTaskReturnType!
   createNotification(name: String!, description: String): Notification!
   updateNotification(id: String!, name: String, description: String, isVisited: Boolean): Notification!
   deleteNotification(id: String!): String!
+  createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
+  updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
+  deleteTask(id: String!): DeleteTaskReturnType!
 }
 
 input RegisterResponse {

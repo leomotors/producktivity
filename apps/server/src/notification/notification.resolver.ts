@@ -47,8 +47,8 @@ export class NotificationResolver {
   }
 
   @Query(() => NotVisitedReturnType)
-  notVisitedNotification(@UserContext() user: User) {
-    return this.service.notVisitedNotification(user);
+  notVisitedNotifications(@UserContext() user: User) {
+    return this.service.notVisitedNotifications(user);
   }
 
   @ResolveField(() => User)
