@@ -6,6 +6,8 @@ import { HabitOrderByWithRelationInput } from './habit-order-by-with-relation.in
 import { HabitWhereUniqueInput } from './habit-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { HabitCountAggregateInput } from './habit-count-aggregate.input';
+import { HabitAvgAggregateInput } from './habit-avg-aggregate.input';
+import { HabitSumAggregateInput } from './habit-sum-aggregate.input';
 import { HabitMinAggregateInput } from './habit-min-aggregate.input';
 import { HabitMaxAggregateInput } from './habit-max-aggregate.input';
 
@@ -30,6 +32,12 @@ export class HabitAggregateArgs {
 
     @Field(() => HabitCountAggregateInput, {nullable:true})
     _count?: HabitCountAggregateInput;
+
+    @Field(() => HabitAvgAggregateInput, {nullable:true})
+    _avg?: HabitAvgAggregateInput;
+
+    @Field(() => HabitSumAggregateInput, {nullable:true})
+    _sum?: HabitSumAggregateInput;
 
     @Field(() => HabitMinAggregateInput, {nullable:true})
     _min?: HabitMinAggregateInput;

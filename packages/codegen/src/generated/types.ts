@@ -84,9 +84,11 @@ export type Event = {
 export type Habit = {
   __typename?: 'Habit';
   createdAt: Scalars['DateTime'];
+  currentCount?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
   name: Scalars['String'];
   tags?: Maybe<Array<Scalars['String']>>;
+  targetCount?: Maybe<Scalars['Int']>;
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -108,14 +110,17 @@ export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
   createHabit: Habit;
+  createNotification: Notification;
   createTask: Task;
   deleteEvent: DeleteEventReturnType;
   deleteHabit: DeleteHabitReturnType;
+  deleteNotification: Scalars['String'];
   deleteTask: DeleteTaskReturnType;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;
   updateHabit: Habit;
+  updateNotification: Notification;
   updateTask: Task;
   verifyLogin: AuthorizationToken;
   verifyRegister: AuthorizationToken;
@@ -131,8 +136,16 @@ export type MutationCreateEventArgs = {
 
 
 export type MutationCreateHabitArgs = {
+  currentCount?: InputMaybe<Scalars['Float']>;
   name: Scalars['String'];
   tags: Array<Scalars['String']>;
+  targetCount?: InputMaybe<Scalars['Float']>;
+};
+
+
+export type MutationCreateNotificationArgs = {
+  description?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 
@@ -150,6 +163,11 @@ export type MutationDeleteEventArgs = {
 
 
 export type MutationDeleteHabitArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationDeleteNotificationArgs = {
   id: Scalars['String'];
 };
 
@@ -179,9 +197,19 @@ export type MutationUpdateEventArgs = {
 
 
 export type MutationUpdateHabitArgs = {
+  currentCount?: InputMaybe<Scalars['Float']>;
   id: Scalars['String'];
   name?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
+  targetCount?: InputMaybe<Scalars['Float']>;
+};
+
+
+export type MutationUpdateNotificationArgs = {
+  description?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
+  isVisited?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -208,6 +236,11 @@ export type MutationVerifyRegisterArgs = {
   type: Scalars['String'];
 };
 
+export type NotVisitedReturnType = {
+  __typename?: 'NotVisitedReturnType';
+  notifications: Array<Notification>;
+};
+
 export type Notification = {
   __typename?: 'Notification';
   createdAt: Scalars['DateTime'];
@@ -222,7 +255,15 @@ export type Notification = {
 
 export type Query = {
   __typename?: 'Query';
+  events: Array<Event>;
   me: User;
+  notVisitedNotifications: NotVisitedReturnType;
+};
+
+
+export type QueryEventsArgs = {
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type RegisterResponse = {

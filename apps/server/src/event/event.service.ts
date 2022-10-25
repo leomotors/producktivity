@@ -3,12 +3,26 @@ import { ForbiddenException, Injectable } from "@nestjs/common";
 import { Event } from "@generated/event/event.model";
 import { User } from "@generated/user/user.model";
 
-import { CreateEventArgs, UpdateEventArgs } from "src/event/event.dto";
+import {
+  CreateEventArgs,
+  FindManyEventArgs,
+  UpdateEventArgs,
+} from "src/event/event.dto";
 import { PrismaService } from "src/prisma.service";
 
 @Injectable()
 export class EventService {
   constructor(private readonly prisma: PrismaService) {}
+
+  async events(input: FindManyEventArgs, user: User) {
+    return this.prisma.event.findMany({
+      where: {
+        name: { contains: input.name },
+        tags: { hasEvery: input.tags },
+        userId: user.id,
+      },
+    });
+  }
 
   async createEvent(input: CreateEventArgs, user: User) {
     return this.prisma.event.create({

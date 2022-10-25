@@ -14,8 +14,7 @@ export class HabitService {
   createHabit(input: CreateHabitArgs, user: User) {
     return this.prisma.habit.create({
       data: {
-        name: input.name,
-        tags: input.tags,
+        ...input,
         userId: user.id,
       },
     });
@@ -46,6 +45,8 @@ export class HabitService {
       data: {
         name: input.name,
         tags: input.tags,
+        currentCount: input.currentCount,
+        targetCount: input.targetCount,
       },
     });
   }

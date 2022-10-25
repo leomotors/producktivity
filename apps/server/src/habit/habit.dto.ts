@@ -7,6 +7,12 @@ export class CreateHabitArgs {
 
   @Field(() => [String])
   tags!: string[];
+
+  @Field({ nullable: true })
+  currentCount?: number;
+
+  @Field({ nullable: true })
+  targetCount?: number;
 }
 
 @ArgsType()
@@ -19,6 +25,12 @@ export class UpdateHabitArgs {
 
   @Field(() => [String], { nullable: true })
   tags?: string[];
+
+  @Field({ nullable: true })
+  currentCount?: number;
+
+  @Field({ nullable: true })
+  targetCount?: number;
 }
 
 @ObjectType()

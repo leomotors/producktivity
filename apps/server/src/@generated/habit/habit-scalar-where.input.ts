@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableListFilter } from '../prisma/string-nullable-list-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -24,6 +25,12 @@ export class HabitScalarWhereInput {
 
     @Field(() => StringNullableListFilter, {nullable:true})
     tags?: StringNullableListFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    currentCount?: IntNullableFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    targetCount?: IntNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
