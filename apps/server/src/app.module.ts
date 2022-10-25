@@ -8,10 +8,12 @@ import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { PrismaService } from "./prisma.service";
 
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
-import { NotTestModule } from "./not-test/not-test.module";
+import { EventModule } from "./event/event.module";
+import { HabitModule } from "./habit/habit.module";
+import { TaskModule } from "./task/task.module";
+import { UserModule } from "./user/user.module";
 
 @Global()
 @Module({
@@ -26,10 +28,13 @@ import { NotTestModule } from "./not-test/not-test.module";
       autoSchemaFile: "./src/@generated/schema.graphql",
     }),
     AuthModule,
-    NotTestModule,
+    EventModule,
+    HabitModule,
+    TaskModule,
+    UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [PrismaService],
   exports: [PrismaService],
 })
 export class AppModule {}

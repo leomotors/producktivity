@@ -24,7 +24,7 @@
     "prettier": "^2.7.1",
     "prisma": "^4.5.0",
     "prisma-nestjs-graphql": "^17.0.1",
-    "turbo": "^1.5.6"
+    "turbo": "^1.6.1"
   },
   "engines": {
     "node": ">=16.17.0"

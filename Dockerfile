@@ -10,8 +10,12 @@ WORKDIR /cunny
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 
 COPY apps/server ./apps/server
+
+# Copy DevDependencies
 COPY packages/config ./packages/config
+COPY packages/constants ./packages/constants
 COPY prisma ./prisma
+
 COPY .env ./.env
 
 RUN pnpm install
