@@ -6,7 +6,13 @@ interface ICalendarItem {
   tasks: { id: number; name: string; topic: string[]; date: Date }[];
   events: { id: number; name: string; topic: string[]; date: Date }[];
 }
-const CalendarItem: FC<ICalendarItem> = ({ day, events, tasks, time }) => {
+
+export const CalendarItem: FC<ICalendarItem> = ({
+  day,
+  events,
+  tasks,
+  time,
+}) => {
   return (
     <>
       {tasks.map((task, index) => {
@@ -40,5 +46,3 @@ const CalendarItem: FC<ICalendarItem> = ({ day, events, tasks, time }) => {
     </>
   );
 };
-
-export default CalendarItem;

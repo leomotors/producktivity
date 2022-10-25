@@ -1,9 +1,8 @@
-import type { NextPageWithLayout } from "next";
+import { MyPage } from "$core/@types";
+import { CalendarItem } from "$core/components";
+import DefaultLayout from "$core/layouts/default";
 
-import CalendarItem from "../core/general/components/CalendarItem";
-import DefaultLayout from "../core/general/layouts/default";
-
-const Calendar: NextPageWithLayout = () => {
+const Calendar: MyPage = () => {
   const weekDays: string[] = [
     "Sunday",
     "Monday",

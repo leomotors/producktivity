@@ -2,7 +2,7 @@ import type { FC } from "react";
 
 import SparklesIcon from "@heroicons/react/24/outline/SparklesIcon.js";
 
-const Navbar: FC = () => {
+export const LandingNavbar: FC = () => {
   return (
     <div className="px-8 py-6 flex items-center bg-black w-full ">
       <div className="flex w-5/6 text-xl text-white font-bold">
@@ -17,5 +17,3 @@ const Navbar: FC = () => {
     </div>
   );
 };
-
-export default Navbar;

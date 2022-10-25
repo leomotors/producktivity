@@ -4,7 +4,8 @@ interface IConfirmButton {
   text: string;
   handleSave(): void;
 }
-const ConfirmButton: FC<IConfirmButton> = ({ handleSave, text }) => {
+
+export const ConfirmButton: FC<IConfirmButton> = ({ handleSave, text }) => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
@@ -19,5 +20,3 @@ const ConfirmButton: FC<IConfirmButton> = ({ handleSave, text }) => {
     </div>
   );
 };
-
-export default ConfirmButton;

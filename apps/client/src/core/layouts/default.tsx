@@ -1,18 +1,10 @@
-import { useState } from "react";
-
-import type { NextPage } from "next";
-import type { NextPageWithLayout } from "next";
+import { FC, PropsWithChildren, useState } from "react";
 
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
-import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 
-import MiniCalendar from "../components/MiniCalendar";
-import Navbar from "../components/Navbar";
+import { MiniCalendar, Navbar } from "$core/components";
 
-interface IDefault {
-  children: NextPageWithLayout;
-}
-const Default: NextPage<IDefault> = ({ children }) => {
+const Default: FC<PropsWithChildren> = ({ children }) => {
   const [minimize, setMinimize] = useState<boolean>(true);
   const [calendar, setCalendar] = useState<boolean>(false);
   const [calen, setCalen] = useState<boolean>(false);

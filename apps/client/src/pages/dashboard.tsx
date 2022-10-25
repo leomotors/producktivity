@@ -1,12 +1,8 @@
 import { useState } from "react";
 
-import type { NextPageWithLayout } from "next";
-
-import Event from "../core/general/components/Event";
-import Habit from "../core/general/components/Habit";
-import Task from "../core/general/components/Task";
-import DefaultLayout from "../core/general/layouts/default";
-import Timer from "../modules/dashboard/components/Timer";
+import { MyPage } from "$core/@types";
+import { Event, Habit, Task, Timer } from "$core/components";
+import DefaultLayout from "$core/layouts/default";
 
 interface IHabits {
   id: number;
@@ -25,7 +21,7 @@ interface IEvents {
   topic: string[];
   date: Date;
 }
-const Dashboard: NextPageWithLayout = () => {
+const Dashboard: MyPage = () => {
   const [habits, setHabits] = useState<IHabits[]>([
     {
       id: 1,

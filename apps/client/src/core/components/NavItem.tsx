@@ -4,7 +4,7 @@ type Children = {
   children?: React.ReactNode;
   link?: string;
 };
-const NavItem: FC<Children> = ({ children, link }) => {
+export const NavItem: FC<Children> = ({ children, link }) => {
   const baseURL = `http://localhost:5650`;
   const goToLink = (link: string | undefined) => {
     if (link !== "#") {
@@ -17,5 +17,3 @@ const NavItem: FC<Children> = ({ children, link }) => {
     </div>
   );
 };
-
-export default NavItem;

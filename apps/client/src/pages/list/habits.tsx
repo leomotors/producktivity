@@ -1,20 +1,15 @@
 import { useState } from "react";
 
-import type { NextPageWithLayout } from "next";
-
-import Habit from "$core/general/components/Habit";
-import Tabs from "$modules/list/tabs";
-
-import ConfirmButton from "../../core/general/components/ConfirmButton";
-import FormInput from "../../core/general/components/FormInput";
-import DefaultLayout from "../../core/general/layouts/default";
+import { MyPage } from "$core/@types";
+import { ConfirmButton, FormInput, Habit, Tabs } from "$core/components";
+import DefaultLayout from "$core/layouts/default";
 
 interface IHabits {
   id: number;
   text: string;
   count: number;
 }
-const Tasks: NextPageWithLayout = () => {
+const Habits: MyPage = () => {
   const [input, setInput] = useState<IHabits>({
     id: -1,
     text: "Select a habit",
@@ -107,6 +102,7 @@ const Tasks: NextPageWithLayout = () => {
             ></FormInput>
             <ConfirmButton
               handleSave={() => saveTask(input.id)}
+              text="confirm"
             ></ConfirmButton>
           </div>
         </div>
@@ -115,4 +111,4 @@ const Tasks: NextPageWithLayout = () => {
   );
 };
 
-export default Tasks;
+export default Habits;

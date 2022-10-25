@@ -3,7 +3,8 @@ import type { FC } from "react";
 interface ITabs {
   active: string;
 }
-const Tabs: FC<ITabs> = ({ active }) => {
+
+export const Tabs: FC<ITabs> = ({ active }) => {
   const baseURL = `http://localhost:5650`;
   const goToTasks = () => {
     window.location.href = `${baseURL}/list/tasks`;
@@ -49,5 +50,3 @@ const Tabs: FC<ITabs> = ({ active }) => {
     </ul>
   );
 };
-
-export default Tabs;

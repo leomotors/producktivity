@@ -9,7 +9,7 @@ interface IHabit {
   handleDelete(id: number): void;
   handleIncrease(id: number): void;
 }
-const Habit: FC<IHabit> = ({
+export const Habit: FC<IHabit> = ({
   count,
   handleDelete,
   handleIncrease,
@@ -37,5 +37,3 @@ const Habit: FC<IHabit> = ({
     </div>
   );
 };
-
-export default Habit;

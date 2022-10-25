@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { useState } from "react";
 
-import CalendarItem from "./CalendarItem";
+import { CalendarItem } from "$core/components";
 
 interface IMiniCalendar {
   calendar: boolean;
   calen: boolean;
 }
-const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
+export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const weekDays: string[] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   const months = [
@@ -166,5 +166,3 @@ const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
     </>
   );
 };
-
-export default MiniCalendar;

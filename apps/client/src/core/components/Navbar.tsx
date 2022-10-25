@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { FC } from "react";
 
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
@@ -7,13 +6,13 @@ import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDocumentCheckIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
 
-import NavItem from "./NavItem";
+import { NavItem } from "$core/components";
 
 interface INavbar {
   isMinimized: boolean;
   toggleMinimize(): void;
 }
-const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
+export const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-150";
   return (
@@ -69,5 +68,3 @@ const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
     </>
   );
 };
-
-export default Navbar;

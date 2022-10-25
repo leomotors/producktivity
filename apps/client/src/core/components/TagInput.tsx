@@ -8,7 +8,7 @@ type Props = {
   handleChange(value: string[]): void;
 };
 
-const TagInput: FC<Props> = ({ handleChange, name, value }) => {
+export const TagInput: FC<Props> = ({ handleChange, name, value }) => {
   useEffect(() => {
     setSelected(() => value);
     handleChange(value);
@@ -31,5 +31,3 @@ const TagInput: FC<Props> = ({ handleChange, name, value }) => {
     </div>
   );
 };
-
-export default TagInput;

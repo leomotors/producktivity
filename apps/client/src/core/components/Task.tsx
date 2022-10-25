@@ -10,7 +10,7 @@ interface ITask {
   id: number;
   handleDelete(id: number): void;
 }
-const Task: FC<ITask> = ({ date, handleDelete, id, name, topic }) => {
+export const Task: FC<ITask> = ({ date, handleDelete, id, name, topic }) => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110";
   return (
@@ -42,5 +42,3 @@ const Task: FC<ITask> = ({ date, handleDelete, id, name, topic }) => {
     </div>
   );
 };
-
-export default Task;

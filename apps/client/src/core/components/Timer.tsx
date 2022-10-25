@@ -15,7 +15,7 @@ const renderTime = (remainingTime: number) => {
   }
 };
 
-const Timer: FC = () => {
+export const Timer: FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const toggleTimer = () => {
     setIsPlaying(!isPlaying);
@@ -55,5 +55,3 @@ const Timer: FC = () => {
     </div>
   );
 };
-
-export default Timer;

@@ -1,17 +1,19 @@
 import { useState } from "react";
 
-import type { NextPageWithLayout } from "next";
+import { useEventsQuery } from "@producktivity/codegen";
 
-import Event from "$core/general/components/Event";
-import TagInput from "$core/general/components/TagInput";
-import Tabs from "$modules/list/tabs";
+import { MyPage } from "$core/@types";
+import {
+  ConfirmButton,
+  DateInput,
+  Event,
+  FormInput,
+  Tabs,
+  TagInput,
+} from "$core/components";
+import DefaultLayout from "$core/layouts/default";
 
-import ConfirmButton from "../../core/general/components/ConfirmButton";
-import DateInput from "../../core/general/components/DateInput";
-import FormInput from "../../core/general/components/FormInput";
-import DefaultLayout from "../../core/general/layouts/default";
-
-const Tasks: NextPageWithLayout = () => {
+const Tasks: MyPage = () => {
   interface IEvents {
     id: number;
     name: string;
@@ -144,5 +146,6 @@ const Tasks: NextPageWithLayout = () => {
     </DefaultLayout>
   );
 };
+Tasks.Layout = DefaultLayout;
 
 export default Tasks;

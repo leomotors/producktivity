@@ -9,7 +9,7 @@ type Props = {
   handleChange(value: Date | null): void;
 };
 
-const DateInput: FC<Props> = ({ handleChange, name, value }) => {
+export const DateInput: FC<Props> = ({ handleChange, name, value }) => {
   const [startDate, setStartDate] = useState(value || new Date());
   useEffect(() => {
     setStartDate(() => value);
@@ -27,5 +27,3 @@ const DateInput: FC<Props> = ({ handleChange, name, value }) => {
     </div>
   );
 };
-
-export default DateInput;
