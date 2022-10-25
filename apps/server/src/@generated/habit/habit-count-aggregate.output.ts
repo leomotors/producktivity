@@ -15,6 +15,12 @@ export class HabitCountAggregate {
     tags!: number;
 
     @Field(() => Int, {nullable:false})
+    currentCount!: number;
+
+    @Field(() => Int, {nullable:false})
+    requireCount!: number;
+
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
 
     @Field(() => Int, {nullable:false})

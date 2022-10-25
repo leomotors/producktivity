@@ -68,6 +68,8 @@ type Habit {
   id: ID!
   name: String!
   tags: [String!]
+  currentCount: Int!
+  requireCount: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
@@ -137,8 +139,8 @@ type Mutation {
   verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
-  createHabit(name: String!, tags: [String!]!): Habit!
-  updateHabit(id: String!, name: String, tags: [String!]): Habit!
+  createHabit(name: String!, tags: [String!]!, requireCount: Float!): Habit!
+  updateHabit(id: String!, name: String, tags: [String!], currentCount: Float, requireCount: Float): Habit!
   deleteHabit(id: String!): DeleteHabitReturnType!
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
   updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!

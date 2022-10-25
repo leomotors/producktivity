@@ -12,6 +12,12 @@ export class HabitMaxOrderByAggregateInput {
     name?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    currentCount?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    requireCount?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

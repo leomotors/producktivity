@@ -58,6 +58,11 @@ export type DeleteEventReturnType = {
   id: Scalars['String'];
 };
 
+export type DeleteHabitReturnType = {
+  __typename?: 'DeleteHabitReturnType';
+  id: Scalars['String'];
+};
+
 export type Event = {
   __typename?: 'Event';
   createdAt: Scalars['DateTime'];
@@ -99,7 +104,7 @@ export type Mutation = {
   createEvent: Event;
   createHabit: Habit;
   deleteEvent: DeleteEventReturnType;
-  deleteHabit: Habit;
+  deleteHabit: DeleteHabitReturnType;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;

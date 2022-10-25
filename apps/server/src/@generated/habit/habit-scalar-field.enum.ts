@@ -4,6 +4,8 @@ export enum HabitScalarFieldEnum {
     id = "id",
     name = "name",
     tags = "tags",
+    currentCount = "currentCount",
+    requireCount = "requireCount",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     userId = "userId"

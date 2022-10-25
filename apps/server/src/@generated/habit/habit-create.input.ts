@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { HabitCreatetagsInput } from './habit-createtags.input';
+import { Int } from '@nestjs/graphql';
 import { UserCreateNestedOneWithoutHabitsInput } from '../user/user-create-nested-one-without-habits.input';
 
 @InputType()
@@ -14,6 +15,12 @@ export class HabitCreateInput {
 
     @Field(() => HabitCreatetagsInput, {nullable:true})
     tags?: HabitCreatetagsInput;
+
+    @Field(() => Int, {nullable:true})
+    currentCount?: number;
+
+    @Field(() => Int, {nullable:false})
+    requireCount!: number;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
