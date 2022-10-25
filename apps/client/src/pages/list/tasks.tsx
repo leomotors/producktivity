@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import type { NextPageWithLayout } from "next";
 
@@ -44,8 +44,8 @@ const Tasks: NextPageWithLayout = () => {
       date: new Date(2022, 12, 2),
     },
   ]);
-  const updateTask = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+  const updateTask = (name: string, value: string | string[] | Date | null) => {
+    setInput({ ...input, [name]: value });
     console.log(input);
   };
   const selectTask = (id: number) => {
@@ -53,6 +53,16 @@ const Tasks: NextPageWithLayout = () => {
   };
   const deleteTask = (id: number) => {
     setTasks(() => tasks.filter((task) => task.id !== id));
+  };
+  const saveTask = (id: number) => {
+    setTasks(() =>
+      tasks.map((task) => {
+        if (task.id === id) {
+          return input;
+        }
+        return task;
+      })
+    );
   };
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
@@ -82,18 +92,23 @@ const Tasks: NextPageWithLayout = () => {
           </div>
           <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
             <FormInput
-              handleChange={(e) => updateTask(e)}
+              handleChange={(e) => updateTask("name", e.target.value)}
               name="name"
               value={input.name}
             ></FormInput>
-            <input
-              name="name"
-              value={input.name}
-              onChange={(e) => updateTask(e)}
-            />
-            <TagInput name="Topic" value={input.topic}></TagInput>
-            <DateInput name="Date" value={input.date}></DateInput>
-            <ConfirmButton></ConfirmButton>
+            <TagInput
+              handleChange={(value) => updateTask("topic", value)}
+              name="topic"
+              value={input.topic}
+            ></TagInput>
+            <DateInput
+              handleChange={(value) => updateTask("date", value)}
+              name="Date"
+              value={input.date}
+            ></DateInput>
+            <ConfirmButton
+              handleSave={() => saveTask(input.id)}
+            ></ConfirmButton>
           </div>
         </div>
       </div>
