@@ -84,9 +84,11 @@ export type Event = {
 export type Habit = {
   __typename?: 'Habit';
   createdAt: Scalars['DateTime'];
+  currentCount?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
   name: Scalars['String'];
   tags?: Maybe<Array<Scalars['String']>>;
+  targetCount?: Maybe<Scalars['Int']>;
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -131,8 +133,10 @@ export type MutationCreateEventArgs = {
 
 
 export type MutationCreateHabitArgs = {
+  currentCount?: InputMaybe<Scalars['Float']>;
   name: Scalars['String'];
   tags: Array<Scalars['String']>;
+  targetCount?: InputMaybe<Scalars['Float']>;
 };
 
 
@@ -179,9 +183,11 @@ export type MutationUpdateEventArgs = {
 
 
 export type MutationUpdateHabitArgs = {
+  currentCount?: InputMaybe<Scalars['Float']>;
   id: Scalars['String'];
   name?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
+  targetCount?: InputMaybe<Scalars['Float']>;
 };
 
 

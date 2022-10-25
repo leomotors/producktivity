@@ -68,6 +68,8 @@ type Habit {
   id: ID!
   name: String!
   tags: [String!]
+  currentCount: Int
+  targetCount: Int
   createdAt: DateTime!
   updatedAt: DateTime!
   user: User!
@@ -144,8 +146,8 @@ type Mutation {
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
   updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
   deleteEvent(id: String!): DeleteEventReturnType!
-  createHabit(name: String!, tags: [String!]!): Habit!
-  updateHabit(id: String!, name: String, tags: [String!]): Habit!
+  createHabit(name: String!, tags: [String!]!, currentCount: Float, targetCount: Float): Habit!
+  updateHabit(id: String!, name: String, tags: [String!], currentCount: Float, targetCount: Float): Habit!
   deleteHabit(id: String!): DeleteHabitReturnType!
   createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
   updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
