@@ -1,29 +1,28 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
-import { Habit } from "@generated/habit/habit.model";
+import { Task } from "@generated/task/task.model";
 import { User } from "@generated/user/user.model";
 
 import { PrismaService } from "src/prisma.service";
 
-import { CreateHabitArgs, UpdateHabitArgs } from "./habit.dto";
+import { CreateTaskArgs, UpdateTaskArgs } from "./task.dto";
 
 @Injectable()
-export class HabitService {
+export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
 
-  createHabit(input: CreateHabitArgs, user: User) {
-    return this.prisma.habit.create({
+  createTask(input: CreateTaskArgs, user: User) {
+    return this.prisma.task.create({
       data: {
-        name: input.name,
-        tags: input.tags,
+        ...input,
         userId: user.id,
       },
     });
   }
 
-  async updateHabit(input: UpdateHabitArgs, user: User) {
-    const habitOwnerId = (
-      await this.prisma.habit.findUniqueOrThrow({
+  async updateTask(input: UpdateTaskArgs, user: User) {
+    const taskOwnerId = (
+      await this.prisma.task.findUniqueOrThrow({
         where: {
           id: input.id,
         },
@@ -33,32 +32,33 @@ export class HabitService {
       })
     ).userId;
 
-    if (user.id !== habitOwnerId) {
-      throw new ForbiddenException(
-        "Error: Trying tp update other user's habit"
-      );
+    if (user.id !== taskOwnerId) {
+      throw new ForbiddenException("Error: Trying tp update other user's task");
     }
 
-    return this.prisma.habit.update({
+    return this.prisma.task.update({
       where: {
         id: input.id,
       },
       data: {
         name: input.name,
+        description: input.description,
+        dueDate: input.dueDate,
+        isCompleted: input.isCompleted,
         tags: input.tags,
       },
     });
   }
 
-  async deleteHabit(id: string, user: User) {
-    const deletedHabits = await this.prisma.habit.deleteMany({
+  async deleteTask(id: string, user: User) {
+    const deletedTasks = await this.prisma.task.deleteMany({
       where: {
         id: id,
         userId: user.id,
       },
     });
 
-    if (deletedHabits.count === 0) {
+    if (deletedTasks.count === 0) {
       throw new ForbiddenException(
         "Resource not found or you do not have access"
       );
@@ -69,11 +69,11 @@ export class HabitService {
 
   // Field Resolvers
 
-  user(habit: Habit) {
-    return this.prisma.habit
+  user(task: Task) {
+    return this.prisma.task
       .findUniqueOrThrow({
         where: {
-          id: habit.id,
+          id: task.id,
         },
       })
       .user();
