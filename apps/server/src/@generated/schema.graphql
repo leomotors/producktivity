@@ -85,6 +85,7 @@ type Notification {
   updatedAt: DateTime!
   user: User!
   userId: String!
+  notVisited: NotVisitedReturnType!
 }
 
 type UserCount {
@@ -130,6 +131,10 @@ type DeleteHabitReturnType {
   id: String!
 }
 
+type NotVisitedReturnType {
+  notifications: [Notification!]!
+}
+
 type DeleteTaskReturnType {
   id: String!
 }
@@ -152,6 +157,9 @@ type Mutation {
   createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
   updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
   deleteTask(id: String!): DeleteTaskReturnType!
+  createNotification(name: String!, description: String): Notification!
+  updateNotification(id: String!, name: String, description: String, isVisited: Boolean): Notification!
+  deleteNotification(id: String!): String!
 }
 
 input RegisterResponse {
