@@ -141,6 +141,8 @@ type DeleteTaskReturnType {
 
 type Query {
   me: User!
+  event(id: String!): Event!
+  events(id: String, name: String, description: String, dueDate: DateTime, tags: [String!], createdAt: DateTime, updatedAt: DateTime, userId: String): [Event!]!
 }
 
 type Mutation {

@@ -1,6 +1,15 @@
 import { ArgsType, Field, ObjectType } from "@nestjs/graphql";
 
 @ArgsType()
+export class FindManyEventArgs {
+  @Field({ nullable: true })
+  name?: string;
+
+  @Field(() => [String], { nullable: true })
+  tags?: string[];
+}
+
+@ArgsType()
 export class CreateEventArgs {
   @Field()
   name!: string;
