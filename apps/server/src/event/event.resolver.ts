@@ -26,14 +26,9 @@ import { EventService } from "./event.service";
 export class EventResolver {
   constructor(private readonly service: EventService) {}
 
-  @Query(() => Event)
-  event(@Args("id") args: string) {
-    return this.service.event(args);
-  }
-
   @Query(() => [Event])
-  events(@Args() args: FindManyEventArgs) {
-    return this.service.events(args);
+  events(@Args() args: FindManyEventArgs, @UserContext() user: User) {
+    return this.service.events(args, user);
   }
 
   @Mutation(() => Event)

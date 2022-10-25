@@ -14,19 +14,12 @@ import { PrismaService } from "src/prisma.service";
 export class EventService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async event(id: string) {
-    return this.prisma.event.findUnique({
-      where: {
-        id,
-      },
-    });
-  }
-
-  async events(input: FindManyEventArgs) {
+  async events(input: FindManyEventArgs, user: User) {
     return this.prisma.event.findMany({
       where: {
         name: { contains: input.name },
         tags: { hasEvery: input.tags },
+        userId: user.id,
       },
     });
   }
