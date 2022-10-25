@@ -146,6 +146,12 @@ type Mutation {
   createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
   updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
   deleteEvent(id: String!): DeleteEventReturnType!
+  createHabit(name: String!, tags: [String!]!, requireCount: Float!): Habit!
+  updateHabit(id: String!, name: String, tags: [String!], currentCount: Float, requireCount: Float): Habit!
+  deleteHabit(id: String!): DeleteHabitReturnType!
+  createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
+  updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
+  deleteTask(id: String!): DeleteTaskReturnType!
 }
 
 input RegisterResponse {

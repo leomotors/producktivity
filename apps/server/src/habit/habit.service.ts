@@ -45,6 +45,8 @@ export class HabitService {
       data: {
         name: input.name,
         tags: input.tags,
+        currentCount: input.currentCount,
+        requireCount: input.requireCount,
       },
     });
   }
