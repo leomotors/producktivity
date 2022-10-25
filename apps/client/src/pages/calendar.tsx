@@ -1,5 +1,6 @@
 import type { NextPageWithLayout } from "next";
 
+import CalendarItem from "../core/general/components/CalendarItem";
 import DefaultLayout from "../core/general/layouts/default";
 
 const Calendar: NextPageWithLayout = () => {
@@ -120,40 +121,12 @@ const Calendar: NextPageWithLayout = () => {
             return (
               <div key={index} className="p-2 outline outline-zinc-100">
                 <h1>{day}</h1>
-                {tasks.map((task, index) => {
-                  if (
-                    task.date.getFullYear() === now.getFullYear() &&
-                    task.date.getMonth() === now.getMonth() &&
-                    task.date.getDate() === day
-                  ) {
-                    return (
-                      <div
-                        key={index}
-                        className="rounded-lg bg-emerald-200 mb-1 p-1"
-                      >
-                        {task.name}
-                      </div>
-                    );
-                  }
-                  return;
-                })}
-                {events.map((event, index) => {
-                  if (
-                    event.date.getFullYear() === now.getFullYear() &&
-                    event.date.getMonth() === now.getMonth() &&
-                    event.date.getDate() === day
-                  ) {
-                    return (
-                      <div
-                        key={index}
-                        className="rounded-lg bg-indigo-200 mb-1 p-1"
-                      >
-                        {event.name}
-                      </div>
-                    );
-                  }
-                  return;
-                })}
+                <CalendarItem
+                  day={day}
+                  events={events}
+                  tasks={tasks}
+                  time={now}
+                ></CalendarItem>
               </div>
             );
           })}
