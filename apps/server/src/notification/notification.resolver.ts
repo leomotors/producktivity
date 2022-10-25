@@ -42,7 +42,7 @@ export class NotificationResolver {
 
   @Mutation(() => String)
   deleteNotification(@Args("id") id: string, @UserContext() user: User) {
-    return this.service.deleteNotification(id, user);
+    return this.service.deleteNotifications(id, user);
   }
 
   @ResolveField(() => NotVisitedReturnType)

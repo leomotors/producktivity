@@ -17,8 +17,7 @@ export class NotificationService {
   createNotification(input: CreateNotificationArgs, user: User) {
     return this.prisma.notification.create({
       data: {
-        name: input.name,
-        description: input.description,
+        ...input,
         userId: user.id,
       },
     });
@@ -54,7 +53,7 @@ export class NotificationService {
     });
   }
 
-  async deleteNotification(id: string, user: User) {
+  async deleteNotifications(id: string, user: User) {
     const deletedNotification = await this.prisma.notification.deleteMany({
       where: {
         id: id,
@@ -73,6 +72,12 @@ export class NotificationService {
 
   // Field Resolvers
 
+  notVisited(user: User) {
+    return this.prisma.notification.findMany({
+      where: { isVisited: false, userId: user.id },
+    });
+  }
+
   user(notification: Notification) {
     return this.prisma.notification
       .findUniqueOrThrow({
@@ -81,11 +86,5 @@ export class NotificationService {
         },
       })
       .user();
-  }
-
-  notVisited(user: User) {
-    return this.prisma.notification.findMany({
-      where: { isVisited: false, userId: user.id },
-    });
   }
 }
