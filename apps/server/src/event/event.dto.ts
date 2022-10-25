@@ -6,7 +6,7 @@ export class FindManyEventArgs {
   name!: string;
 
   @Field(() => [String], { nullable: true })
-  tags!: string[];
+  tags?: string[];
 }
 
 @ArgsType()
