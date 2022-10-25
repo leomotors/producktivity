@@ -70,13 +70,13 @@ export class NotificationService {
     return { id };
   }
 
-  // Field Resolvers
-
-  notVisited(user: User) {
+  notVisitedNotification(user: User) {
     return this.prisma.notification.findMany({
       where: { isVisited: false, userId: user.id },
     });
   }
+
+  // Field Resolvers
 
   user(notification: Notification) {
     return this.prisma.notification

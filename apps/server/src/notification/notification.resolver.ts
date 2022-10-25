@@ -2,6 +2,7 @@ import {
   Args,
   Mutation,
   Parent,
+  Query,
   ResolveField,
   Resolver,
 } from "@nestjs/graphql";
@@ -45,9 +46,9 @@ export class NotificationResolver {
     return this.service.deleteNotifications(id, user);
   }
 
-  @ResolveField(() => NotVisitedReturnType)
-  notVisited(@UserContext() user: User) {
-    return this.service.notVisited(user);
+  @Query(() => NotVisitedReturnType)
+  notVisitedNotification(@UserContext() user: User) {
+    return this.service.notVisitedNotification(user);
   }
 
   @ResolveField(() => User)
