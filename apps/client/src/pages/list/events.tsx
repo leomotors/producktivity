@@ -60,14 +60,24 @@ const Tasks: NextPageWithLayout = () => {
     setEvents(() => events.filter((event) => event.id !== id));
   };
   const saveEvent = (id: number) => {
-    setEvents(() =>
-      events.map((event) => {
-        if (event.id === id) {
-          return input;
-        }
-        return event;
-      })
-    );
+    if (input.id === -1) {
+      setEvents((prevEvents) => [...prevEvents, { ...input, id: 45 }]);
+    } else {
+      setEvents(() =>
+        events.map((event) => {
+          if (event.id === id) {
+            return input;
+          }
+          return event;
+        })
+      );
+    }
+    setInput({
+      id: -1,
+      name: "Select an event",
+      topic: ["Holiday"],
+      date: new Date(),
+    });
   };
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
@@ -91,10 +101,12 @@ const Tasks: NextPageWithLayout = () => {
                       topic={event.topic}
                     ></Event>
                     <div
-                      className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-amber-300 ${hoverClass}`}
+                      className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
+                        input.id === event.id ? "bg-lime-300" : "bg-amber-300"
+                      } ${hoverClass}`}
                       onClick={() => selectEvent(event.id)}
                     >
-                      Edit
+                      {input.id === event.id ? "Editing" : "Edit"}
                     </div>
                     <div
                       className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-red-600 text-white ${hoverClass}`}
@@ -124,6 +136,7 @@ const Tasks: NextPageWithLayout = () => {
             ></DateInput>
             <ConfirmButton
               handleSave={() => saveEvent(input.id)}
+              text={input.id === -1 ? "Add new" : "Save"}
             ></ConfirmButton>
           </div>
         </div>

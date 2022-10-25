@@ -5,7 +5,6 @@ import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDocumentCheckIcon.js";
-import PlusCircleIcon from "@heroicons/react/24/outline/PlusCircleIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
 
 import NavItem from "./NavItem";
@@ -46,12 +45,12 @@ const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
             <h1 className="text-white hover:cursor-pointer ">Dashboard</h1>
           </NavItem>
         </div>
-        <div className="items-center flex space-x-2">
+        {/* <div className="items-center flex space-x-2">
           <NavItem link="create">
             <PlusCircleIcon className={`h-8 w-8 text-white ${hoverClass}`} />
           </NavItem>
           <h1 className="text-white hover:cursor-pointer ">Create</h1>
-        </div>
+        </div> */}
         <div className="items-center flex space-x-2">
           <NavItem link="calendar">
             <CalendarIcon className={`h-8 w-8 text-white ${hoverClass}`} />
