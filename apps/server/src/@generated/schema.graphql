@@ -27,70 +27,113 @@ type LoginChallenge {
   allowedCredentials: [AllowedCredentials!]!
 }
 
-type NotTest {
+type Authenticator {
+  id: ID!
+  createdAt: DateTime!
+  fmt: String!
+  publicKey: String!
+  counter: Int!
+  credentialId: String!
+  user: User!
+  userId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Challenge {
+  id: ID!
+  challenge: String!
+  createdAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type Task {
+  id: ID!
+  name: String!
+  description: String!
+  dueDate: DateTime!
+  isCompleted: Boolean!
+  tags: [String!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type Habit {
+  id: ID!
+  name: String!
+  tags: [String!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type Notification {
+  id: ID!
+  name: String!
+  description: String
+  isVisited: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type UserCount {
+  authenticators: Int!
+  tasks: Int!
+  events: Int!
+  habits: Int!
+  notifications: Int!
+}
+
+type User {
+  id: ID!
+  username: String!
+  registered: Boolean!
+  authenticators: [Authenticator!]
+  challenge: Challenge
+  tasks: [Task!]
+  events: [Event!]
+  habits: [Habit!]
+  notifications: [Notification!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  _count: UserCount!
+}
+
+type Event {
+  id: ID!
+  name: String!
+  description: String
+  dueDate: DateTime!
+  tags: [String!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  userId: String!
+}
+
+type DeleteEventReturnType {
+  id: String!
+}
+
+type DeleteHabitReturnType {
+  id: String!
+}
+
+type DeleteTaskReturnType {
   id: String!
 }
 
 type Query {
-  notTests(where: NotTestWhereInput, orderBy: [NotTestOrderByWithRelationInput!], cursor: NotTestWhereUniqueInput, take: Int, skip: Int, distinct: [NotTestScalarFieldEnum!]): [NotTest!]!
-}
-
-input NotTestWhereInput {
-  AND: [NotTestWhereInput!]
-  OR: [NotTestWhereInput!]
-  NOT: [NotTestWhereInput!]
-  id: StringFilter
-}
-
-input StringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringFilter
-}
-
-enum QueryMode {
-  default
-  insensitive
-}
-
-input NestedStringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringFilter
-}
-
-input NotTestOrderByWithRelationInput {
-  id: SortOrder
-}
-
-enum SortOrder {
-  asc
-  desc
-}
-
-input NotTestWhereUniqueInput {
-  id: String
-}
-
-enum NotTestScalarFieldEnum {
-  id
+  me: User!
 }
 
 type Mutation {
@@ -98,6 +141,15 @@ type Mutation {
   verifyRegister(id: String!, rawId: String!, type: String!, response: RegisterResponse!): AuthorizationToken!
   requestLogin(username: String!): LoginChallenge!
   verifyLogin(id: String!, response: LoginResponse!): AuthorizationToken!
+  createEvent(name: String!, description: String, dueDate: DateTime!, tags: [String!]!): Event!
+  updateEvent(id: String!, name: String, description: String, dueDate: DateTime, tags: [String!]): Event!
+  deleteEvent(id: String!): DeleteEventReturnType!
+  createHabit(name: String!, tags: [String!]!): Habit!
+  updateHabit(id: String!, name: String, tags: [String!]): Habit!
+  deleteHabit(id: String!): DeleteHabitReturnType!
+  createTask(name: String!, description: String!, dueDate: DateTime!, tags: [String!]!): Task!
+  updateTask(id: String!, name: String, description: String, dueDate: DateTime, isCompleted: Boolean, tags: [String!]): Task!
+  deleteTask(id: String!): DeleteTaskReturnType!
 }
 
 input RegisterResponse {

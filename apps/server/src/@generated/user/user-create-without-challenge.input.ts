@@ -1,6 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { AuthenticatorCreateNestedManyWithoutUserInput } from '../authenticator/authenticator-create-nested-many-without-user.input';
+import { TaskCreateNestedManyWithoutUserInput } from '../task/task-create-nested-many-without-user.input';
+import { EventCreateNestedManyWithoutUserInput } from '../event/event-create-nested-many-without-user.input';
+import { HabitCreateNestedManyWithoutUserInput } from '../habit/habit-create-nested-many-without-user.input';
+import { NotificationCreateNestedManyWithoutUserInput } from '../notification/notification-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateWithoutChallengeInput {
@@ -16,6 +20,18 @@ export class UserCreateWithoutChallengeInput {
 
     @Field(() => AuthenticatorCreateNestedManyWithoutUserInput, {nullable:true})
     authenticators?: AuthenticatorCreateNestedManyWithoutUserInput;
+
+    @Field(() => TaskCreateNestedManyWithoutUserInput, {nullable:true})
+    tasks?: TaskCreateNestedManyWithoutUserInput;
+
+    @Field(() => EventCreateNestedManyWithoutUserInput, {nullable:true})
+    events?: EventCreateNestedManyWithoutUserInput;
+
+    @Field(() => HabitCreateNestedManyWithoutUserInput, {nullable:true})
+    habits?: HabitCreateNestedManyWithoutUserInput;
+
+    @Field(() => NotificationCreateNestedManyWithoutUserInput, {nullable:true})
+    notifications?: NotificationCreateNestedManyWithoutUserInput;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

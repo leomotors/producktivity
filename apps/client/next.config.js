@@ -3,6 +3,7 @@
 
 const withTM = require("next-transpile-modules")([
   "@producktivity/codegen",
+  "@producktivity/constants",
   "@producktivity/design",
 ]);
 
