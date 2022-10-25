@@ -2,30 +2,83 @@ import { MyPage } from "$core/@types";
 import { CalendarItem } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
+const weekDays: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+const tasks = [
+  {
+    id: 1,
+    name: "kick students from line group",
+    topic: ["cal", "nonsense", "ps"],
+    date: new Date(),
+  },
+  {
+    id: 2,
+    name: "sleep",
+    topic: ["please", "zzzz", "oc"],
+    date: new Date(),
+  },
+  {
+    id: 3,
+    name: "grader",
+    topic: ["comprog", "python3.5", "🥐"],
+    date: new Date(),
+  },
+  {
+    id: 4,
+    name: "kick students from line group",
+    topic: ["cal", "nonsense", "ps"],
+    date: new Date(),
+  },
+  {
+    id: 5,
+    name: "kick students from line group",
+    topic: ["cal", "nonsense", "ps"],
+    date: new Date(),
+  },
+];
+const events = [
+  {
+    id: 1,
+    name: "kick students from line group",
+    topic: ["cal", "nonsense", "ps"],
+    date: new Date("2022-10-23"),
+  },
+  {
+    id: 2,
+    name: "sleep",
+    topic: ["please", "zzzz", "oc"],
+    date: new Date(),
+  },
+  {
+    id: 3,
+    name: "grader",
+    topic: ["comprog", "python3.5", "🥐"],
+    date: new Date(),
+  },
+];
+
 const Calendar: MyPage = () => {
-  const weekDays: string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const now = new Date();
   const weekDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
   const numOfDays = new Date(
@@ -46,59 +99,6 @@ const Calendar: MyPage = () => {
   for (let i = numOfDays + weekDay; i < 42; i++) {
     days[i] = null;
   }
-
-  const tasks = [
-    {
-      id: 1,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-    {
-      id: 2,
-      name: "sleep",
-      topic: ["please", "zzzz", "oc"],
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: "grader",
-      topic: ["comprog", "python3.5", "🥐"],
-      date: new Date(),
-    },
-    {
-      id: 4,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-    {
-      id: 5,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-  ];
-  const events = [
-    {
-      id: 1,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date("2022-10-23"),
-    },
-    {
-      id: 2,
-      name: "sleep",
-      topic: ["please", "zzzz", "oc"],
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: "grader",
-      topic: ["comprog", "python3.5", "🥐"],
-      date: new Date(),
-    },
-  ];
 
   return (
     <DefaultLayout>

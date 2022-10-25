@@ -7,6 +7,7 @@ interface IEvent {
   topic: string[];
   date: Date;
 }
+
 export const Event: FC<IEvent> = ({ date, name, topic }) => {
   return (
     <div className="drop-shadow-lg flex justify-between w-full h-20 bg-indigo-50">

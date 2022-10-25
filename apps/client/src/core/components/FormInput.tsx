@@ -3,8 +3,9 @@ import type { ChangeEvent, FC } from "react";
 type Props = {
   name: string;
   value: string;
-  handleChange(value: ChangeEvent<HTMLInputElement>): void;
+  handleChange: (value: ChangeEvent<HTMLInputElement>) => void;
 };
+
 export const FormInput: FC<Props> = ({ handleChange, name, value }) => {
   return (
     <div className="w-full mb-2 flex items-center">

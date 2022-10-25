@@ -14,6 +14,12 @@ import {
 import DefaultLayout from "$core/layouts/default";
 
 const Tasks: MyPage = () => {
+  const queryEvents = useEventsQuery();
+  const { data } = await requestLogin({
+    variables: {
+      username,
+    },
+  });
   interface IEvents {
     id: number;
     name: string;

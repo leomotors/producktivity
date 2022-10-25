@@ -7,6 +7,7 @@ interface IMiniCalendar {
   calendar: boolean;
   calen: boolean;
 }
+
 export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const weekDays: string[] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];

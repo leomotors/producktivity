@@ -2,7 +2,7 @@ import type { FC } from "react";
 
 interface IConfirmButton {
   text: string;
-  handleSave(): void;
+  handleSave: () => void;
 }
 
 export const ConfirmButton: FC<IConfirmButton> = ({ handleSave, text }) => {
