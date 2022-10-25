@@ -8,5 +8,5 @@ export class HabitSumAggregateInput {
     currentCount?: true;
 
     @Field(() => Boolean, {nullable:true})
-    requireCount?: true;
+    targetCount?: true;
 }

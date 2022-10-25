@@ -9,5 +9,5 @@ export class HabitSumAggregate {
     currentCount?: number;
 
     @Field(() => Int, {nullable:true})
-    requireCount?: number;
+    targetCount?: number;
 }

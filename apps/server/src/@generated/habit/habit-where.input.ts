@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableListFilter } from '../prisma/string-nullable-list-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 
@@ -27,11 +27,11 @@ export class HabitWhereInput {
     @Field(() => StringNullableListFilter, {nullable:true})
     tags?: StringNullableListFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    currentCount?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    currentCount?: IntNullableFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    requireCount?: IntFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    targetCount?: IntNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

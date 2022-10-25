@@ -17,7 +17,7 @@ export class HabitCountAggregateInput {
     currentCount?: true;
 
     @Field(() => Boolean, {nullable:true})
-    requireCount?: true;
+    targetCount?: true;
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;

@@ -18,7 +18,7 @@ export class HabitCountOrderByAggregateInput {
     currentCount?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    requireCount?: keyof typeof SortOrder;
+    targetCount?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;

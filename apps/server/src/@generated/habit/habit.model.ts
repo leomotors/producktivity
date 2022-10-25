@@ -16,11 +16,11 @@ export class Habit {
     @Field(() => [String], {nullable:true})
     tags!: Array<string>;
 
-    @Field(() => Int, {nullable:false,defaultValue:0})
-    currentCount!: number;
+    @Field(() => Int, {nullable:true})
+    currentCount!: number | null;
 
-    @Field(() => Int, {nullable:false})
-    requireCount!: number;
+    @Field(() => Int, {nullable:true})
+    targetCount!: number | null;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
