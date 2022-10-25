@@ -4,10 +4,10 @@ import {
   AuthenticatorChallenge,
   AuthorizationToken,
   LoginChallenge,
-  RequestLoginRegisterArgs,
   VerifyLoginArgs,
   VerifyRegisterArgs,
 } from "./auth.dto";
+import { UsernameValidation } from "./auth.pipe";
 import { AuthService } from "./auth.service";
 
 @Resolver()
@@ -16,9 +16,9 @@ export class AuthResolver {
 
   @Mutation(() => AuthenticatorChallenge)
   requestRegister(
-    @Args() input: RequestLoginRegisterArgs
+    @Args("username", UsernameValidation) username: string
   ): Promise<AuthenticatorChallenge> {
-    return this.service.requestRegister(input.username);
+    return this.service.requestRegister(username);
   }
 
   @Mutation(() => AuthorizationToken)
@@ -30,9 +30,9 @@ export class AuthResolver {
 
   @Mutation(() => LoginChallenge)
   requestLogin(
-    @Args() input: RequestLoginRegisterArgs
+    @Args("username", UsernameValidation) username: string
   ): Promise<LoginChallenge> {
-    return this.service.requestLogin(input.username);
+    return this.service.requestLogin(username);
   }
 
   @Mutation(() => AuthorizationToken)
