@@ -1,14 +1,5 @@
 import { ArgsType, Field, InputType, ObjectType } from "@nestjs/graphql";
 
-import { Matches } from "class-validator";
-
-@ArgsType()
-export class RequestLoginRegisterArgs {
-  @Field()
-  @Matches(/^[a-z0-9_]{3,16}$/)
-  username!: string;
-}
-
 @ObjectType()
 export class RelyingParty {
   @Field()

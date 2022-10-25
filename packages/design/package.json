@@ -4,8 +4,8 @@
   "private": true,
   "main": "./index.tsx",
   "scripts": {
-    "lint": "eslint *.ts* --max-warnings=0",
-    "format": "eslint *.ts* --fix"
+    "lint": "eslint index.tsx \"src/**/*.ts*\" --max-warnings=0",
+    "format": "eslint index.tsx \"src/**/*.ts*\" *.ts* --fix"
   },
   "dependencies": {
     "clsx": "^1.2.1"

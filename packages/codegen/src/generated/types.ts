@@ -58,6 +58,16 @@ export type DeleteEventReturnType = {
   id: Scalars['String'];
 };
 
+export type DeleteHabitReturnType = {
+  __typename?: 'DeleteHabitReturnType';
+  id: Scalars['String'];
+};
+
+export type DeleteTaskReturnType = {
+  __typename?: 'DeleteTaskReturnType';
+  id: Scalars['String'];
+};
+
 export type Event = {
   __typename?: 'Event';
   createdAt: Scalars['DateTime'];
@@ -98,12 +108,15 @@ export type Mutation = {
   __typename?: 'Mutation';
   createEvent: Event;
   createHabit: Habit;
+  createTask: Task;
   deleteEvent: DeleteEventReturnType;
-  deleteHabit: Habit;
+  deleteHabit: DeleteHabitReturnType;
+  deleteTask: DeleteTaskReturnType;
   requestLogin: LoginChallenge;
   requestRegister: AuthenticatorChallenge;
   updateEvent: Event;
   updateHabit: Habit;
+  updateTask: Task;
   verifyLogin: AuthorizationToken;
   verifyRegister: AuthorizationToken;
 };
@@ -123,12 +136,25 @@ export type MutationCreateHabitArgs = {
 };
 
 
+export type MutationCreateTaskArgs = {
+  description: Scalars['String'];
+  dueDate: Scalars['DateTime'];
+  name: Scalars['String'];
+  tags: Array<Scalars['String']>;
+};
+
+
 export type MutationDeleteEventArgs = {
   id: Scalars['String'];
 };
 
 
 export type MutationDeleteHabitArgs = {
+  id: Scalars['String'];
+};
+
+
+export type MutationDeleteTaskArgs = {
   id: Scalars['String'];
 };
 
@@ -154,6 +180,16 @@ export type MutationUpdateEventArgs = {
 
 export type MutationUpdateHabitArgs = {
   id: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
+};
+
+
+export type MutationUpdateTaskArgs = {
+  description?: InputMaybe<Scalars['String']>;
+  dueDate?: InputMaybe<Scalars['DateTime']>;
+  id: Scalars['String'];
+  isCompleted?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
   tags?: InputMaybe<Array<Scalars['String']>>;
 };

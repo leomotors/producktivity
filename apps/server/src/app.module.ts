@@ -8,7 +8,6 @@ import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { PrismaService } from "./prisma.service";
 
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 
 import { AuthModule } from "./auth/auth.module";
 import { EventModule } from "./event/event.module";
@@ -37,7 +36,7 @@ import { UserModule } from "./user/user.module";
     NotificationModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [PrismaService],
   exports: [PrismaService],
 })
 export class AppModule {}
