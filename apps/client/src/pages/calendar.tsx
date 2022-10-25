@@ -47,6 +47,38 @@ const Calendar: NextPageWithLayout = () => {
     days[i] = null;
   }
 
+  const tasks = [
+    {
+      id: 1,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "ps"],
+      date: new Date(),
+    },
+    {
+      id: 2,
+      name: "sleep",
+      topic: ["please", "zzzz", "oc"],
+      date: new Date(),
+    },
+    {
+      id: 3,
+      name: "grader",
+      topic: ["comprog", "python3.5", "🥐"],
+      date: new Date(),
+    },
+    {
+      id: 4,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "ps"],
+      date: new Date(),
+    },
+    {
+      id: 5,
+      name: "kick students from line group",
+      topic: ["cal", "nonsense", "ps"],
+      date: new Date(),
+    },
+  ];
   const events = [
     {
       id: 1,
@@ -88,13 +120,37 @@ const Calendar: NextPageWithLayout = () => {
             return (
               <div key={index} className="p-2 outline outline-zinc-100">
                 <h1>{day}</h1>
+                {tasks.map((task, index) => {
+                  if (
+                    task.date.getFullYear() === now.getFullYear() &&
+                    task.date.getMonth() === now.getMonth() &&
+                    task.date.getDate() === day
+                  ) {
+                    return (
+                      <div
+                        key={index}
+                        className="rounded-lg bg-emerald-200 mb-1 p-1"
+                      >
+                        {task.name}
+                      </div>
+                    );
+                  }
+                  return;
+                })}
                 {events.map((event, index) => {
                   if (
                     event.date.getFullYear() === now.getFullYear() &&
                     event.date.getMonth() === now.getMonth() &&
                     event.date.getDate() === day
                   ) {
-                    return <div key={index}>{event.name}</div>;
+                    return (
+                      <div
+                        key={index}
+                        className="rounded-lg bg-indigo-200 mb-1 p-1"
+                      >
+                        {event.name}
+                      </div>
+                    );
                   }
                   return;
                 })}

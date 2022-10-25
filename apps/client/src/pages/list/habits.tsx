@@ -10,36 +10,53 @@ import DefaultLayout from "../../core/general/layouts/default";
 interface IHabits {
   id: number;
   text: string;
+  count: number;
 }
 const Tasks: NextPageWithLayout = () => {
   const [habits, setHabits] = useState<IHabits[]>([
     {
       id: 1,
       text: "นอน",
+      count: 0,
     },
     {
       id: 2,
       text: "นอน",
+      count: 0,
     },
     {
       id: 3,
       text: "นอน",
+      count: 0,
     },
     {
       id: 4,
       text: "touch grass",
+      count: 0,
     },
     {
       id: 5,
       text: "touch grass",
+      count: 0,
     },
     {
-      id: 3,
+      id: 6,
       text: "get some milk",
+      count: 0,
     },
   ]);
   const deleteHabit = (id: number) => {
     setHabits(() => habits.filter((habit) => habit.id !== id));
+  };
+  const increaseHabit = (id: number) => {
+    setHabits(() =>
+      habits.map((habit) => {
+        if (habit.id === id) {
+          return { ...habit, count: habit.count + 1 };
+        }
+        return habit;
+      })
+    );
   };
   return (
     <DefaultLayout>
@@ -50,7 +67,9 @@ const Tasks: NextPageWithLayout = () => {
             {habits.map((habit, index) => (
               <Habit
                 key={index}
+                count={habit.count}
                 handleDelete={() => deleteHabit(habit.id)}
+                handleIncrease={() => increaseHabit(habit.id)}
                 id={habit.id}
                 text={habit.text}
               ></Habit>

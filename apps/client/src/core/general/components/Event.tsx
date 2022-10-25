@@ -6,15 +6,14 @@ interface IEvent {
   name: string;
   topic: string[];
   date: Date;
-  id: number;
 }
-const Event: FC<IEvent> = ({ date, id, name, topic }) => {
+const Event: FC<IEvent> = ({ date, name, topic }) => {
   return (
-    <div className="drop-shadow-lg flex justify-between w-full h-1/3 md:h-1/5 bg-emerald-50">
+    <div className="drop-shadow-lg flex justify-between w-full h-1/3 md:h-1/5 bg-indigo-50">
       <div className="p-2 md:px-8 flex flex-col justify-around w-full">
         <div className="md:text-md flex justify-between md:space-x-8 w-full">
           <h1 className="font-bold">{name}</h1>
-          <div className="flex items-center text-emerald-600 font-bold">
+          <div className="flex items-center text-indigo-600 font-bold">
             <CalendarIcon className="w-6 h-6 mr-2" />
             {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
           </div>
