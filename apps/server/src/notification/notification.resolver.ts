@@ -6,7 +6,6 @@ import {
   Resolver,
 } from "@nestjs/graphql";
 
-import { Habit } from "@generated/habit/habit.model";
 import { Notification } from "@generated/notification/notification.model";
 import { User } from "@generated/user/user.model";
 
@@ -15,6 +14,7 @@ import { UserContext } from "src/user/user.decorator";
 
 import {
   CreateNotificationArgs,
+  NotVisitedReturnType,
   UpdateNotificationArgs,
 } from "./notification.dto";
 import { NotificationService } from "./notification.service";
@@ -25,7 +25,7 @@ export class NotificationResolver {
   constructor(private readonly service: NotificationService) {}
 
   @Mutation(() => Notification)
-  createHabit(
+  createNotification(
     @Args() input: CreateNotificationArgs,
     @UserContext() user: User
   ) {
@@ -43,6 +43,11 @@ export class NotificationResolver {
   @Mutation(() => String)
   deleteNotification(@Args("id") id: string, @UserContext() user: User) {
     return this.service.deleteNotification(id, user);
+  }
+
+  @ResolveField(() => NotVisitedReturnType)
+  notVisited(@UserContext() user: User) {
+    return this.service.notVisited(user);
   }
 
   @ResolveField(() => User)

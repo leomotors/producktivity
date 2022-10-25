@@ -1,4 +1,6 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { ArgsType, Field, ObjectType } from "@nestjs/graphql";
+
+import { Notification } from "@generated/notification/notification.model";
 
 @ArgsType()
 export class CreateNotificationArgs {
@@ -22,4 +24,10 @@ export class UpdateNotificationArgs {
 
   @Field({ nullable: true })
   isVisited?: boolean;
+}
+
+@ObjectType()
+export class NotVisitedReturnType {
+  @Field(() => [Notification])
+  notifications!: Notification[];
 }

@@ -1,6 +1,5 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
 
-import { Habit } from "@generated/habit/habit.model";
 import { Notification } from "@generated/notification/notification.model";
 import { User } from "@generated/user/user.model";
 
