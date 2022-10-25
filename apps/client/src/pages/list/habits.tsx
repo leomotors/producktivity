@@ -63,7 +63,7 @@ const Tasks: NextPageWithLayout = () => {
       <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
         <Tabs active="habits"></Tabs>
         <div className="overflow-auto p-4 flex flex-col space-y-4 h-full w-full bg-white">
-          <div className="p-4 flex flex-col space-y-4 h-full w-1/2 bg-white">
+          <div className="p-4 flex flex-col space-y-4 h-full w-2/5 bg-white">
             {habits.map((habit, index) => (
               <Habit
                 key={index}

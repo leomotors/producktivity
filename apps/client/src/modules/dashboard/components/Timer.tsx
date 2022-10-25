@@ -23,7 +23,7 @@ const Timer: FC = () => {
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110";
   return (
-    <div className="flex flex-col items-center rounded-lg w-5/12 md:h-4/5 p-2 bg-red-50">
+    <div className="flex flex-col items-center rounded-lg w-5/12 md:h-4/5 p-2 bg-white">
       <div className="md:text-xl mb-2">Pomodoro</div>
       <div>
         <CountdownCircleTimer

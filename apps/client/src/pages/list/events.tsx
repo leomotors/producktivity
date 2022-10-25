@@ -42,14 +42,13 @@ const Tasks: NextPageWithLayout = () => {
       <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
         <Tabs active="events"></Tabs>
         <div className="overflow-auto p-4 flex flex-col space-y-4 h-full w-full bg-white">
-          <div className="p-4 flex flex-col space-y-4 h-full w-1/2 bg-white">
+          <div className="p-4 flex flex-col space-y-4 h-full w-2/5 bg-white">
             {events.map(
               (event, index) =>
                 event.date > yesterday && (
                   <Event
                     key={index}
                     date={event.date}
-                    id={event.id}
                     name={event.name}
                     topic={event.topic}
                   ></Event>
