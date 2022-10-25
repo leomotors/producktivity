@@ -12,6 +12,7 @@ import { AppController } from "./app.controller";
 import { AuthModule } from "./auth/auth.module";
 import { EventModule } from "./event/event.module";
 import { HabitModule } from "./habit/habit.module";
+import { NotificationModule } from "./notification/notification.module";
 import { TaskModule } from "./task/task.module";
 import { UserModule } from "./user/user.module";
 
@@ -30,6 +31,7 @@ import { UserModule } from "./user/user.module";
     AuthModule,
     EventModule,
     HabitModule,
+    NotificationModule,
     TaskModule,
     UserModule,
   ],

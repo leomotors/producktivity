@@ -7,6 +7,8 @@ import { HabitScalarFieldEnum } from './habit-scalar-field.enum';
 import { HabitScalarWhereWithAggregatesInput } from './habit-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { HabitCountAggregateInput } from './habit-count-aggregate.input';
+import { HabitAvgAggregateInput } from './habit-avg-aggregate.input';
+import { HabitSumAggregateInput } from './habit-sum-aggregate.input';
 import { HabitMinAggregateInput } from './habit-min-aggregate.input';
 import { HabitMaxAggregateInput } from './habit-max-aggregate.input';
 
@@ -34,6 +36,12 @@ export class HabitGroupByArgs {
 
     @Field(() => HabitCountAggregateInput, {nullable:true})
     _count?: HabitCountAggregateInput;
+
+    @Field(() => HabitAvgAggregateInput, {nullable:true})
+    _avg?: HabitAvgAggregateInput;
+
+    @Field(() => HabitSumAggregateInput, {nullable:true})
+    _sum?: HabitSumAggregateInput;
 
     @Field(() => HabitMinAggregateInput, {nullable:true})
     _min?: HabitMinAggregateInput;
