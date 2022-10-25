@@ -9,5 +9,5 @@ export class HabitAvgAggregate {
     currentCount?: number;
 
     @Field(() => Float, {nullable:true})
-    requireCount?: number;
+    targetCount?: number;
 }

@@ -18,8 +18,8 @@ export class HabitCreateManyUserInput {
     @Field(() => Int, {nullable:true})
     currentCount?: number;
 
-    @Field(() => Int, {nullable:false})
-    requireCount!: number;
+    @Field(() => Int, {nullable:true})
+    targetCount?: number;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

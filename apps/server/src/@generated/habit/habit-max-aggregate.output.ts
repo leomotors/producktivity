@@ -15,7 +15,7 @@ export class HabitMaxAggregate {
     currentCount?: number;
 
     @Field(() => Int, {nullable:true})
-    requireCount?: number;
+    targetCount?: number;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

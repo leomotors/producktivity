@@ -19,11 +19,11 @@ export class HabitGroupBy {
     @Field(() => [String], {nullable:true})
     tags?: Array<string>;
 
-    @Field(() => Int, {nullable:false})
-    currentCount!: number;
+    @Field(() => Int, {nullable:true})
+    currentCount?: number;
 
-    @Field(() => Int, {nullable:false})
-    requireCount!: number;
+    @Field(() => Int, {nullable:true})
+    targetCount?: number;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
