@@ -28,31 +28,28 @@ interface IInput {
   userId: string;
 }
 
+const initialState: IInput = {
+  id: "-1",
+  name: "Select a task",
+  description: "description...",
+  tags: ["Homework"],
+  dueDate: new Date().toString(),
+  userId: "",
+};
+
 const Tasks: MyPage = () => {
   const { data, refetch } = useTasksQuery();
   const [updateTask] = useUpdateTaskMutation();
   const [deleteTask] = useDeleteTaskMutation();
   const [createTask] = useCreateTaskMutation();
 
-  const initialState: IInput = {
-    id: "-1",
-    name: "Select a task",
-    description: "description...",
-    tags: ["Homework"],
-    dueDate: new Date().toString(),
-    userId: "",
-  };
-
   const [input, setInput] = useState<IInput>(initialState);
 
   let tasks = data?.me.tasks ?? [];
   tasks = [...tasks];
-  tasks.sort((a, b) => (new Date(a.dueDate) < new Date(b.dueDate) ? 1 : -1));
+  tasks.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
-  const updateInput = (
-    name: string,
-    value: string | string[] | Date | null
-  ) => {
+  const updateInput = (name: string, value: string | string[]) => {
     setInput({ ...input, [name]: value });
     console.log(input);
   };

@@ -56,6 +56,7 @@ export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
   }
 
   const workDays: (number | null)[] = [];
+
   tasks.map((task) => {
     workDays[new Date(task.dueDate).getDate()] = 1;
   });

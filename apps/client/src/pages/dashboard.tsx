@@ -12,6 +12,9 @@ import { Event, Habit, Task, Timer } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
 const Dashboard: MyPage = () => {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
   const { data: dataHabits, refetch: refetchHabits } = useHabitsQuery();
   const habits = dataHabits?.me.habits ?? [];
 
@@ -21,14 +24,12 @@ const Dashboard: MyPage = () => {
 
   const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
   const tasks = dataTasks?.me.tasks ?? [];
+  // tasks = tasks.filter((task) => task.dueDate);
 
   const deleteTask = (id: string) => {};
 
   const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
   const events = dataEvents?.me.events ?? [];
-
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
 
   return (
     <div className="h-full ml-8 p-4 rounded-lg bg-white w-11/12 overflow-auto">
@@ -48,11 +49,11 @@ const Dashboard: MyPage = () => {
               {habits.map((habit, index) => (
                 <Habit
                   key={index}
-                  count={habit.currentCount}
-                  handleDelete={() => deleteHabit(habit.id)}
+                  currentCount={habit.currentCount}
                   handleIncrease={() => increaseHabit(habit.id)}
                   id={habit.id}
-                  text={habit.name}
+                  name={habit.name}
+                  targetCount={habit.targetCount}
                 ></Habit>
               ))}
             </div>

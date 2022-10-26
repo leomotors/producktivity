@@ -27,33 +27,30 @@ interface IInput {
   userId: string;
 }
 
+const initialState: IInput = {
+  id: "-1",
+  name: "Select an event",
+  dueDate: new Date().toString(),
+  tags: ["Holiday"],
+  userId: "",
+};
+
 const Events: MyPage = () => {
   const { data, refetch } = useEventsQuery();
   const [updateEvent] = useUpdateEventMutation();
   const [deleteEvent] = useDeleteEventMutation();
   const [createEvent] = useCreateEventMutation();
 
-  const initialState: IInput = {
-    id: "-1",
-    name: "Select an event",
-    dueDate: new Date().toString(),
-    tags: ["Holiday"],
-    userId: "",
-  };
-
   const [input, setInput] = useState<IInput>(initialState);
 
   let events = data?.me.events ?? [];
   events = [...events];
-  events.sort((a, b) => (new Date(a.dueDate) < new Date(b.dueDate) ? 1 : -1));
+  events.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const updateInput = (
-    name: string,
-    value: string | string[] | undefined | null
-  ) => {
+  const updateInput = (name: string, value: string | string[]) => {
     setInput({ ...input, [name]: value });
     console.log(input);
   };

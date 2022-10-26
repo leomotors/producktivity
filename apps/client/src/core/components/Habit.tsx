@@ -1,38 +1,30 @@
 import type { FC } from "react";
 
-import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon.js";
-
 interface IHabit {
-  text: string;
+  name: string;
   id: string;
-  count: number | null | undefined;
-  handleDelete(id: string): void;
+  currentCount: number | null | undefined;
+  targetCount: number | null | undefined;
   handleIncrease(id: string): void;
 }
 export const Habit: FC<IHabit> = ({
-  count,
-  handleDelete,
+  currentCount,
   handleIncrease,
   id,
-  text,
+  name,
+  targetCount,
 }) => {
-  const hoverX =
-    "transition ease-in-out delay-50 duration-150 hover:scale-150 hover:cursor-pointer";
   const hoverText =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
 
   return (
     <div className="relative rounded-md flex justify-center items-center w-full h-full bg-amber-50">
-      <XMarkIcon
-        className={`absolute w-5 h-5 top-1 right-1 ${hoverX}`}
-        onClick={() => handleDelete(id)}
-      />
-      <div className="text-sm absolute top-1 left-1">{count}</div>
+      <div className="text-sm absolute top-2 left-2">{`${currentCount} / ${targetCount}`}</div>
       <h1
         className={`text-sm md:text-2xl text-center h-3/5 w-3/5 flex items-center justify-center ${hoverText}`}
         onClick={() => handleIncrease(id)}
       >
-        {text}
+        {name}
       </h1>
     </div>
   );

@@ -127,6 +127,27 @@ query Habits {
   }
 }
 
+mutation CreateHabit(
+  $name: String!
+  $tags: [String!]!
+  $targetCount: Float
+  $currentCount: Float
+) {
+  createHabit(
+    name: $name
+    tags: $tags
+    targetCount: $targetCount
+    currentCount: $currentCount
+  ) {
+    id
+    name
+    tags
+    currentCount
+    userId
+    targetCount
+  }
+}
+
 mutation UpdateHabit(
   $name: String
   $tags: [String!]
@@ -145,5 +166,11 @@ mutation UpdateHabit(
     tags
     currentCount
     targetCount
+  }
+}
+
+mutation DeleteHabit($deleteHabitId: String!) {
+  deleteHabit(id: $deleteHabitId) {
+    id
   }
 }

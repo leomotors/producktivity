@@ -77,6 +77,16 @@ export type HabitsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 export type HabitsQuery = { __typename?: 'Query', me: { __typename?: 'User', habits?: Array<{ __typename?: 'Habit', id: string, name: string, currentCount?: number | null, targetCount?: number | null, tags?: Array<string> | null, userId: string }> | null } };
 
+export type CreateHabitMutationVariables = Types.Exact<{
+  name: Types.Scalars['String'];
+  tags: Array<Types.Scalars['String']> | Types.Scalars['String'];
+  targetCount?: Types.InputMaybe<Types.Scalars['Float']>;
+  currentCount?: Types.InputMaybe<Types.Scalars['Float']>;
+}>;
+
+
+export type CreateHabitMutation = { __typename?: 'Mutation', createHabit: { __typename?: 'Habit', id: string, name: string, tags?: Array<string> | null, currentCount?: number | null, userId: string, targetCount?: number | null } };
+
 export type UpdateHabitMutationVariables = Types.Exact<{
   name?: Types.InputMaybe<Types.Scalars['String']>;
   tags?: Types.InputMaybe<Array<Types.Scalars['String']> | Types.Scalars['String']>;
@@ -87,6 +97,13 @@ export type UpdateHabitMutationVariables = Types.Exact<{
 
 
 export type UpdateHabitMutation = { __typename?: 'Mutation', updateHabit: { __typename?: 'Habit', name: string, tags?: Array<string> | null, currentCount?: number | null, targetCount?: number | null } };
+
+export type DeleteHabitMutationVariables = Types.Exact<{
+  deleteHabitId: Types.Scalars['String'];
+}>;
+
+
+export type DeleteHabitMutation = { __typename?: 'Mutation', deleteHabit: { __typename?: 'DeleteHabitReturnType', id: string } };
 
 
 export const UserDocument = gql`
@@ -488,6 +505,52 @@ export function useHabitsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Hab
 export type HabitsQueryHookResult = ReturnType<typeof useHabitsQuery>;
 export type HabitsLazyQueryHookResult = ReturnType<typeof useHabitsLazyQuery>;
 export type HabitsQueryResult = Apollo.QueryResult<HabitsQuery, HabitsQueryVariables>;
+export const CreateHabitDocument = gql`
+    mutation CreateHabit($name: String!, $tags: [String!]!, $targetCount: Float, $currentCount: Float) {
+  createHabit(
+    name: $name
+    tags: $tags
+    targetCount: $targetCount
+    currentCount: $currentCount
+  ) {
+    id
+    name
+    tags
+    currentCount
+    userId
+    targetCount
+  }
+}
+    `;
+export type CreateHabitMutationFn = Apollo.MutationFunction<CreateHabitMutation, CreateHabitMutationVariables>;
+
+/**
+ * __useCreateHabitMutation__
+ *
+ * To run a mutation, you first call `useCreateHabitMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateHabitMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createHabitMutation, { data, loading, error }] = useCreateHabitMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      tags: // value for 'tags'
+ *      targetCount: // value for 'targetCount'
+ *      currentCount: // value for 'currentCount'
+ *   },
+ * });
+ */
+export function useCreateHabitMutation(baseOptions?: Apollo.MutationHookOptions<CreateHabitMutation, CreateHabitMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateHabitMutation, CreateHabitMutationVariables>(CreateHabitDocument, options);
+      }
+export type CreateHabitMutationHookResult = ReturnType<typeof useCreateHabitMutation>;
+export type CreateHabitMutationResult = Apollo.MutationResult<CreateHabitMutation>;
+export type CreateHabitMutationOptions = Apollo.BaseMutationOptions<CreateHabitMutation, CreateHabitMutationVariables>;
 export const UpdateHabitDocument = gql`
     mutation UpdateHabit($name: String, $tags: [String!], $currentCount: Float, $targetCount: Float, $updateHabitId: String!) {
   updateHabit(
@@ -534,3 +597,36 @@ export function useUpdateHabitMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateHabitMutationHookResult = ReturnType<typeof useUpdateHabitMutation>;
 export type UpdateHabitMutationResult = Apollo.MutationResult<UpdateHabitMutation>;
 export type UpdateHabitMutationOptions = Apollo.BaseMutationOptions<UpdateHabitMutation, UpdateHabitMutationVariables>;
+export const DeleteHabitDocument = gql`
+    mutation DeleteHabit($deleteHabitId: String!) {
+  deleteHabit(id: $deleteHabitId) {
+    id
+  }
+}
+    `;
+export type DeleteHabitMutationFn = Apollo.MutationFunction<DeleteHabitMutation, DeleteHabitMutationVariables>;
+
+/**
+ * __useDeleteHabitMutation__
+ *
+ * To run a mutation, you first call `useDeleteHabitMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteHabitMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteHabitMutation, { data, loading, error }] = useDeleteHabitMutation({
+ *   variables: {
+ *      deleteHabitId: // value for 'deleteHabitId'
+ *   },
+ * });
+ */
+export function useDeleteHabitMutation(baseOptions?: Apollo.MutationHookOptions<DeleteHabitMutation, DeleteHabitMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteHabitMutation, DeleteHabitMutationVariables>(DeleteHabitDocument, options);
+      }
+export type DeleteHabitMutationHookResult = ReturnType<typeof useDeleteHabitMutation>;
+export type DeleteHabitMutationResult = Apollo.MutationResult<DeleteHabitMutation>;
+export type DeleteHabitMutationOptions = Apollo.BaseMutationOptions<DeleteHabitMutation, DeleteHabitMutationVariables>;
