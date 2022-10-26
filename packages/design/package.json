@@ -8,6 +8,7 @@
     "format": "eslint index.tsx \"src/**/*.ts*\" *.ts* --fix"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.12",
     "clsx": "^1.2.1"
   },
   "devDependencies": {
