@@ -5,14 +5,15 @@ import "react-datepicker/dist/react-datepicker.css";
 
 type Props = {
   name: string;
-  value: Date;
-  handleChange(value: Date | null): void;
+  value: string;
+  handleChange(value: string): void;
 };
 
 export const DateInput: FC<Props> = ({ handleChange, name, value }) => {
-  const [startDate, setStartDate] = useState(value || new Date());
+  const initialDate = new Date(value);
+  const [startDate, setStartDate] = useState(initialDate || new Date());
   useEffect(() => {
-    setStartDate(() => value);
+    setStartDate(() => new Date(value));
     handleChange(value);
   }, [value]);
   return (
@@ -21,7 +22,7 @@ export const DateInput: FC<Props> = ({ handleChange, name, value }) => {
       <div className="rounded-md border-2 border-zinc-600 p-1">
         <DatePicker
           selected={startDate}
-          onChange={(value) => handleChange(value)}
+          onChange={(value) => value !== null && handleChange(value)}
         />
       </div>
     </div>

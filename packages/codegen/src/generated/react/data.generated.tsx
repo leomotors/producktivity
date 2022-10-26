@@ -13,6 +13,15 @@ export type EventsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 export type EventsQuery = { __typename?: 'Query', me: { __typename?: 'User', events?: Array<{ __typename?: 'Event', id: string, name: string, dueDate: any, tags?: Array<string> | null, userId: string }> | null } };
 
+export type CreateEventMutationVariables = Types.Exact<{
+  name: Types.Scalars['String'];
+  dueDate: Types.Scalars['DateTime'];
+  tags: Array<Types.Scalars['String']> | Types.Scalars['String'];
+}>;
+
+
+export type CreateEventMutation = { __typename?: 'Mutation', createEvent: { __typename?: 'Event', id: string, name: string, description?: string | null, dueDate: any, tags?: Array<string> | null, userId: string } };
+
 export type UpdateEventMutationVariables = Types.Exact<{
   updateEventId: Types.Scalars['String'];
   name?: Types.InputMaybe<Types.Scalars['String']>;
@@ -22,6 +31,13 @@ export type UpdateEventMutationVariables = Types.Exact<{
 
 
 export type UpdateEventMutation = { __typename?: 'Mutation', updateEvent: { __typename?: 'Event', id: string, name: string, tags?: Array<string> | null, dueDate: any } };
+
+export type DeleteEventMutationVariables = Types.Exact<{
+  deleteEventId: Types.Scalars['String'];
+}>;
+
+
+export type DeleteEventMutation = { __typename?: 'Mutation', deleteEvent: { __typename?: 'DeleteEventReturnType', id: string } };
 
 export type TasksQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
@@ -123,6 +139,46 @@ export function useEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Eve
 export type EventsQueryHookResult = ReturnType<typeof useEventsQuery>;
 export type EventsLazyQueryHookResult = ReturnType<typeof useEventsLazyQuery>;
 export type EventsQueryResult = Apollo.QueryResult<EventsQuery, EventsQueryVariables>;
+export const CreateEventDocument = gql`
+    mutation CreateEvent($name: String!, $dueDate: DateTime!, $tags: [String!]!) {
+  createEvent(name: $name, dueDate: $dueDate, tags: $tags) {
+    id
+    name
+    description
+    dueDate
+    tags
+    userId
+  }
+}
+    `;
+export type CreateEventMutationFn = Apollo.MutationFunction<CreateEventMutation, CreateEventMutationVariables>;
+
+/**
+ * __useCreateEventMutation__
+ *
+ * To run a mutation, you first call `useCreateEventMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateEventMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createEventMutation, { data, loading, error }] = useCreateEventMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      dueDate: // value for 'dueDate'
+ *      tags: // value for 'tags'
+ *   },
+ * });
+ */
+export function useCreateEventMutation(baseOptions?: Apollo.MutationHookOptions<CreateEventMutation, CreateEventMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateEventMutation, CreateEventMutationVariables>(CreateEventDocument, options);
+      }
+export type CreateEventMutationHookResult = ReturnType<typeof useCreateEventMutation>;
+export type CreateEventMutationResult = Apollo.MutationResult<CreateEventMutation>;
+export type CreateEventMutationOptions = Apollo.BaseMutationOptions<CreateEventMutation, CreateEventMutationVariables>;
 export const UpdateEventDocument = gql`
     mutation UpdateEvent($updateEventId: String!, $name: String, $dueDate: DateTime, $tags: [String!]) {
   updateEvent(id: $updateEventId, name: $name, dueDate: $dueDate, tags: $tags) {
@@ -162,6 +218,39 @@ export function useUpdateEventMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateEventMutationHookResult = ReturnType<typeof useUpdateEventMutation>;
 export type UpdateEventMutationResult = Apollo.MutationResult<UpdateEventMutation>;
 export type UpdateEventMutationOptions = Apollo.BaseMutationOptions<UpdateEventMutation, UpdateEventMutationVariables>;
+export const DeleteEventDocument = gql`
+    mutation DeleteEvent($deleteEventId: String!) {
+  deleteEvent(id: $deleteEventId) {
+    id
+  }
+}
+    `;
+export type DeleteEventMutationFn = Apollo.MutationFunction<DeleteEventMutation, DeleteEventMutationVariables>;
+
+/**
+ * __useDeleteEventMutation__
+ *
+ * To run a mutation, you first call `useDeleteEventMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteEventMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteEventMutation, { data, loading, error }] = useDeleteEventMutation({
+ *   variables: {
+ *      deleteEventId: // value for 'deleteEventId'
+ *   },
+ * });
+ */
+export function useDeleteEventMutation(baseOptions?: Apollo.MutationHookOptions<DeleteEventMutation, DeleteEventMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteEventMutation, DeleteEventMutationVariables>(DeleteEventDocument, options);
+      }
+export type DeleteEventMutationHookResult = ReturnType<typeof useDeleteEventMutation>;
+export type DeleteEventMutationResult = Apollo.MutationResult<DeleteEventMutation>;
+export type DeleteEventMutationOptions = Apollo.BaseMutationOptions<DeleteEventMutation, DeleteEventMutationVariables>;
 export const TasksDocument = gql`
     query Tasks {
   me {

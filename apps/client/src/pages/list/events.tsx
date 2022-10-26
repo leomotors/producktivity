@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import {
   Event as GQLEvent,
+  useCreateEventMutation,
+  useDeleteEventMutation,
   useEventsQuery,
   useUpdateEventMutation,
 } from "@producktivity/codegen";
@@ -20,22 +22,25 @@ import DefaultLayout from "$core/layouts/default";
 const Events: MyPage = () => {
   const { data, refetch } = useEventsQuery();
   const [updateEvent] = useUpdateEventMutation();
+  const [deleteEvent] = useDeleteEventMutation();
+  const [createEvent] = useCreateEventMutation();
 
   interface IInput {
     id: string;
     name: string;
     dueDate: string;
-    tags?: string[] | null | undefined;
+    tags: string[];
     userId: string;
   }
-  const [input, setInput] = useState<IInput>({
+  const initialState: IInput = {
     id: "-1",
     name: "Select an event",
-    tags: ["Holiday"],
     dueDate: "",
+    tags: ["Holiday"],
     userId: "",
-    // __typename: "Event",
-  });
+  };
+
+  const [input, setInput] = useState<IInput>(initialState);
 
   const events = data?.me.events ?? [];
 
@@ -44,24 +49,54 @@ const Events: MyPage = () => {
 
   const updateInput = (
     name: string,
-    value: string | string[] | Date | null
+    value: string | string[] | undefined | null
   ) => {
-    // s
+    setInput({ ...input, [name]: value });
   };
 
   const selectEvent = (id: string) => {
-    setInput(() => events.filter((event) => event.id === id)[0]);
+    const selectedEvent = events.filter((event) => event.id === id)[0];
+    if (selectedEvent.tags !== null && selectedEvent.tags !== undefined) {
+      setInput({
+        id: selectedEvent.id,
+        name: selectedEvent.name,
+        dueDate: selectedEvent.dueDate,
+        tags: selectedEvent.tags,
+        userId: selectedEvent.userId,
+      });
+    }
     console.log(input);
   };
 
-  const deleteEvent = (id: string) => {};
+  const removeEvent = async (id: string) => {
+    await deleteEvent({
+      variables: {
+        deleteEventId: id,
+      },
+    });
+    refetch();
+  };
 
   const saveEvent = async (id: string) => {
-    // const { data: returnUpdate } = await updateEvent({
-    //   variables: {
-    //     username,
-    //   },
-    // });
+    if (id === "-1" && input.tags !== undefined) {
+      await createEvent({
+        variables: {
+          name: input.name,
+          dueDate: input.dueDate,
+          tags: input.tags,
+        },
+      });
+    } else {
+      await updateEvent({
+        variables: {
+          ...input,
+          updateEventId: id,
+        },
+      });
+    }
+    refetch();
+    setInput(initialState);
+    console.log(input);
   };
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
@@ -90,7 +125,7 @@ const Events: MyPage = () => {
                   </div>
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-red-600 text-white ${hoverClass}`}
-                    onClick={() => deleteEvent(event.id)}
+                    onClick={() => removeEvent(event.id)}
                   >
                     Delete
                   </div>
@@ -105,15 +140,15 @@ const Events: MyPage = () => {
             value={input.name}
           ></FormInput>
           <TagInput
-            handleChange={(value) => updateInput("topic", value)}
-            name="topic"
+            handleChange={(value) => updateInput("tags", value)}
+            name="tags"
             value={input.tags}
           ></TagInput>
-          <DateInput
-            handleChange={(value) => updateInput("date", value)}
-            name="Date"
+          {/* <DateInput
+            handleChange={(value) => updateInput("dueDate", value)}
+            name="dueDate"
             value={input.dueDate}
-          ></DateInput>
+          ></DateInput> */}
           <ConfirmButton
             handleSave={() => saveEvent(input.id)}
             text={input.id === "-1" ? "Add new" : "Save"}

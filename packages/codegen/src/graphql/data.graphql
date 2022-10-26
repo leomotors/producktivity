@@ -20,6 +20,17 @@ query Events {
   }
 }
 
+mutation CreateEvent($name: String!, $dueDate: DateTime!, $tags: [String!]!) {
+  createEvent(name: $name, dueDate: $dueDate, tags: $tags) {
+    id
+    name
+    description
+    dueDate
+    tags
+    userId
+  }
+}
+
 mutation UpdateEvent(
   $updateEventId: String!
   $name: String
@@ -31,6 +42,12 @@ mutation UpdateEvent(
     name
     tags
     dueDate
+  }
+}
+
+mutation DeleteEvent($deleteEventId: String!) {
+  deleteEvent(id: $deleteEventId) {
+    id
   }
 }
 
