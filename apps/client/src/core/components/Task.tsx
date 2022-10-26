@@ -12,6 +12,10 @@ interface ITask {
   isCompleted: boolean;
   handleComplete(id: string): void;
 }
+
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110";
+
 export const Task: FC<ITask> = ({
   date,
   handleComplete,
@@ -20,8 +24,6 @@ export const Task: FC<ITask> = ({
   name,
   tags,
 }) => {
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110";
   return (
     <div
       className={`drop-shadow-lg flex justify-between w-full h-20 ${

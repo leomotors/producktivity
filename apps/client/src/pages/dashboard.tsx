@@ -1,7 +1,4 @@
 import {
-  Event as GQLEvent,
-  Habit as GQLHabit,
-  Task as GQLTask,
   useEventsQuery,
   useHabitsQuery,
   useTasksQuery,
@@ -46,6 +43,7 @@ const Dashboard: MyPage = () => {
   const [updateTask] = useUpdateTaskMutation();
   const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
   let tasks = dataTasks?.me.tasks ?? [];
+
   tasks = [...tasks];
   tasks = tasks.filter(
     (task) => new Date(task.dueDate) > yesterday && task.isCompleted === false
@@ -66,6 +64,7 @@ const Dashboard: MyPage = () => {
 
   const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
   let events = dataEvents?.me.events ?? [];
+
   events = [...events];
   events.filter((event) => new Date(event.dueDate) > yesterday);
   events.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
@@ -81,6 +80,7 @@ const Dashboard: MyPage = () => {
             <Timer></Timer>
           </div>
         </div>
+
         <div className="flex-1 bg-white">
           <div className="text-xl md:text-2xl font-bold md:mb-2">Habits</div>
           <div className="flex justify-center w-full h-full">
@@ -99,6 +99,7 @@ const Dashboard: MyPage = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col md:flex-row w-full h-fit justify-between">
         <div className="flex-1 bg-white mb-2">
           <div className="text-xl md:text-2xl font-bold mb-4">Tasks</div>
@@ -116,6 +117,7 @@ const Dashboard: MyPage = () => {
             ))}
           </div>
         </div>
+
         <div className="flex-1 bg-white">
           <div className="text-xl md:text-2xl font-bold mb-4">
             Upcoming Events

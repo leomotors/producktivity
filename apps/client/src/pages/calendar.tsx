@@ -61,6 +61,7 @@ const Calendar: MyPage = () => {
       <div className="text-3xl font-bold mb-2 text-white bg-gray-800">
         {`${months[now.getMonth()]} ${now.getFullYear()}`}
       </div>
+
       <div className="z-10 rounded-t-lg grid grid-cols-7 w-full bg-emerald-50">
         {weekDays.map((day, index) => {
           return (
@@ -70,6 +71,7 @@ const Calendar: MyPage = () => {
           );
         })}
       </div>
+
       <div className="rounded-b-lg grid grid-cols-7 w-full h-full bg-white">
         {days.map((day, index) => {
           return (

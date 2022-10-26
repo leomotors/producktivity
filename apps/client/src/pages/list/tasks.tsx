@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import {
-  Task as GQLTask,
   useCreateTaskMutation,
   useDeleteTaskMutation,
   useTasksQuery,
@@ -39,6 +38,9 @@ const initialState: IInput = {
   isCompleted: false,
 };
 
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 const Tasks: MyPage = () => {
   const { data, refetch } = useTasksQuery();
   const [updateTask] = useUpdateTaskMutation();
@@ -53,8 +55,8 @@ const Tasks: MyPage = () => {
 
   const updateInput = (name: string, value: string | string[]) => {
     setInput({ ...input, [name]: value });
-    console.log(input);
   };
+
   const selectTask = (id: string) => {
     const selectedTask = tasks.filter((task) => task.id === id)[0];
     if (selectedTask.tags !== null && selectedTask.tags !== undefined) {
@@ -113,8 +115,6 @@ const Tasks: MyPage = () => {
     refetch();
   };
 
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
     <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
       <Tabs active="tasks"></Tabs>
@@ -130,6 +130,7 @@ const Tasks: MyPage = () => {
                 name={task.name}
                 tags={task.tags}
               ></Task>
+
               <div
                 className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
                   input.id === task.id ? "bg-lime-300" : "bg-amber-300"
@@ -138,6 +139,7 @@ const Tasks: MyPage = () => {
               >
                 {input.id === task.id ? "Editing" : "Edit"}
               </div>
+
               <div
                 className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-red-600 text-white ${hoverClass}`}
                 onClick={() => removeTask(task.id)}
@@ -147,28 +149,33 @@ const Tasks: MyPage = () => {
             </div>
           ))}
         </div>
+
         <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
           <FormInput
             handleChange={(e) => updateInput("name", e.target.value)}
             name="name"
             value={input.name}
           ></FormInput>
+
           {/* description makes tasks take longer to create + adds more space */}
           {/* <FormInput
             handleChange={(e) => updateInput("description", e.target.value)}
             name="details"
             value={input.description}
           ></FormInput> */}
+
           <TagInput
             handleChange={(value) => updateInput("tags", value)}
             name="tags"
             value={input.tags}
           ></TagInput>
+
           <DateInput
             handleChange={(value) => updateInput("dueDate", value.toString())}
             name="Date"
             value={new Date(input.dueDate)}
           ></DateInput>
+
           <ConfirmButton
             handleSave={() => saveTask(input.id)}
             text={input.id === "-1" ? "Add new" : "Save"}

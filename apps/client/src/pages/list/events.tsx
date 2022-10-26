@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import {
-  Event as GQLEvent,
   useCreateEventMutation,
   useDeleteEventMutation,
   useEventsQuery,
@@ -35,6 +34,9 @@ const initialState: IInput = {
   userId: "",
 };
 
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 const Events: MyPage = () => {
   const { data, refetch } = useEventsQuery();
   const [updateEvent] = useUpdateEventMutation();
@@ -52,7 +54,6 @@ const Events: MyPage = () => {
 
   const updateInput = (name: string, value: string | string[]) => {
     setInput({ ...input, [name]: value });
-    console.log(input);
   };
 
   const selectEvent = (id: string) => {
@@ -66,7 +67,6 @@ const Events: MyPage = () => {
         userId: selectedEvent.userId,
       });
     }
-    console.log(input);
   };
 
   const removeEvent = async (id: string) => {
@@ -97,14 +97,12 @@ const Events: MyPage = () => {
     }
     refetch();
     setInput(initialState);
-    console.log(input);
   };
 
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
     <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
       <Tabs active="events"></Tabs>
+
       <div className="overflow-auto p-4 flex space-y-4 h-full w-full bg-white">
         <div className="p-4 flex flex-col space-y-4 h-full w-3/5 bg-white">
           {events.map(
@@ -117,6 +115,7 @@ const Events: MyPage = () => {
                     name={event.name}
                     tags={event.tags ?? []}
                   ></Event>
+
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
                       input.id === event.id ? "bg-lime-300" : "bg-amber-300"
@@ -125,6 +124,7 @@ const Events: MyPage = () => {
                   >
                     {input.id === event.id ? "Editing" : "Edit"}
                   </div>
+
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-red-600 text-white ${hoverClass}`}
                     onClick={() => removeEvent(event.id)}
@@ -135,22 +135,26 @@ const Events: MyPage = () => {
               )
           )}
         </div>
+
         <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
           <FormInput
             handleChange={(e) => updateInput("name", e.target.value)}
             name="name"
             value={input.name}
           ></FormInput>
+
           <TagInput
             handleChange={(value) => updateInput("tags", value)}
             name="tags"
             value={input.tags}
           ></TagInput>
+
           <DateInput
             handleChange={(value) => updateInput("dueDate", value.toString())}
             name="Date"
             value={new Date(input.dueDate)}
           ></DateInput>
+
           <ConfirmButton
             handleSave={() => saveEvent(input.id)}
             text={input.id === "-1" ? "Add new" : "Save"}

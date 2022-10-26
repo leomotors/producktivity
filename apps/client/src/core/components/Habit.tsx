@@ -7,6 +7,10 @@ interface IHabit {
   targetCount: number | null | undefined;
   handleIncrease(id: string): void;
 }
+
+const hoverText =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 export const Habit: FC<IHabit> = ({
   currentCount,
   handleIncrease,
@@ -14,9 +18,6 @@ export const Habit: FC<IHabit> = ({
   name,
   targetCount,
 }) => {
-  const hoverText =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
-
   return (
     <div className="relative rounded-md flex justify-center items-center w-full h-full bg-amber-50">
       <div className="text-sm absolute top-2 left-2">{`${currentCount} / ${targetCount}`}</div>

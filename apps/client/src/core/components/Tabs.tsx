@@ -4,17 +4,18 @@ interface ITabs {
   active: string;
 }
 
+const baseURL = `http://localhost:5650`;
+const goToTasks = () => {
+  window.location.href = `${baseURL}/list/tasks`;
+};
+const goToHabits = () => {
+  window.location.href = `${baseURL}/list/habits`;
+};
+const goToEvents = () => {
+  window.location.href = `${baseURL}/list/events`;
+};
+
 export const Tabs: FC<ITabs> = ({ active }) => {
-  const baseURL = `http://localhost:5650`;
-  const goToTasks = () => {
-    window.location.href = `${baseURL}/list/tasks`;
-  };
-  const goToHabits = () => {
-    window.location.href = `${baseURL}/list/habits`;
-  };
-  const goToEvents = () => {
-    window.location.href = `${baseURL}/list/events`;
-  };
   return (
     <ul className="flex justify-between text-xl font-bold text-center">
       <li
@@ -27,6 +28,7 @@ export const Tabs: FC<ITabs> = ({ active }) => {
       >
         Tasks
       </li>
+
       <li
         className={`p-4 w-1/3 hover:cursor-pointer ${
           active === "habits"
@@ -37,6 +39,7 @@ export const Tabs: FC<ITabs> = ({ active }) => {
       >
         Habits
       </li>
+
       <li
         className={`p-4 w-1/3 hover:cursor-pointer ${
           active === "events"

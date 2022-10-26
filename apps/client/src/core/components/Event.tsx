@@ -19,6 +19,7 @@ export const Event: FC<IEvent> = ({ date, name, tags }) => {
             {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
           </div>
         </div>
+
         <div className="md:text-md flex space-x-4 w-full">
           {tags !== null &&
             tags !== undefined &&

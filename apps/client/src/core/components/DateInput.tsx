@@ -10,12 +10,12 @@ type Props = {
 };
 
 export const DateInput: FC<Props> = ({ handleChange, name, value }) => {
-  // const initialDate = new Date(value);
   const [startDate, setStartDate] = useState(value || new Date());
+
   useEffect(() => {
     setStartDate(() => value);
-    // handleChange(value);
   }, [value]);
+
   return (
     <div className="w-full mb-2 flex items-center">
       <div className="flex text-xl mr-4 w-1/5">{name}</div>

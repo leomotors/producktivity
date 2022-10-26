@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import {
-  Habit as GQLHabit,
   useCreateHabitMutation,
   useDeleteHabitMutation,
   useHabitsQuery,
@@ -30,6 +29,9 @@ const initialState: IInput = {
   userId: "",
 };
 
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 const Habits: MyPage = () => {
   const { data, refetch } = useHabitsQuery();
   const [updateHabit] = useUpdateHabitMutation();
@@ -44,7 +46,6 @@ const Habits: MyPage = () => {
 
   const updateInput = (name: string, value: string | number) => {
     setInput({ ...input, [name]: value });
-    console.log(input);
   };
 
   const selectHabit = (id: string) => {
@@ -97,7 +98,6 @@ const Habits: MyPage = () => {
     }
     refetch();
     setInput(initialState);
-    console.log(input);
   };
 
   const increaseHabit = async (id: string) => {
@@ -120,12 +120,10 @@ const Habits: MyPage = () => {
     refetch();
   };
 
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
-
   return (
     <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
       <Tabs active="habits"></Tabs>
+
       <div className="overflow-auto p-4 flex space-y-4 h-full w-full bg-white">
         <div className="p-4 flex flex-col space-y-4 h-full w-3/5 bg-white">
           {habits.map((habit, index) => (

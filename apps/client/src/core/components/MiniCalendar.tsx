@@ -27,13 +27,14 @@ const months = [
 ];
 
 export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
-  const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
+  const { data: dataTasks } = useTasksQuery();
   const tasks = dataTasks?.me.tasks ?? [];
 
-  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
+  const { data: dataEvents } = useEventsQuery();
   const events = dataEvents?.me.events ?? [];
 
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
+
   const now = new Date();
   const weekDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
   const numOfDays = new Date(
@@ -91,6 +92,7 @@ export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
                   );
                 })}
               </div>
+
               <div className="text-sm rounded-b-lg grid grid-cols-7 w-full h-full bg-white">
                 {days.map((day, index) => {
                   return (
@@ -109,6 +111,7 @@ export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
                 })}
               </div>
             </div>
+
             {selectedDay !== null && workDays[selectedDay] && (
               <div className="max-h-full w-full p-4 mt-4 flex flex-col rounded-xl bg-white overflow-auto">
                 <CalendarItem

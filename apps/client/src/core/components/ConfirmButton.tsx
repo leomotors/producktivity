@@ -5,9 +5,10 @@ interface IConfirmButton {
   handleSave: () => void;
 }
 
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 export const ConfirmButton: FC<IConfirmButton> = ({ handleSave, text }) => {
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
     <div className="w-full mb-2 flex items-center">
       <div className="flex text-xl mr-4 w-1/5"></div>

@@ -47,6 +47,7 @@ export const CalendarItem: FC<ICalendarItem> = ({
         }
         return;
       })}
+
       {events.map((event, index) => {
         if (
           new Date(event.dueDate).getFullYear() === time.getFullYear() &&

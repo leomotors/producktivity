@@ -6,7 +6,6 @@ export * from "./Event";
 export * from "./ExtLink";
 export * from "./FormInput";
 export * from "./Habit";
-export * from "./LandingNavbar";
 export * from "./MiniCalendar";
 export * from "./NavItem";
 export * from "./Navbar";
