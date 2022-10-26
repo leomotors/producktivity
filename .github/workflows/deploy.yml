@@ -131,3 +131,60 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: producktivity
           directory: apps/client/out
+
+  check_slide:
+    name: Check Slide
+    runs-on: ubuntu-latest
+
+    outputs:
+      run_jobs: ${{ steps.set_output.outputs.run_jobs }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 10
+
+      - name: Check if new build is needed
+        id: set_output
+        run: bash ignore-build.bash @producktivity/slide
+
+  slide:
+    name: Build Slide
+    runs-on: ubuntu-latest
+    needs: [check_slide]
+    if: needs.check_slide.outputs.run_jobs == 'true'
+
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: actions/checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup node with cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and Export
+        run: pnpm build:slide
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: slide-producktivity
+          directory: apps/slide/build
