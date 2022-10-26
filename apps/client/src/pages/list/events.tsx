@@ -19,19 +19,20 @@ import {
 } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
+interface IInput {
+  id: string;
+  name: string;
+  dueDate: string;
+  tags: string[];
+  userId: string;
+}
+
 const Events: MyPage = () => {
   const { data, refetch } = useEventsQuery();
   const [updateEvent] = useUpdateEventMutation();
   const [deleteEvent] = useDeleteEventMutation();
   const [createEvent] = useCreateEventMutation();
 
-  interface IInput {
-    id: string;
-    name: string;
-    dueDate: string;
-    tags: string[];
-    userId: string;
-  }
   const initialState: IInput = {
     id: "-1",
     name: "Select an event",
@@ -42,7 +43,9 @@ const Events: MyPage = () => {
 
   const [input, setInput] = useState<IInput>(initialState);
 
-  const events = data?.me.events ?? [];
+  let events = data?.me.events ?? [];
+  events = [...events];
+  events.sort((a, b) => (new Date(a.dueDate) < new Date(b.dueDate) ? 1 : -1));
 
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
@@ -99,6 +102,7 @@ const Events: MyPage = () => {
     setInput(initialState);
     console.log(input);
   };
+
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (

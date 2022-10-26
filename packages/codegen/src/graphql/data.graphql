@@ -59,7 +59,58 @@ query Tasks {
       dueDate
       tags
       userId
+      description
     }
+  }
+}
+
+mutation CreateTask(
+  $name: String!
+  $dueDate: DateTime!
+  $tags: [String!]!
+  $description: String!
+) {
+  createTask(
+    name: $name
+    dueDate: $dueDate
+    tags: $tags
+    description: $description
+  ) {
+    name
+    id
+    dueDate
+    isCompleted
+    tags
+    userId
+  }
+}
+
+mutation UpdateTask(
+  $updateTaskId: String!
+  $name: String
+  $dueDate: DateTime
+  $isCompleted: Boolean
+  $tags: [String!]
+) {
+  updateTask(
+    id: $updateTaskId
+    name: $name
+    dueDate: $dueDate
+    isCompleted: $isCompleted
+    tags: $tags
+  ) {
+    id
+    name
+    dueDate
+    isCompleted
+    tags
+    userId
+  }
+}
+
+mutation DeleteTask($deleteTaskId: String!) {
+  deleteTask(id: $deleteTaskId) {
+    id
   }
 }
 
