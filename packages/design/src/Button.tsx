@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import { FC, PropsWithChildren, memo } from "react";
+
+import clsx from "clsx";
 
 interface ButtonProps extends PropsWithChildren {
   variant: "primary" | "secondary";

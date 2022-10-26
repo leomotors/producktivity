@@ -8,10 +8,10 @@
   ],
   "scripts": {
     "postinstall": "pnpm prisma generate",
-    "build": "FORCE_COLOR=2 turbo run build",
-    "dev": "FORCE_COLOR=2 turbo run dev --parallel",
-    "lint": "FORCE_COLOR=2 turbo run lint",
-    "format": "FORCE_COLOR=2 turbo run format",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
     "build:server": "pnpm turbo run --filter=\"@producktivity/server\" build",
     "start:server": "pnpm --filter=\"@producktivity/server\" start",
     "build:slide": "pnpm turbo run --filter=\"@producktivity/slide\" build"
