@@ -2,6 +2,8 @@
 
 The ducks that wants to be productive, Thinc 10 days project.
 
+[Presentation Slide](https://slide-producktivity.pages.dev)
+
 ## Development Setup
 
 ### Prerequisites
