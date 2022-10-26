@@ -76,8 +76,8 @@ const Dashboard: MyPage = () => {
         <div className="bg-brown-100 w-full md:w-2/5">
           <div className="text-xl md:text-2xl font-bold md:mb-2">Timers</div>
           <div className="px-2 md:px-10 flex justify-between w-full h-full">
-            <Timer></Timer>
-            <Timer></Timer>
+            <Timer time={25}></Timer>
+            <Timer time={5}></Timer>
           </div>
         </div>
 

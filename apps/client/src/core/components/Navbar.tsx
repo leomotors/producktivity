@@ -43,21 +43,21 @@ export const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
         </div>
 
         <div className="items-center flex space-x-2">
-          <NavItem link="dashboard">
+          <NavItem link="/dashboard">
             <Squares2X2Icon className={`h-8 w-8 text-white ${hoverClass}`} />
             <h1 className="text-white hover:cursor-pointer ">Dashboard</h1>
           </NavItem>
         </div>
 
         <div className="items-center flex space-x-2">
-          <NavItem link="calendar">
+          <NavItem link="/calendar">
             <CalendarIcon className={`h-8 w-8 text-white ${hoverClass}`} />
           </NavItem>
           <h1 className="text-white hover:cursor-pointer ">Calendar</h1>
         </div>
 
         <div className="items-center flex space-x-2">
-          <NavItem link="list/tasks">
+          <NavItem link="/list/tasks">
             <ClipboardDocumentCheckIcon
               className={`h-8 w-8 text-white ${hoverClass}`}
             />

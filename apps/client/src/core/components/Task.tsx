@@ -26,7 +26,7 @@ export const Task: FC<ITask> = ({
 }) => {
   return (
     <div
-      className={`drop-shadow-lg flex justify-between w-full h-20 ${
+      className={`rounded-lg drop-shadow-lg flex justify-between w-full h-20 ${
         isCompleted ? "bg-cyan-50" : "bg-emerald-50"
       } `}
     >
@@ -60,7 +60,7 @@ export const Task: FC<ITask> = ({
       </div>
 
       <div
-        className={`w-1/6 h-full flex justify-center items-center ${
+        className={`rounded-r-lg w-1/6 h-full flex justify-center items-center ${
           isCompleted
             ? "bg-cyan-500 hover:bg-cyan-400"
             : "bg-emerald-600 hover:bg-emerald-500"

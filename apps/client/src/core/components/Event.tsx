@@ -10,7 +10,7 @@ interface IEvent {
 
 export const Event: FC<IEvent> = ({ date, name, tags }) => {
   return (
-    <div className="drop-shadow-lg flex justify-between w-full h-20 bg-indigo-50">
+    <div className="rounded-lg drop-shadow-lg flex justify-between w-full h-20 bg-indigo-50">
       <div className="p-2 md:px-8 flex flex-col justify-around w-full">
         <div className="md:text-md flex justify-between md:space-x-8 w-full">
           <h1 className="font-bold">{name}</h1>
