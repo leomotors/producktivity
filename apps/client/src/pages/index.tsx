@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ThemeSwitcher } from "@producktivity/design";
+import { Alert, ThemeSwitcher } from "@producktivity/design";
 
 import { MyPage } from "$core/@types";
 import { ExtLink } from "$core/components";
@@ -30,11 +30,7 @@ const IndexPage: MyPage = () => {
       </p>
 
       <section className="my-8 flex flex-col gap-4 items-center">
-        {error && (
-          <div className="border border-red-500 bg-red-300 p-4 rounded-lg text-black">
-            {error}
-          </div>
-        )}
+        {error && <Alert variant="error">{error}</Alert>}
 
         <input
           className="rounded-lg border border-gray-500 p-2 w-56 text-black"
