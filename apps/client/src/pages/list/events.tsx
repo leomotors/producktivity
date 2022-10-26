@@ -35,7 +35,7 @@ const Events: MyPage = () => {
   const initialState: IInput = {
     id: "-1",
     name: "Select an event",
-    dueDate: "",
+    dueDate: new Date().toString(),
     tags: ["Holiday"],
     userId: "",
   };
@@ -52,6 +52,7 @@ const Events: MyPage = () => {
     value: string | string[] | undefined | null
   ) => {
     setInput({ ...input, [name]: value });
+    console.log(input);
   };
 
   const selectEvent = (id: string) => {
@@ -144,11 +145,11 @@ const Events: MyPage = () => {
             name="tags"
             value={input.tags}
           ></TagInput>
-          {/* <DateInput
-            handleChange={(value) => updateInput("dueDate", value)}
-            name="dueDate"
-            value={input.dueDate}
-          ></DateInput> */}
+          <DateInput
+            handleChange={(value) => updateInput("dueDate", value.toString())}
+            name="Date"
+            value={new Date(input.dueDate)}
+          ></DateInput>
           <ConfirmButton
             handleSave={() => saveEvent(input.id)}
             text={input.id === "-1" ? "Add new" : "Save"}

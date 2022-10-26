@@ -5,16 +5,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 type Props = {
   name: string;
-  value: string;
-  handleChange(value: string): void;
+  value: Date;
+  handleChange: (value: Date) => void;
 };
 
 export const DateInput: FC<Props> = ({ handleChange, name, value }) => {
-  const initialDate = new Date(value);
-  const [startDate, setStartDate] = useState(initialDate || new Date());
+  // const initialDate = new Date(value);
+  const [startDate, setStartDate] = useState(value || new Date());
   useEffect(() => {
-    setStartDate(() => new Date(value));
-    handleChange(value);
+    setStartDate(() => value);
+    // handleChange(value);
   }, [value]);
   return (
     <div className="w-full mb-2 flex items-center">
