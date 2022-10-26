@@ -1,10 +1,9 @@
 import {
-  Event as GQLEvent,
-  Habit as GQLHabit,
-  Task as GQLTask,
   useEventsQuery,
   useHabitsQuery,
   useTasksQuery,
+  useUpdateHabitMutation,
+  useUpdateTaskMutation,
 } from "@producktivity/codegen";
 
 import { MyPage } from "$core/@types";
@@ -12,23 +11,63 @@ import { Event, Habit, Task, Timer } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
 const Dashboard: MyPage = () => {
-  const { data: dataHabits, refetch: refetchHabits } = useHabitsQuery();
-  const habits = dataHabits?.me.habits ?? [];
-
-  const deleteHabit = (id: string) => {};
-
-  const increaseHabit = (id: string) => {};
-
-  const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
-  const tasks = dataTasks?.me.tasks ?? [];
-
-  const deleteTask = (id: string) => {};
-
-  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
-  const events = dataEvents?.me.events ?? [];
-
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
+
+  const [updateHabit] = useUpdateHabitMutation();
+  const { data: dataHabits, refetch: refetchHabits } = useHabitsQuery();
+  let habits = dataHabits?.me.habits ?? [];
+  habits = [...habits];
+  habits.sort((a, b) => a.name.localeCompare(b.name));
+
+  const increaseHabit = async (id: string) => {
+    const selectedHabit = habits.filter((habit) => habit.id === id)[0];
+    if (
+      selectedHabit.currentCount !== null &&
+      selectedHabit.currentCount !== undefined &&
+      selectedHabit.targetCount !== null &&
+      selectedHabit.targetCount !== undefined &&
+      selectedHabit.currentCount < selectedHabit.targetCount
+    ) {
+      await updateHabit({
+        variables: {
+          ...selectedHabit,
+          currentCount: 1 + selectedHabit.currentCount,
+          updateHabitId: id,
+        },
+      });
+    }
+    refetchHabits();
+  };
+
+  const [updateTask] = useUpdateTaskMutation();
+  const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
+  let tasks = dataTasks?.me.tasks ?? [];
+
+  tasks = [...tasks];
+  tasks = tasks.filter(
+    (task) => new Date(task.dueDate) > yesterday && task.isCompleted === false
+  );
+  tasks.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
+
+  const completeTask = async (id: string) => {
+    const selectedTask = tasks.filter((task) => task.id === id)[0];
+    await updateTask({
+      variables: {
+        ...selectedTask,
+        isCompleted: !selectedTask.isCompleted,
+        updateTaskId: id,
+      },
+    });
+    refetchTasks();
+  };
+
+  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
+  let events = dataEvents?.me.events ?? [];
+
+  events = [...events];
+  events.filter((event) => new Date(event.dueDate) > yesterday);
+  events.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
   return (
     <div className="h-full ml-8 p-4 rounded-lg bg-white w-11/12 overflow-auto">
@@ -41,6 +80,7 @@ const Dashboard: MyPage = () => {
             <Timer></Timer>
           </div>
         </div>
+
         <div className="flex-1 bg-white">
           <div className="text-xl md:text-2xl font-bold md:mb-2">Habits</div>
           <div className="flex justify-center w-full h-full">
@@ -48,17 +88,18 @@ const Dashboard: MyPage = () => {
               {habits.map((habit, index) => (
                 <Habit
                   key={index}
-                  count={habit.currentCount}
-                  handleDelete={() => deleteHabit(habit.id)}
+                  currentCount={habit.currentCount}
                   handleIncrease={() => increaseHabit(habit.id)}
                   id={habit.id}
-                  text={habit.name}
+                  name={habit.name}
+                  targetCount={habit.targetCount}
                 ></Habit>
               ))}
             </div>
           </div>
         </div>
       </div>
+
       <div className="flex flex-col md:flex-row w-full h-fit justify-between">
         <div className="flex-1 bg-white mb-2">
           <div className="text-xl md:text-2xl font-bold mb-4">Tasks</div>
@@ -67,14 +108,16 @@ const Dashboard: MyPage = () => {
               <Task
                 key={index}
                 date={task.dueDate}
-                handleDelete={() => deleteTask(task.id)}
+                handleComplete={() => completeTask(task.id)}
                 id={task.id}
+                isCompleted={task.isCompleted}
                 name={task.name}
-                topic={task.tags}
+                tags={task.tags}
               ></Task>
             ))}
           </div>
         </div>
+
         <div className="flex-1 bg-white">
           <div className="text-xl md:text-2xl font-bold mb-4">
             Upcoming Events
@@ -87,7 +130,7 @@ const Dashboard: MyPage = () => {
                     key={index}
                     date={new Date(event.dueDate)}
                     name={event.name}
-                    topic={event.tags}
+                    tags={event.tags}
                   ></Event>
                 )
             )}

@@ -12,6 +12,7 @@ export const FormInput: FC<Props> = ({ handleChange, name, value }) => {
       <div className="flex text-xl mr-4 w-1/5">
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </div>
+
       <input
         className="rounded-md border-2 border-zinc-600 p-1"
         name={name}

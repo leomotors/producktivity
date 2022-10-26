@@ -4,11 +4,11 @@ import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
 
 interface IEvent {
   name: string;
-  topic: string[] | null | undefined;
+  tags: string[] | null | undefined;
   date: Date;
 }
 
-export const Event: FC<IEvent> = ({ date, name, topic }) => {
+export const Event: FC<IEvent> = ({ date, name, tags }) => {
   return (
     <div className="drop-shadow-lg flex justify-between w-full h-20 bg-indigo-50">
       <div className="p-2 md:px-8 flex flex-col justify-around w-full">
@@ -19,12 +19,15 @@ export const Event: FC<IEvent> = ({ date, name, topic }) => {
             {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
           </div>
         </div>
+
         <div className="md:text-md flex space-x-4 w-full">
-          {topic.map((item, index) => (
-            <div key={index} className="rounded-full p-1 md:px-3 bg-white">
-              {item}
-            </div>
-          ))}
+          {tags !== null &&
+            tags !== undefined &&
+            tags.map((item, index) => (
+              <div key={index} className="rounded-full p-1 md:px-3 bg-white">
+                {item}
+              </div>
+            ))}
         </div>
       </div>
     </div>

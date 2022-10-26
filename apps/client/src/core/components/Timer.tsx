@@ -15,13 +15,15 @@ const renderTime = (remainingTime: number) => {
   }
 };
 
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110";
+
 export const Timer: FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const toggleTimer = () => {
     setIsPlaying(!isPlaying);
   };
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110";
+
   return (
     <div className="flex flex-col items-center rounded-lg w-5/12 md:h-4/5 p-2 bg-white">
       <div className="md:text-xl mb-2">Pomodoro</div>
@@ -39,6 +41,7 @@ export const Timer: FC = () => {
           )}
         </CountdownCircleTimer>
       </div>
+
       <div className="flex justify-center mt-2">
         {isPlaying ? (
           <PauseCircleIcon

@@ -20,6 +20,17 @@ query Events {
   }
 }
 
+mutation CreateEvent($name: String!, $dueDate: DateTime!, $tags: [String!]!) {
+  createEvent(name: $name, dueDate: $dueDate, tags: $tags) {
+    id
+    name
+    description
+    dueDate
+    tags
+    userId
+  }
+}
+
 mutation UpdateEvent(
   $updateEventId: String!
   $name: String
@@ -34,6 +45,12 @@ mutation UpdateEvent(
   }
 }
 
+mutation DeleteEvent($deleteEventId: String!) {
+  deleteEvent(id: $deleteEventId) {
+    id
+  }
+}
+
 query Tasks {
   me {
     tasks {
@@ -42,7 +59,59 @@ query Tasks {
       dueDate
       tags
       userId
+      description
+      isCompleted
     }
+  }
+}
+
+mutation CreateTask(
+  $name: String!
+  $dueDate: DateTime!
+  $tags: [String!]!
+  $description: String!
+) {
+  createTask(
+    name: $name
+    dueDate: $dueDate
+    tags: $tags
+    description: $description
+  ) {
+    name
+    id
+    dueDate
+    isCompleted
+    tags
+    userId
+  }
+}
+
+mutation UpdateTask(
+  $updateTaskId: String!
+  $name: String
+  $dueDate: DateTime
+  $isCompleted: Boolean
+  $tags: [String!]
+) {
+  updateTask(
+    id: $updateTaskId
+    name: $name
+    dueDate: $dueDate
+    isCompleted: $isCompleted
+    tags: $tags
+  ) {
+    id
+    name
+    dueDate
+    isCompleted
+    tags
+    userId
+  }
+}
+
+mutation DeleteTask($deleteTaskId: String!) {
+  deleteTask(id: $deleteTaskId) {
+    id
   }
 }
 
@@ -56,6 +125,27 @@ query Habits {
       tags
       userId
     }
+  }
+}
+
+mutation CreateHabit(
+  $name: String!
+  $tags: [String!]!
+  $targetCount: Float
+  $currentCount: Float
+) {
+  createHabit(
+    name: $name
+    tags: $tags
+    targetCount: $targetCount
+    currentCount: $currentCount
+  ) {
+    id
+    name
+    tags
+    currentCount
+    userId
+    targetCount
   }
 }
 
@@ -77,5 +167,11 @@ mutation UpdateHabit(
     tags
     currentCount
     targetCount
+  }
+}
+
+mutation DeleteHabit($deleteHabitId: String!) {
+  deleteHabit(id: $deleteHabitId) {
+    id
   }
 }

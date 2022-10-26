@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 import {
-  Event as GQLEvent,
+  useCreateEventMutation,
+  useDeleteEventMutation,
   useEventsQuery,
   useUpdateEventMutation,
 } from "@producktivity/codegen";
@@ -17,57 +18,91 @@ import {
 } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
+interface IInput {
+  id: string;
+  name: string;
+  dueDate: string;
+  tags: string[];
+  userId: string;
+}
+
+const initialState: IInput = {
+  id: "-1",
+  name: "Select an event",
+  dueDate: new Date().toString(),
+  tags: ["Holiday"],
+  userId: "",
+};
+
+const hoverClass =
+  "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
 const Events: MyPage = () => {
   const { data, refetch } = useEventsQuery();
   const [updateEvent] = useUpdateEventMutation();
+  const [deleteEvent] = useDeleteEventMutation();
+  const [createEvent] = useCreateEventMutation();
 
-  interface IInput {
-    id: string;
-    name: string;
-    dueDate: string;
-    tags?: string[] | null | undefined;
-    userId: string;
-  }
-  const [input, setInput] = useState<IInput>({
-    id: "-1",
-    name: "Select an event",
-    tags: ["Holiday"],
-    dueDate: "",
-    userId: "",
-    // __typename: "Event",
-  });
+  const [input, setInput] = useState<IInput>(initialState);
 
-  const events = data?.me.events ?? [];
+  let events = data?.me.events ?? [];
+  events = [...events];
+  events.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const updateInput = (
-    name: string,
-    value: string | string[] | Date | null
-  ) => {
-    // s
+  const updateInput = (name: string, value: string | string[]) => {
+    setInput({ ...input, [name]: value });
   };
 
   const selectEvent = (id: string) => {
-    setInput(() => events.filter((event) => event.id === id)[0]);
-    console.log(input);
+    const selectedEvent = events.filter((event) => event.id === id)[0];
+    if (selectedEvent.tags !== null && selectedEvent.tags !== undefined) {
+      setInput({
+        id: selectedEvent.id,
+        name: selectedEvent.name,
+        dueDate: selectedEvent.dueDate,
+        tags: selectedEvent.tags,
+        userId: selectedEvent.userId,
+      });
+    }
   };
 
-  const deleteEvent = (id: string) => {};
+  const removeEvent = async (id: string) => {
+    await deleteEvent({
+      variables: {
+        deleteEventId: id,
+      },
+    });
+    refetch();
+  };
 
   const saveEvent = async (id: string) => {
-    // const { data: returnUpdate } = await updateEvent({
-    //   variables: {
-    //     username,
-    //   },
-    // });
+    if (id === "-1" && input.tags !== undefined) {
+      await createEvent({
+        variables: {
+          name: input.name,
+          dueDate: input.dueDate,
+          tags: input.tags,
+        },
+      });
+    } else {
+      await updateEvent({
+        variables: {
+          ...input,
+          updateEventId: id,
+        },
+      });
+    }
+    refetch();
+    setInput(initialState);
   };
-  const hoverClass =
-    "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
+
   return (
     <div className="h-full flex flex-col ml-8 rounded-lg bg-gray-800 w-11/12 overflow-auto">
       <Tabs active="events"></Tabs>
+
       <div className="overflow-auto p-4 flex space-y-4 h-full w-full bg-white">
         <div className="p-4 flex flex-col space-y-4 h-full w-3/5 bg-white">
           {events.map(
@@ -78,8 +113,9 @@ const Events: MyPage = () => {
                     key={index}
                     date={new Date(event.dueDate)}
                     name={event.name}
-                    topic={event.tags ?? []}
+                    tags={event.tags ?? []}
                   ></Event>
+
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
                       input.id === event.id ? "bg-lime-300" : "bg-amber-300"
@@ -88,9 +124,10 @@ const Events: MyPage = () => {
                   >
                     {input.id === event.id ? "Editing" : "Edit"}
                   </div>
+
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center bg-red-600 text-white ${hoverClass}`}
-                    onClick={() => deleteEvent(event.id)}
+                    onClick={() => removeEvent(event.id)}
                   >
                     Delete
                   </div>
@@ -98,22 +135,26 @@ const Events: MyPage = () => {
               )
           )}
         </div>
+
         <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
           <FormInput
             handleChange={(e) => updateInput("name", e.target.value)}
             name="name"
             value={input.name}
           ></FormInput>
+
           <TagInput
-            handleChange={(value) => updateInput("topic", value)}
-            name="topic"
+            handleChange={(value) => updateInput("tags", value)}
+            name="tags"
             value={input.tags}
           ></TagInput>
+
           <DateInput
-            handleChange={(value) => updateInput("date", value)}
+            handleChange={(value) => updateInput("dueDate", value.toString())}
             name="Date"
-            value={input.dueDate}
+            value={new Date(input.dueDate)}
           ></DateInput>
+
           <ConfirmButton
             handleSave={() => saveEvent(input.id)}
             text={input.id === "-1" ? "Add new" : "Save"}

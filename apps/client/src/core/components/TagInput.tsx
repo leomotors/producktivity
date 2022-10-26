@@ -15,6 +15,7 @@ export const TagInput: FC<Props> = ({ handleChange, name, value }) => {
   }, [value]);
 
   const [selected, setSelected] = useState(value || ["Homework"]);
+
   return (
     <div className="w-full mb-2 flex items-center">
       <div className="flex text-xl mr-4 w-1/5">
