@@ -12,6 +12,7 @@ export const TagInput: FC<Props> = ({ handleChange, name, value }) => {
   useEffect(() => {
     setSelected(() => value);
     handleChange(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const [selected, setSelected] = useState(value || ["Homework"]);

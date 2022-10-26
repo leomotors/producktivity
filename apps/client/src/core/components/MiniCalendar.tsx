@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { useEventsQuery, useTasksQuery } from "@producktivity/codegen";
 
-import { CalendarItem } from "$core/components";
+import { CalendarItem } from "./CalendarItem";
 
 interface IMiniCalendar {
   calendar: boolean;
@@ -119,7 +119,7 @@ export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
                   events={events}
                   tasks={tasks}
                   time={now}
-                ></CalendarItem>
+                />
               </div>
             )}
           </div>

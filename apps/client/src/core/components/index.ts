@@ -1,4 +1,3 @@
-export * from "./ExtLink";
 export * from "./CalendarItem";
 export * from "./ConfirmButton";
 export * from "./DateInput";

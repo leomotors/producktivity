@@ -62,7 +62,7 @@ const Dashboard: MyPage = () => {
     refetchTasks();
   };
 
-  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
+  const { data: dataEvents } = useEventsQuery();
   let events = dataEvents?.me.events ?? [];
 
   events = [...events];
@@ -93,7 +93,7 @@ const Dashboard: MyPage = () => {
                   id={habit.id}
                   name={habit.name}
                   targetCount={habit.targetCount}
-                ></Habit>
+                />
               ))}
             </div>
           </div>
@@ -113,7 +113,7 @@ const Dashboard: MyPage = () => {
                 isCompleted={task.isCompleted}
                 name={task.name}
                 tags={task.tags}
-              ></Task>
+              />
             ))}
           </div>
         </div>
@@ -131,7 +131,7 @@ const Dashboard: MyPage = () => {
                     date={new Date(event.dueDate)}
                     name={event.name}
                     tags={event.tags}
-                  ></Event>
+                  />
                 )
             )}
           </div>

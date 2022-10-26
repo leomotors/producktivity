@@ -21,7 +21,7 @@ export const Renderer: FC<RendererProps> = ({ page: Page, props }) => {
     if (Page.authStatus === "private" && !isAuth) {
       router.replace("/");
     } else if (Page.authStatus === "redirect" && isAuth) {
-      router.replace("/home");
+      router.replace("/dashboard");
     }
   }, [isAuth, Page.authStatus, router]);
 

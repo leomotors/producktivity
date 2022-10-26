@@ -6,7 +6,7 @@ import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDocumentCheckIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
 
-import { NavItem } from "$core/components";
+import { NavItem } from "./NavItem";
 
 interface INavbar {
   isMinimized: boolean;

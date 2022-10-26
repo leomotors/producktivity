@@ -13,6 +13,7 @@ const weekDays: string[] = [
   "Friday",
   "Saturday",
 ];
+
 const months = [
   "January",
   "February",
@@ -29,10 +30,10 @@ const months = [
 ];
 
 const Calendar: MyPage = () => {
-  const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
+  const { data: dataTasks } = useTasksQuery();
   const tasks = dataTasks?.me.tasks ?? [];
 
-  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
+  const { data: dataEvents } = useEventsQuery();
   const events = dataEvents?.me.events ?? [];
 
   const now = new Date();
@@ -82,7 +83,7 @@ const Calendar: MyPage = () => {
                 events={events}
                 tasks={tasks}
                 time={now}
-              ></CalendarItem>
+              />
             </div>
           );
         })}
