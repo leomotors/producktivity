@@ -89,7 +89,7 @@ const Tasks: MyPage = () => {
             </div>
           ))}
         </div>
-        <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
+        <div className="ml-12 p-4 flex flex-col items-start space-y-4 w-2/5 bg-amber-50 drop-shadow-lg rounded-lg animate-fade">
           <FormInput
             handleChange={(e) => updateTask("name", e.target.value)}
             name="name"

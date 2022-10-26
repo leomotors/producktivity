@@ -5,6 +5,7 @@ import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDocumentCheckIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
+import BellIcon from "@heroicons/react/24/outline/BellIcon.js";
 
 import { NavItem } from "$core/components";
 
@@ -53,16 +54,27 @@ export const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
         <div className="items-center flex space-x-2">
           <NavItem link="calendar">
             <CalendarIcon className={`h-8 w-8 text-white ${hoverClass}`} />
+            <h1 className="text-white hover:cursor-pointer ">Calendar</h1>
           </NavItem>
-          <h1 className="text-white hover:cursor-pointer ">Calendar</h1>
+          
         </div>
         <div className="items-center flex space-x-2">
           <NavItem link="list/tasks">
             <ClipboardDocumentCheckIcon
               className={`h-8 w-8 text-white ${hoverClass}`}
             />
+            <h1 className="text-white hover:cursor-pointer ">Lists</h1>
           </NavItem>
-          <h1 className="text-white hover:cursor-pointer ">Lists</h1>
+          
+        </div>
+        <div className="items-center flex space-x-2">
+          <NavItem link="notification">
+            <BellIcon
+              className={`h-8 w-8 text-white ${hoverClass}`}
+            />
+            <h1 className="text-white hover:cursor-pointer ">Notification</h1>
+          </NavItem>
+          
         </div>
       </div>
     </>

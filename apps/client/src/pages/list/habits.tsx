@@ -67,6 +67,10 @@ const Habits: MyPage = () => {
       })
     );
   };
+
+  const saveTask = (id: number) => {
+    return 0;
+  }
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
@@ -94,7 +98,7 @@ const Habits: MyPage = () => {
               </div>
             ))}
           </div>
-          <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
+          <div className="ml-12 p-4 flex flex-col items-start space-y-4 w-2/5 bg-amber-50 drop-shadow-lg rounded-lg animate-fade">
             <FormInput
               handleChange={(e) => updateHabit("text", e.target.value)}
               name="text"

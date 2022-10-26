@@ -1,6 +1,7 @@
 import { MyPage } from "$core/@types";
-import { CalendarItem } from "$core/components";
+import { CalendarItem , Modal} from "$core/components";
 import DefaultLayout from "$core/layouts/default";
+import { useState , ReactNode} from "react"
 
 const weekDays: string[] = [
   "Sunday",
@@ -25,6 +26,29 @@ const months = [
   "November",
   "December",
 ];
+
+const get_calender_data = (now:Date) => {
+  const weekDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+  const numOfDays = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    0
+  ).getDate();
+
+  const days = [];
+  let cou = 1;
+  for (let i = 0; i < weekDay; i++) {
+    days[i] = null;
+  }
+  for (let i = weekDay; i < numOfDays + weekDay; i++) {
+    days[i] = cou;
+    cou += 1;
+  }
+  for (let i = numOfDays + weekDay; i < 42; i++) {
+    days[i] = null;
+  }
+  return days
+}
 const tasks = [
   {
     id: 1,
@@ -40,7 +64,7 @@ const tasks = [
   },
   {
     id: 3,
-    name: "grader",
+    name: "grader", 
     topic: ["comprog", "python3.5", "🥐"],
     date: new Date(),
   },
@@ -79,26 +103,11 @@ const events = [
 ];
 
 const Calendar: MyPage = () => {
-  const now = new Date();
-  const weekDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
-  const numOfDays = new Date(
-    now.getFullYear(),
-    now.getMonth() + 1,
-    0
-  ).getDate();
+  const now = new Date()
+  var days = get_calender_data(now)
 
-  const days = [];
-  let cou = 1;
-  for (let i = 0; i < weekDay; i++) {
-    days[i] = null;
-  }
-  for (let i = weekDay; i < numOfDays + weekDay; i++) {
-    days[i] = cou;
-    cou += 1;
-  }
-  for (let i = numOfDays + weekDay; i < 42; i++) {
-    days[i] = null;
-  }
+  var [visiblePopup, setVisiblePopup] = useState(false);
+  var [selectedDay,setSelectedDay] = useState(1)
 
   return (
     <DefaultLayout>
@@ -115,22 +124,29 @@ const Calendar: MyPage = () => {
             );
           })}
         </div>
+        
         <div className="rounded-b-lg grid grid-cols-7 w-full h-full bg-white">
           {days.map((day, index) => {
+            function openPopup(){
+              
+              setVisiblePopup(true)
+              setSelectedDay(day)
+            };
             return (
-              <div key={index} className="p-2 outline outline-zinc-100">
-                <h1>{day}</h1>
-                <CalendarItem
-                  day={day}
-                  events={events}
-                  tasks={tasks}
-                  time={now}
-                ></CalendarItem>
-              </div>
+                <div key={index} className="p-2 outline outline-zinc-100" onClick = {() => openPopup()}>
+                  <h1>{day}</h1>
+                
+            
+                </div>
+              
             );
           })}
         </div>
+        
       </div>
+      <Modal isvisible = {visiblePopup} closeModal = {() => setVisiblePopup(false)}>
+        <CalendarItem day={selectedDay} events={events} tasks={tasks} time={now} />
+      </Modal>
     </DefaultLayout>
   );
 };

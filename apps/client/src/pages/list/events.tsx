@@ -15,11 +15,11 @@ import DefaultLayout from "$core/layouts/default";
 
 const Tasks: MyPage = () => {
   const queryEvents = useEventsQuery();
-  const { data } = await requestLogin({
-    variables: {
-      username,
-    },
-  });
+  // const { data } = await requestLogin({
+  //   variables: {
+  //     username,
+  //   },
+  // });
   interface IEvents {
     id: number;
     name: string;
@@ -126,7 +126,7 @@ const Tasks: MyPage = () => {
                 )
             )}
           </div>
-          <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
+          <div className="ml-12 p-4 flex flex-col items-start space-y-4 w-2/5 bg-amber-50 drop-shadow-lg rounded-lg animate-fade">
             <FormInput
               handleChange={(e) => updateEvent("name", e.target.value)}
               name="name"
@@ -152,6 +152,6 @@ const Tasks: MyPage = () => {
     </DefaultLayout>
   );
 };
-Tasks.Layout = DefaultLayout;
+
 
 export default Tasks;

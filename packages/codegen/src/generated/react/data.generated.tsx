@@ -1,33 +1,25 @@
-import type * as Types from "../types";
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
+import type * as Types from '../types';
 
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type EventsQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type EventsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type EventsQuery = {
-  __typename?: "Query";
-  events: Array<{
-    __typename?: "Event";
-    id: string;
-    name: string;
-    dueDate: any;
-    tags?: Array<string> | null;
-    userId: string;
-  }>;
-};
+
+export type EventsQuery = { __typename?: 'Query', events: Array<{ __typename?: 'Event', id: string, name: string, dueDate: any, tags?: Array<string> | null, userId: string }> };
+
 
 export const EventsDocument = gql`
-  query Events {
-    events {
-      id
-      name
-      dueDate
-      tags
-      userId
-    }
+    query Events {
+  events {
+    id
+    name
+    dueDate
+    tags
+    userId
   }
-`;
+}
+    `;
 
 /**
  * __useEventsQuery__
@@ -44,27 +36,14 @@ export const EventsDocument = gql`
  *   },
  * });
  */
-export function useEventsQuery(
-  baseOptions?: Apollo.QueryHookOptions<EventsQuery, EventsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<EventsQuery, EventsQueryVariables>(
-    EventsDocument,
-    options
-  );
-}
-export function useEventsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<EventsQuery, EventsQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<EventsQuery, EventsQueryVariables>(
-    EventsDocument,
-    options
-  );
-}
+export function useEventsQuery(baseOptions?: Apollo.QueryHookOptions<EventsQuery, EventsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<EventsQuery, EventsQueryVariables>(EventsDocument, options);
+      }
+export function useEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EventsQuery, EventsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<EventsQuery, EventsQueryVariables>(EventsDocument, options);
+        }
 export type EventsQueryHookResult = ReturnType<typeof useEventsQuery>;
 export type EventsLazyQueryHookResult = ReturnType<typeof useEventsLazyQuery>;
-export type EventsQueryResult = Apollo.QueryResult<
-  EventsQuery,
-  EventsQueryVariables
->;
+export type EventsQueryResult = Apollo.QueryResult<EventsQuery, EventsQueryVariables>;

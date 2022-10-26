@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 
-import { MiniCalendar, Navbar } from "$core/components";
+import { MiniCalendar, Navbar , Modal } from "$core/components";
 
 const Default: FC<PropsWithChildren> = ({ children }) => {
   const [minimize, setMinimize] = useState<boolean>(true);
@@ -37,6 +37,9 @@ const Default: FC<PropsWithChildren> = ({ children }) => {
         </div>
         {children}
       </div>
+      {/* <Modal>
+        <h1>Hello</h1>
+      </Modal> */}
       <MiniCalendar calen={calen} calendar={calendar}></MiniCalendar>
     </div>
   );
