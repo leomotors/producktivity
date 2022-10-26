@@ -1,10 +1,12 @@
+import { FC, PropsWithChildren, memo } from "react";
+
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
+
 import clsx from "clsx";
-import { FC, PropsWithChildren, memo } from "react";
 
 interface AlertProps extends PropsWithChildren {
   variant: "success" | "warning" | "error" | "info";
