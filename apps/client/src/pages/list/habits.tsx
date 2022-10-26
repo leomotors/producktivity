@@ -38,7 +38,9 @@ const Habits: MyPage = () => {
 
   const [input, setInput] = useState<IInput>(initialState);
 
-  const habits = data?.me.habits ?? [];
+  let habits = data?.me.habits ?? [];
+  habits = [...habits];
+  habits.sort((a, b) => a.name.localeCompare(b.name));
 
   const updateInput = (name: string, value: string | number) => {
     setInput({ ...input, [name]: value });

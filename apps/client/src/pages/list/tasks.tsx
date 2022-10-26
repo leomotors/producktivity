@@ -26,6 +26,7 @@ interface IInput {
   tags: string[];
   dueDate: string;
   userId: string;
+  isCompleted: boolean;
 }
 
 const initialState: IInput = {
@@ -35,6 +36,7 @@ const initialState: IInput = {
   tags: ["Homework"],
   dueDate: new Date().toString(),
   userId: "",
+  isCompleted: false,
 };
 
 const Tasks: MyPage = () => {
@@ -63,6 +65,7 @@ const Tasks: MyPage = () => {
         dueDate: selectedTask.dueDate,
         tags: selectedTask.tags,
         userId: selectedTask.userId,
+        isCompleted: selectedTask.isCompleted,
       });
     }
   };
@@ -98,6 +101,18 @@ const Tasks: MyPage = () => {
     setInput(initialState);
   };
 
+  const completeTask = async (id: string) => {
+    const selectedTask = tasks.filter((task) => task.id === id)[0];
+    await updateTask({
+      variables: {
+        ...selectedTask,
+        isCompleted: !selectedTask.isCompleted,
+        updateTaskId: id,
+      },
+    });
+    refetch();
+  };
+
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
   return (
@@ -109,10 +124,11 @@ const Tasks: MyPage = () => {
             <div key={index} className="flex items-center w-full space-x-8">
               <Task
                 date={task.dueDate}
-                handleDelete={() => removeTask(task.id)}
+                handleComplete={() => completeTask(task.id)}
                 id={task.id}
+                isCompleted={task.isCompleted}
                 name={task.name}
-                topic={task.tags}
+                tags={task.tags}
               ></Task>
               <div
                 className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
@@ -137,11 +153,12 @@ const Tasks: MyPage = () => {
             name="name"
             value={input.name}
           ></FormInput>
-          <FormInput
+          {/* description makes tasks take longer to create + adds more space */}
+          {/* <FormInput
             handleChange={(e) => updateInput("description", e.target.value)}
             name="details"
             value={input.description}
-          ></FormInput>
+          ></FormInput> */}
           <TagInput
             handleChange={(value) => updateInput("tags", value)}
             name="tags"

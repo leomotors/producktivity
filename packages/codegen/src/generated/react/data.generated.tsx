@@ -42,7 +42,7 @@ export type DeleteEventMutation = { __typename?: 'Mutation', deleteEvent: { __ty
 export type TasksQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type TasksQuery = { __typename?: 'Query', me: { __typename?: 'User', tasks?: Array<{ __typename?: 'Task', id: string, name: string, dueDate: any, tags?: Array<string> | null, userId: string, description: string }> | null } };
+export type TasksQuery = { __typename?: 'Query', me: { __typename?: 'User', tasks?: Array<{ __typename?: 'Task', id: string, name: string, dueDate: any, tags?: Array<string> | null, userId: string, description: string, isCompleted: boolean }> | null } };
 
 export type CreateTaskMutationVariables = Types.Exact<{
   name: Types.Scalars['String'];
@@ -306,6 +306,7 @@ export const TasksDocument = gql`
       tags
       userId
       description
+      isCompleted
     }
   }
 }

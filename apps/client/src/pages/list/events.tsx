@@ -115,7 +115,7 @@ const Events: MyPage = () => {
                     key={index}
                     date={new Date(event.dueDate)}
                     name={event.name}
-                    topic={event.tags ?? []}
+                    tags={event.tags ?? []}
                   ></Event>
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${

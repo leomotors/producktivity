@@ -5,6 +5,8 @@ import {
   useEventsQuery,
   useHabitsQuery,
   useTasksQuery,
+  useUpdateHabitMutation,
+  useUpdateTaskMutation,
 } from "@producktivity/codegen";
 
 import { MyPage } from "$core/@types";
@@ -15,21 +17,58 @@ const Dashboard: MyPage = () => {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
+  const [updateHabit] = useUpdateHabitMutation();
   const { data: dataHabits, refetch: refetchHabits } = useHabitsQuery();
-  const habits = dataHabits?.me.habits ?? [];
+  let habits = dataHabits?.me.habits ?? [];
+  habits = [...habits];
+  habits.sort((a, b) => a.name.localeCompare(b.name));
 
-  const deleteHabit = (id: string) => {};
+  const increaseHabit = async (id: string) => {
+    const selectedHabit = habits.filter((habit) => habit.id === id)[0];
+    if (
+      selectedHabit.currentCount !== null &&
+      selectedHabit.currentCount !== undefined &&
+      selectedHabit.targetCount !== null &&
+      selectedHabit.targetCount !== undefined &&
+      selectedHabit.currentCount < selectedHabit.targetCount
+    ) {
+      await updateHabit({
+        variables: {
+          ...selectedHabit,
+          currentCount: 1 + selectedHabit.currentCount,
+          updateHabitId: id,
+        },
+      });
+    }
+    refetchHabits();
+  };
 
-  const increaseHabit = (id: string) => {};
-
+  const [updateTask] = useUpdateTaskMutation();
   const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
-  const tasks = dataTasks?.me.tasks ?? [];
-  // tasks = tasks.filter((task) => task.dueDate);
+  let tasks = dataTasks?.me.tasks ?? [];
+  tasks = [...tasks];
+  tasks = tasks.filter(
+    (task) => new Date(task.dueDate) > yesterday && task.isCompleted === false
+  );
+  tasks.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
-  const deleteTask = (id: string) => {};
+  const completeTask = async (id: string) => {
+    const selectedTask = tasks.filter((task) => task.id === id)[0];
+    await updateTask({
+      variables: {
+        ...selectedTask,
+        isCompleted: !selectedTask.isCompleted,
+        updateTaskId: id,
+      },
+    });
+    refetchTasks();
+  };
 
   const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
-  const events = dataEvents?.me.events ?? [];
+  let events = dataEvents?.me.events ?? [];
+  events = [...events];
+  events.filter((event) => new Date(event.dueDate) > yesterday);
+  events.sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate) ? 1 : -1));
 
   return (
     <div className="h-full ml-8 p-4 rounded-lg bg-white w-11/12 overflow-auto">
@@ -68,10 +107,11 @@ const Dashboard: MyPage = () => {
               <Task
                 key={index}
                 date={task.dueDate}
-                handleDelete={() => deleteTask(task.id)}
+                handleComplete={() => completeTask(task.id)}
                 id={task.id}
+                isCompleted={task.isCompleted}
                 name={task.name}
-                topic={task.tags}
+                tags={task.tags}
               ></Task>
             ))}
           </div>
@@ -88,7 +128,7 @@ const Dashboard: MyPage = () => {
                     key={index}
                     date={new Date(event.dueDate)}
                     name={event.name}
-                    topic={event.tags}
+                    tags={event.tags}
                   ></Event>
                 )
             )}
