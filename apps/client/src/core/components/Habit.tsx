@@ -4,10 +4,10 @@ import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon.js";
 
 interface IHabit {
   text: string;
-  id: number;
-  count: number;
-  handleDelete(id: number): void;
-  handleIncrease(id: number): void;
+  id: string;
+  count: number | null | undefined;
+  handleDelete(id: string): void;
+  handleIncrease(id: string): void;
 }
 export const Habit: FC<IHabit> = ({
   count,

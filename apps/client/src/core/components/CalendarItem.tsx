@@ -1,10 +1,28 @@
 import type { FC } from "react";
 
+interface ITasks {
+  __typename?: "Task" | undefined;
+  id: string;
+  name: string;
+  dueDate: string;
+  tags?: string[] | null | undefined;
+  userId: string;
+}
+
+interface IEvents {
+  __typename?: "Event" | undefined;
+  id: string;
+  name: string;
+  dueDate: string;
+  tags?: string[] | null | undefined;
+  userId: string;
+}
+
 interface ICalendarItem {
   time: Date;
   day: number | null;
-  tasks: { id: number; name: string; topic: string[]; date: Date }[];
-  events: { id: number; name: string; topic: string[]; date: Date }[];
+  tasks: ITasks[];
+  events: IEvents[];
 }
 
 export const CalendarItem: FC<ICalendarItem> = ({
@@ -17,9 +35,9 @@ export const CalendarItem: FC<ICalendarItem> = ({
     <>
       {tasks.map((task, index) => {
         if (
-          task.date.getFullYear() === time.getFullYear() &&
-          task.date.getMonth() === time.getMonth() &&
-          task.date.getDate() === day
+          new Date(task.dueDate).getFullYear() === time.getFullYear() &&
+          new Date(task.dueDate).getMonth() === time.getMonth() &&
+          new Date(task.dueDate).getDate() === day
         ) {
           return (
             <div key={index} className="rounded-lg bg-emerald-200 mb-1 p-1">
@@ -31,9 +49,9 @@ export const CalendarItem: FC<ICalendarItem> = ({
       })}
       {events.map((event, index) => {
         if (
-          event.date.getFullYear() === time.getFullYear() &&
-          event.date.getMonth() === time.getMonth() &&
-          event.date.getDate() === day
+          new Date(event.dueDate).getFullYear() === time.getFullYear() &&
+          new Date(event.dueDate).getMonth() === time.getMonth() &&
+          new Date(event.dueDate).getDate() === day
         ) {
           return (
             <div key={index} className="rounded-lg bg-indigo-200 mb-1 p-1">

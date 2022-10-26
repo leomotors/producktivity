@@ -1,9 +1,81 @@
+query User {
+  me {
+    id
+    username
+    registered
+    createdAt
+    updatedAt
+  }
+}
+
 query Events {
-  events {
+  me {
+    events {
+      id
+      name
+      dueDate
+      tags
+      userId
+    }
+  }
+}
+
+mutation UpdateEvent(
+  $updateEventId: String!
+  $name: String
+  $dueDate: DateTime
+  $tags: [String!]
+) {
+  updateEvent(id: $updateEventId, name: $name, dueDate: $dueDate, tags: $tags) {
     id
     name
-    dueDate
     tags
-    userId
+    dueDate
+  }
+}
+
+query Tasks {
+  me {
+    tasks {
+      id
+      name
+      dueDate
+      tags
+      userId
+    }
+  }
+}
+
+query Habits {
+  me {
+    habits {
+      id
+      name
+      currentCount
+      targetCount
+      tags
+      userId
+    }
+  }
+}
+
+mutation UpdateHabit(
+  $name: String
+  $tags: [String!]
+  $currentCount: Float
+  $targetCount: Float
+  $updateHabitId: String!
+) {
+  updateHabit(
+    name: $name
+    tags: $tags
+    currentCount: $currentCount
+    targetCount: $targetCount
+    id: $updateHabitId
+  ) {
+    name
+    tags
+    currentCount
+    targetCount
   }
 }

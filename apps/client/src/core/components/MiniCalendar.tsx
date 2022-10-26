@@ -1,6 +1,8 @@
 import type { FC } from "react";
 import { useState } from "react";
 
+import { useEventsQuery, useTasksQuery } from "@producktivity/codegen";
+
 import { CalendarItem } from "$core/components";
 
 interface IMiniCalendar {
@@ -8,24 +10,31 @@ interface IMiniCalendar {
   calen: boolean;
 }
 
+const weekDays: string[] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
+  const { data: dataTasks, refetch: refetchTasks } = useTasksQuery();
+  const tasks = dataTasks?.me.tasks ?? [];
+
+  const { data: dataEvents, refetch: refetchEvents } = useEventsQuery();
+  const events = dataEvents?.me.events ?? [];
+
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
-  const weekDays: string[] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const now = new Date(2022, 10, 0);
+  const now = new Date();
   const weekDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
   const numOfDays = new Date(
     now.getFullYear(),
@@ -46,64 +55,12 @@ export const MiniCalendar: FC<IMiniCalendar> = ({ calen, calendar }) => {
     days[i] = null;
   }
 
-  const tasks = [
-    {
-      id: 1,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-    {
-      id: 2,
-      name: "sleep",
-      topic: ["please", "zzzz", "oc"],
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: "grader",
-      topic: ["comprog", "python3.5", "🥐"],
-      date: new Date(),
-    },
-    {
-      id: 4,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-    {
-      id: 5,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date(),
-    },
-  ];
-  const events = [
-    {
-      id: 1,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date("2022-10-23"),
-    },
-    {
-      id: 2,
-      name: "sleep",
-      topic: ["please", "zzzz", "oc"],
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: "grader",
-      topic: ["comprog", "python3.5", "🥐"],
-      date: new Date(),
-    },
-  ];
   const workDays: (number | null)[] = [];
   tasks.map((task) => {
-    workDays[task.date.getDate()] = 1;
+    workDays[new Date(task.dueDate).getDate()] = 1;
   });
   events.map((task) => {
-    workDays[task.date.getDate()] = 1;
+    workDays[new Date(task.dueDate).getDate()] = 1;
   });
 
   return (

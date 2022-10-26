@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { useEventsQuery } from "@producktivity/codegen";
+import {
+  Event as GQLEvent,
+  useEventsQuery,
+  useUpdateEventMutation,
+} from "@producktivity/codegen";
 
 import { MyPage } from "$core/@types";
 import {
@@ -13,77 +17,51 @@ import {
 } from "$core/components";
 import DefaultLayout from "$core/layouts/default";
 
-const Tasks: MyPage = () => {
-  const queryEvents = useEventsQuery();
-  const { data } = queryEvents;
-  console.log(data);
+const Events: MyPage = () => {
+  const { data, refetch } = useEventsQuery();
+  const [updateEvent] = useUpdateEventMutation();
 
-  interface IEvents {
-    id: number;
+  interface IInput {
+    id: string;
     name: string;
-    topic: string[];
-    date: Date;
+    dueDate: string;
+    tags?: string[] | null | undefined;
+    userId: string;
   }
-  const [input, setInput] = useState<IEvents>({
-    id: -1,
+  const [input, setInput] = useState<IInput>({
+    id: "-1",
     name: "Select an event",
-    topic: ["Holiday"],
-    date: new Date(),
+    tags: ["Holiday"],
+    dueDate: "",
+    userId: "",
+    // __typename: "Event",
   });
-  const [events, setEvents] = useState<IEvents[]>([
-    {
-      id: 1,
-      name: "kick students from line group",
-      topic: ["cal", "nonsense", "ps"],
-      date: new Date("2022-10-23"),
-    },
-    {
-      id: 2,
-      name: "sleep",
-      topic: ["please", "zzzz", "oc"],
-      date: new Date(),
-    },
-    {
-      id: 3,
-      name: "grader",
-      topic: ["comprog", "python3.5", "🥐"],
-      date: new Date(),
-    },
-  ]);
+
+  const events = data?.me.events ?? [];
+
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
-  const updateEvent = (
+
+  const updateInput = (
     name: string,
     value: string | string[] | Date | null
   ) => {
-    setInput({ ...input, [name]: value });
+    // s
+  };
+
+  const selectEvent = (id: string) => {
+    setInput(() => events.filter((event) => event.id === id)[0]);
     console.log(input);
   };
-  const selectEvent = (id: number) => {
-    setInput(() => events.filter((event) => event.id === id)[0]);
-  };
-  const deleteEvent = (id: number) => {
-    setEvents(() => events.filter((event) => event.id !== id));
-  };
-  const saveEvent = (id: number) => {
-    if (input.id === -1) {
-      setEvents((prevEvents) => [...prevEvents, { ...input, id: 45 }]);
-    } else {
-      setEvents(() =>
-        events.map((event) => {
-          if (event.id === id) {
-            return input;
-          }
-          return event;
-        })
-      );
-    }
-    setInput({
-      id: -1,
-      name: "Select an event",
-      topic: ["Holiday"],
-      date: new Date(),
-    });
+
+  const deleteEvent = (id: string) => {};
+
+  const saveEvent = async (id: string) => {
+    // const { data: returnUpdate } = await updateEvent({
+    //   variables: {
+    //     username,
+    //   },
+    // });
   };
   const hoverClass =
     "transition ease-in-out delay-50 duration-150 hover:scale-110 hover:cursor-pointer";
@@ -94,13 +72,13 @@ const Tasks: MyPage = () => {
         <div className="p-4 flex flex-col space-y-4 h-full w-3/5 bg-white">
           {events.map(
             (event, index) =>
-              event.date > yesterday && (
+              new Date(event.dueDate) > yesterday && (
                 <div key={index} className="flex items-center w-full space-x-8">
                   <Event
                     key={index}
-                    date={event.date}
+                    date={new Date(event.dueDate)}
                     name={event.name}
-                    topic={event.topic}
+                    topic={event.tags ?? []}
                   ></Event>
                   <div
                     className={`font-bold rounded-lg px-4 py-2 h-fit flex justify-center items-center ${
@@ -122,29 +100,30 @@ const Tasks: MyPage = () => {
         </div>
         <div className="ml-12 p-4 flex flex-col items-start space-y-4 h-full w-2/5 bg-white">
           <FormInput
-            handleChange={(e) => updateEvent("name", e.target.value)}
+            handleChange={(e) => updateInput("name", e.target.value)}
             name="name"
             value={input.name}
           ></FormInput>
           <TagInput
-            handleChange={(value) => updateEvent("topic", value)}
+            handleChange={(value) => updateInput("topic", value)}
             name="topic"
-            value={input.topic}
+            value={input.tags}
           ></TagInput>
           <DateInput
-            handleChange={(value) => updateEvent("date", value)}
+            handleChange={(value) => updateInput("date", value)}
             name="Date"
-            value={input.date}
+            value={input.dueDate}
           ></DateInput>
           <ConfirmButton
             handleSave={() => saveEvent(input.id)}
-            text={input.id === -1 ? "Add new" : "Save"}
+            text={input.id === "-1" ? "Add new" : "Save"}
           ></ConfirmButton>
         </div>
       </div>
     </div>
   );
 };
-Tasks.Layout = DefaultLayout;
 
-export default Tasks;
+Events.Layout = DefaultLayout;
+
+export default Events;

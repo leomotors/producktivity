@@ -4,7 +4,7 @@ import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
 
 interface IEvent {
   name: string;
-  topic: string[];
+  topic: string[] | null | undefined;
   date: Date;
 }
 
