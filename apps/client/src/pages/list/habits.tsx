@@ -190,5 +190,6 @@ const Habits: MyPage = () => {
 };
 
 Habits.Layout = DefaultLayout;
+Habits.authStatus = "private";
 
 export default Habits;

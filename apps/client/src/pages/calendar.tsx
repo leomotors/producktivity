@@ -93,5 +93,6 @@ const Calendar: MyPage = () => {
 };
 
 Calendar.Layout = DefaultLayout;
+Calendar.authStatus = "private";
 
 export default Calendar;
