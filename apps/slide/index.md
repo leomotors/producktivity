@@ -5,8 +5,8 @@ description: Presentation slide for Producktivity, thinc 10 days project
 backgroundColor: #191a23
 color: white
 style: |
-  @import("https://fonts.googleapis.com/css?family=Inter:r,b&display=swap");
-  @import("https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Thai:r,b&display=swap");
+  @import url("https://fonts.googleapis.com/css?family=Inter:r,b&display=swap");
+  @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Thai:r,b&display=swap");
 
   section.title h1 {
     font-size: 4em;
