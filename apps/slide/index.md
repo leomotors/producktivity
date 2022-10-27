@@ -78,7 +78,7 @@ by the team named "brikl.com/jobs"
 - Peneik Sittimongkol ([mynamefaro](https://github.com/mynamefaro))
 
   - Project Manager, Frontend
-  - Year 1 Computer Engineering
+  - Year 1 Computer Engineering, Developer at BuzzFreeze Solutions
 
 - Matina Vormbrock (Talent)
   - Design
