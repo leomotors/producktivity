@@ -80,7 +80,7 @@ by the team named "brikl.com/jobs"
   - Project Manager, Frontend
   - Year 1 Computer Engineering
 
-- Talent ???
+- Matina Vormbrock (Talent)
   - Design
   - Year 1 Automotive Design and Manufacturing Engineering
 
@@ -110,9 +110,53 @@ Source Code at [Leomotors/producktivity](https://github.com/Leomotors/producktiv
 
 ---
 
-# Stack - Frontend
+# Disclaimer
+
+- Frontend is not finished yet. We only have 10 days 😭😭😭😭😭💢💢. There will be **LOTS** of bug.
+
+- Backend is located at `/graphql`. If you enter `/` you will find "something"
+
+---
+
+# Process of Development
+
+By Design and Project Manager
+
+- [Figma](https://www.figma.com/file/zYcDWpr8iNz8id1E1QQBlB/Scheduler-Website?node-id=6%3A6)
+
+- [Requirements Document](https://drive.google.com/file/d/1tLtUcrl5dQj4iyINH5uNfmWuxEwHD91l/view?usp=sharing)
+
+---
+
+<h1 align="center">Process of Development - ER Table</h1>
+
+<img src="./images/ertable.webp" height="540px" style="margin: 0 auto;" />
+
+---
+
+<h1 align="center">Process of Development - Sitemap</h1>
+
+<img src="./images/sitemap.webp" height="540px" style="margin: 0 auto;" />
+
+---
 
 <!-- backgroundColor: #343649 -->
+
+# Tech Stack
+
+- This stack is inspired by MonkeyEveryday <img src="https://static.monkeyeveryday.com/client-file/images/everyday-logo-black.svg" width="192px" style="transform: translateY(20px); margin-top: -999px;" />
+
+- But we use Turborepo instead of NX
+
+- We also use Double Quotes because we ~~love~~ C++
+
+# Why this Stack?
+
+- For team members to have an image of what business production stack look like.
+
+---
+
+# Stack - Frontend
 
 <div style="display: flex; flex-direction: row; justify-items: center; align-items: center; gap: 1.5em; margin: 4rem auto">
 
@@ -182,6 +226,6 @@ Source Code at [Leomotors/producktivity](https://github.com/Leomotors/producktiv
 
 ---
 
-<!-- _class: title -->
+<h1 align="center" style="font-size: 2.5em;">Demo Time</h1>
 
-# Demo Time
+<img src="https://github.com/creatorsgarten/hacktoberfest-museum/blob/main/public/images/deploydeemai.png?raw=true" style="margin: 0 auto;" />
