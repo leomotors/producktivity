@@ -1,10 +1,15 @@
 import type { FC } from "react";
 
+import ArrowLeftOnRectangleIcon from "@heroicons/react/24/outline/ArrowLeftOnRectangleIcon";
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon.js";
 import ChevronLeftIcon from "@heroicons/react/24/outline/ChevronLeftIcon.js";
 import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon.js";
 import ClipboardDocumentCheckIcon from "@heroicons/react/24/outline/ClipboardDocumentCheckIcon.js";
 import Squares2X2Icon from "@heroicons/react/24/outline/Squares2X2Icon.js";
+
+import { useUser } from "$modules/authentication";
+
+import clsx from "clsx";
 
 import { NavItem } from "./NavItem";
 
@@ -17,6 +22,8 @@ const hoverClass =
   "transition ease-in-out delay-50 duration-150 hover:scale-150";
 
 export const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
+  const { resetToken } = useUser();
+
   return (
     <>
       <div
@@ -63,6 +70,15 @@ export const Navbar: FC<INavbar> = ({ isMinimized, toggleMinimize }) => {
             />
           </NavItem>
           <h1 className="text-white hover:cursor-pointer ">Lists</h1>
+        </div>
+
+        <div className="items-center flex space-x-2">
+          <button onClick={() => resetToken()}>
+            <ArrowLeftOnRectangleIcon
+              className={clsx("h-8 w-8 text-white", hoverClass)}
+            />
+          </button>
+          <p className="text-white hover:cursor-pointer">Logout</p>
         </div>
       </div>
     </>

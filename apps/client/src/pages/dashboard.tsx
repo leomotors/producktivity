@@ -142,5 +142,6 @@ const Dashboard: MyPage = () => {
 };
 
 Dashboard.Layout = DefaultLayout;
+Dashboard.authStatus = "private";
 
 export default Dashboard;

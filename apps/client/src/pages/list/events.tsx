@@ -166,5 +166,6 @@ const Events: MyPage = () => {
 };
 
 Events.Layout = DefaultLayout;
+Events.authStatus = "private";
 
 export default Events;

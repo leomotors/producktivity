@@ -187,5 +187,6 @@ const Tasks: MyPage = () => {
 };
 
 Tasks.Layout = DefaultLayout;
+Tasks.authStatus = "private";
 
 export default Tasks;
