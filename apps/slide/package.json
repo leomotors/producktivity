@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "marp --html index.md -o build/index.html"
+    "build": "marp --html index.md -o build/index.html & cp -r images build"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^2.2.0"
