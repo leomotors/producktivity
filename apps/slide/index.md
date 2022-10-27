@@ -130,13 +130,13 @@ By Design and Project Manager
 
 <h1 align="center">Process of Development - ER Table</h1>
 
-<img src="./images/ertable.webp" height="540px" style="margin: 0 auto;" />
+<img src="https://github.com/Leomotors/producktivity/blob/main/apps/slide/images/ertable.webp?raw=true" height="540px" style="margin: 0 auto;" />
 
 ---
 
 <h1 align="center">Process of Development - Sitemap</h1>
 
-<img src="./images/sitemap.webp" height="540px" style="margin: 0 auto;" />
+<img src="https://github.com/Leomotors/producktivity/blob/main/apps/slide/images/sitemap.webp?raw=true" height="540px" style="margin: 0 auto;" />
 
 ---
 
