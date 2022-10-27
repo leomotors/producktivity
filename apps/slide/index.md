@@ -80,7 +80,7 @@ by the team named "brikl.com/jobs"
   - Project Manager, Frontend
   - Year 1 Computer Engineering
 
-- Talent ???
+- Matina Vormbrock (Talent)
   - Design
   - Year 1 Automotive Design and Manufacturing Engineering
 
@@ -110,9 +110,21 @@ Source Code at [Leomotors/producktivity](https://github.com/Leomotors/producktiv
 
 ---
 
-# Stack - Frontend
-
 <!-- backgroundColor: #343649 -->
+
+# Stack
+
+- This stack is inspired by MonkeyEveryday <img src="https://static.monkeyeveryday.com/client-file/images/everyday-logo-black.svg" width="256px" style="transform: translateY(32px)" />
+
+- But we use Turborepo instead of NX
+
+# Why this Stack?
+
+- For team members to have an image of what business production stack look like.
+
+---
+
+# Stack - Frontend
 
 <div style="display: flex; flex-direction: row; justify-items: center; align-items: center; gap: 1.5em; margin: 4rem auto">
 
@@ -185,3 +197,5 @@ Source Code at [Leomotors/producktivity](https://github.com/Leomotors/producktiv
 <!-- _class: title -->
 
 # Demo Time
+
+<img src="https://github.com/creatorsgarten/hacktoberfest-museum/blob/main/public/images/deploydeemai.png?raw=true" style="margin: 0 auto;" />
